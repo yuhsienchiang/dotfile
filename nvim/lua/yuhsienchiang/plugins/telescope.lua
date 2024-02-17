@@ -62,7 +62,7 @@ return {
 					},
 				},
 				prompt_prefix = " 󰍉 ",
-				selection_caret = "    ",
+				selection_caret = "    ",
 				multi_icon = " + ",
 				entry_prefix = "       ",
 				borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },

@@ -24,8 +24,8 @@ return {
                 folder_open = "",
             },
             signs = {
-                fold_closed = "",
-                fold_open = "",
+                fold_closed = "",
+                fold_open = "",
                 done = "✓",
             },
             view = {

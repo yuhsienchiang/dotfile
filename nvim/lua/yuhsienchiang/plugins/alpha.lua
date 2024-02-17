@@ -73,15 +73,15 @@ return {
 		end
 
 		dashboard_theme.section.buttons.val = {
-			button({ shortcut = "n", hl = { { "AlphaButtonIcon1", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "ﱐ     New file", ":ene <BAR> startinsert <CR>"),
+			button({ shortcut = "n", hl = { { "AlphaButtonIcon1", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     New file", ":ene <BAR> startinsert <CR>"),
 			button({ shortcut = "r", hl = { { "AlphaButtonIcon2", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Recent file", ":Telescope oldfiles <CR>"),
 			button({ shortcut = "e", hl = { { "AlphaButtonIcon3", 0, 9  }, { "AlphaButtonTxt", 9, 50  } } }, "󰙅     Explorer", ":NvimTreeOpen <CR>" ),
-			button({ shortcut = "f", hl = { { "AlphaButtonIcon4", 0, 11 }, { "AlphaButtonTxt", 11, 50 } } }, "󰍉    Find files", ":Telescope find_files <CR>"),
-			button({ shortcut = "w", hl = { { "AlphaButtonIcon5", 0, 12 }, { "AlphaButtonTxt", 12, 50 } } }, "󰍉 󰊄   Find word",":Telescope live_grep <CR>"),
-			button({ shortcut = "u", hl = { { "AlphaButtonIcon6", 0, 10 }, { "AlphaButtonTxt", 10, 50 } } }, "    Restore last", ":lua require('persistence').load({last = true})<CR>"),
-			button({ shortcut = "U", hl = { { "AlphaButtonIcon7", 0, 10 }, { "AlphaButtonTxt", 10, 50 } } }, "    Restore here", ":lua require('persistence').load()<CR>"),
-			button({ shortcut = "s", hl = { { "AlphaButtonIcon8", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-			button({ shortcut = "q", hl = { { "AlphaButtonIcon9", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Quit", ":qa<CR>"),
+			button({ shortcut = "f", hl = { { "AlphaButtonIcon4", 0, 11 }, { "AlphaButtonTxt", 10, 50 } } }, "    Find files", ":Telescope find_files <CR>"),
+			button({ shortcut = "w", hl = { { "AlphaButtonIcon5", 0, 12 }, { "AlphaButtonTxt", 11, 50 } } }, " 󰊄   Find word",":Telescope live_grep <CR>"),
+			button({ shortcut = "u", hl = { { "AlphaButtonIcon6", 0, 10 }, { "AlphaButtonTxt", 10, 50 } } }, "󰦛    Restore last", ":lua require('persistence').load({last = true})<CR>"),
+			button({ shortcut = "U", hl = { { "AlphaButtonIcon7", 0, 10 }, { "AlphaButtonTxt", 10, 50 } } }, "󰦛    Restore here", ":lua require('persistence').load()<CR>"),
+			button({ shortcut = "s", hl = { { "AlphaButtonIcon8", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+			button({ shortcut = "q", hl = { { "AlphaButtonIcon9", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Quit", ":qa<CR>"),
 		}
 
 		-------------------
