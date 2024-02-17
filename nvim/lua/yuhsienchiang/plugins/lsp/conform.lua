@@ -31,6 +31,6 @@ return {
                 quiet = false,
 				timeout_ms = 3000,
 			})
-		end)
+		end, { desc = "Format" })
 	end,
 }
