@@ -56,24 +56,6 @@ return {
 			end
 		end
 
-		local terminal_numbers = function()
-			local bufnrs = vim.tbl_filter(function(b)
-				return vim.api.nvim_buf_get_option(b, "filetype") == "toggleterm"
-			end, vim.api.nvim_list_bufs())
-
-			local buffers_id = {}
-			for _, bufnr in ipairs(bufnrs) do
-				local info = vim.fn.getbufinfo(bufnr)[1]
-				local toggle_number = info.variables.toggle_number
-				table.insert(buffers_id, toggle_number)
-			end
-			if #buffers_id == 0 then
-				return ""
-			else
-				return " " .. table.concat(buffers_id, " ")
-			end
-		end
-
 		lualine.setup({
 			options = {
 				theme = catppuccin_theme,
@@ -92,12 +74,10 @@ return {
 						"help",
 						"alpha",
 						"lazy",
-						"toggleterm",
 					},
 					winbar = {
 						"NvimTree",
 						"lspinfo",
-						"toggleterm",
 						"mason",
 						"startuptime",
 						"checkhealth",
@@ -152,10 +132,6 @@ return {
 					},
 				},
 				lualine_x = {
-					{
-						terminal_numbers,
-						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
-					},
 					{
 						actived_venv,
 						on_click = function()
