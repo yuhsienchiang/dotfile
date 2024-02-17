@@ -1,4 +1,8 @@
-cowsay -f elephant "Time to Code!" | lolcat
+# Print welcome message if cowsay and lolcat are installed
+if [ $(which cowsay) ] && [ $(which lolcat) ]; then
+    cowsay -f elephant "Time to Code!" | lolcat
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -12,22 +16,19 @@ fi
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-#plug "$HOME/.config/zsh/completion.zsh"
+# Load and initialise completion system
+autoload -Uz compinit
+compinit
+bindkey -e
 
+# Load 3rd part plugins
 plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/fzf"
 plug "romkatv/powerlevel10k"
 
-# Load and initialise completion system
-autoload -Uz compinit
-compinit
-
-bindkey -e
-# bindkey '^r' history-incremental-pattern-search-backward (being replaced by zap-zsh/fzf)
-
-
+# Load local configuration
 CASE_SENSITIVE=false
 HYPHEN_INSENSITIVE=true
 COMPLETION_WAITING_DOTS=true
