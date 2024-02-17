@@ -1,9 +1,3 @@
-local which_key_status, which_key = pcall(require, "which-key")
-if not which_key_status then
-	print("which-key not found")
-	return
-end
-
 local function smart_cursor_home()
 	local api = vim.api
 	local cursor_position = api.nvim_win_get_cursor(0)
