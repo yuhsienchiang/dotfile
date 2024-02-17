@@ -40,6 +40,11 @@ return {
 				"dockerfile",
 				"gitignore",
 				"yaml",
+                "git_config",
+                "git_rebase",
+                "gitcommit",
+
+
 			},
 			-- auto install above language parsers
 			auto_install = true,

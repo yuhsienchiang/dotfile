@@ -49,6 +49,7 @@ return {
 			"marksman",
 			"pyright",
 			"yamlls",
+            "bashls",
 		}
 
 		local formatter = {
