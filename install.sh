@@ -17,6 +17,11 @@ ZPROFILE="${HOME}/.zprofile"
 TMUX_DIR="${HOME}/.tmux"
 TMUX_CONF="${HOME}/.tmux.conf"
 
+# poetry variables
+PYENV_ROOT="${HOME}/.pyenv"
+POETRY_VENV="${PYENV_ROOT}/versions/poetry_venv"
+
+
 back_up() {
     # backup the old file or directory
     # $1: file or dir
@@ -66,6 +71,7 @@ setup_homebrew() {
     brew install font-fira-code-nerd-font
 }
 
+
 setup_tmux() {
     echo "Configuring tmux..."
 
@@ -81,6 +87,21 @@ setup_tmux() {
 }
 
 
+setup_pyenv() {
+    echo "Configuring pyenv..."
+    pyenv install -s 3.10.12
+    pyenv global 3.10.12
+
+    # create a virtual env for poetry
+    pyenv virtualenv 3.10.12 poetry_venv
+}
+
+
+setup_poetry() {
+    echo "Installing poetry..."
+
+    ${POETRY_VENV}/bin/pip install -U pip setuptools
+    ${POETRY_VENV}/bin/pip install poetry
 }
 
 
@@ -107,6 +128,8 @@ main() {
     setup_zsh
     setup_homebrew
     setup_tmux
+    setup_pyenv
+    setup_poetry
 
     echo "DevEnv setup complete!"
     printf "Remember to run\n"

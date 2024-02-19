@@ -9,12 +9,14 @@ export TERMINAL="alacritty"
 # Bat (cat replacement) colorscheme
 export BAT_THEME="Catppuccin-macchiato"
 
-# Poetry
-export PATH=$PATH:$HOME/.pyenv/versions/poetry_venv/bin
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Poetry
+export PATH=$HOME/.pyenv/versions/poetry_venv/bin:$PATH
 
 # Zoxide
 export _ZO_DATA_DIR="$HOME/.cache/zoxide"
