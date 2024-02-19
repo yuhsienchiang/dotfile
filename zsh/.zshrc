@@ -23,7 +23,6 @@ bindkey -e
 
 # Load 3rd part plugins
 plug "zap-zsh/supercharge"
-plug "zap-zsh/vim"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zap-zsh/fzf"
 plug "romkatv/powerlevel10k"
