@@ -3,63 +3,62 @@
 set -e
 
 # set virables
-USER=${USER:-$(id -u -n)}
+USER="${USER:-$(id -u -n)}"
 HOME="${HOME:-$(eval echo ~$USER)}"
 
 DOTFILES_DIR="${HOME}/.config"
-OLD_ZDOTDIR="${ZDOTDIR:-"${HOME}"}"
-BACKUP_SUFFIX=$(date +%Y-%m-%d_%H-%M-%S)
+BACKUP_SUFFIX="$(date +%Y-%m-%d_%H-%M-%S)"
 
+# zsh variables
+ZDOT_DIR="${ZDOTDIR:-"${HOME}"}"
 ZPROFILE="${HOME}/.zprofile"
+
+# tmux variables
 TMUX_DIR="${HOME}/.tmux"
 TMUX_CONF="${HOME}/.tmux.conf"
 
-setup_zsh() {
-    # backup the old .config/ directory
-    if [ -e "$DOTFILES_DIR" ]; then
-        OLD_DOTFILES_DIR="${DOTFILES_DIR}-${BACKUP_SUFFIX}"
-        mv -f "${DOTFILES_DIR}" "${OLD_DOTFILES_DIR}"
+back_up() {
+    # backup the old file or directory
+    # $1: file or dir
+    # $2: file or dir path
+    # $3: backup suffix
+    if [ "$1" = "file" ]; then
+        if [ -f "$2" ] || [ -h "$2" ]; then
+            mv -f "$2" "${2}-${3}"
+            echo "Existing $2 backed up to ${2}-${3}"
+        fi
+    elif [ "$1" = "dir" ]; then
+        if [ -e "$2" ]; then
+            mv -f "$2" "${2}-${3}"
+            echo "Existing $2 backed up to ${2}-${3}"
+        fi
     fi
-    # clone the dotfiles to HOME
-    git clone https://github.com/ $DOTFILES_DIR &> /dev/null || { echo "❌ Git is a dependency. Please install git and try again." && return 2 }
- 
-    echo "Configuring zsh..."
-    # backup the old .zprofile
-    if [ -f "$ZPROFILE" ] || [ -h "$ZPROFILE" ]; then
-        OLD_ZPROFILE="${ZPROFILE}-${BACKUP_SUFFIX}"
-        mv -f "$ZPROFILE" "$OLD_ZPROFILE"
-        echo "Existing .zprofile backed up to $OLD_ZPROFILE"
-    fi
+}
 
-    # backup the old .zshrc 
-    if [ -f "$OLD_ZDOTDIR/.zshrc" ] || [ -h "$OLD_ZDOTDIR/.zshrc" ]; then
-        ZSHRC="$OLD_ZDOTDIR/.zshrc"
-        OLD_ZSHRC="${ZSHRC}-${BACKUP_SUFFIX}"
-        mv -f "$ZSHRC" "$OLD_ZSHRC"
-        echo "Existing .zshrc backed up to $OLD_ZSHRC"
-    fi
+
+setup_zsh() {
+    echo "Configuring zsh..."
+    # backup the old .zprofile and .zshrc
+    back_up "file" "$ZPROFILE" "$BACKUP_SUFFIX"
+    back_up "file" "${ZDOT_DIR}/.zshrc" "$BACKUP_SUFFIX"
 
     # create a symlink to the .zprofile
     ln -s "${DOTFILES_DIR}/zsh/.zprofile" "${ZPROFILE}"
+ 
+    # loading the .zprofile
+    # .zshrc will be sourced by zap installer, no need to source it here
+    source "$ZPROFILE"
 
     # Install zap - zsh plugin
     # without overriding the existing .zshrc with --keep option
     zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
-  
-    # source the .zprofile and .zshrc
-    source $ZPROFILE
-    source "${ZDOTDIR}/.zshrc"
 }
 
-setup_homebrew() {
-    # Check for Homebrew and install if we don't have it
-    if [ ! $(which brew) ]; then 
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi 
 
+setup_homebrew() {
+    echo "Install tools through Homebrew..."
     # Install Homebrew packages
-    brew install bat zoxide exa fzf fd tmux neovim ripgrep lazygit lolcat cowsay
+    brew install bat zoxide exa fzf fd tmux neovim ripgrep lazygit pyenv pyenv-virtualenv lolcat cowsay
 
     # Install font
     brew tap homebrew/cask-fonts
@@ -69,29 +68,41 @@ setup_homebrew() {
 
 setup_tmux() {
     echo "Configuring tmux..."
-    # backup the old .tmux.conf
-    if [ -f "$TMUX_CONF" ] || [ -h "$TMUX_CONF" ]; then
-        OLD_TMUX_CONF="${TMUX_CONF}-${BACKUP_SUFFIX}"
-        mv "$TMUX_CONF" "$OLD_TMUX_CONF"
-        echo "Existing .tmux.conf backed up to $OLD_TMUX_CONF"
-    fi
 
-    # backup the old .tmux directory
-    if [ -f "$TMUX_DIR" ] || [ -h "$TMUX_DIR" ]; then
-        OLD_TMUX_DIR="${TMUX_DIR}-${BOCKUP_SUFFIX}"
-        mv "$TMUX_DIR" "$OLD_TMUX_DIR"
-        echo "Existing .tmux backed up to $OLD_TMUX_DIR"
-    fi
+    # backup the old .tmux.conf and .tmux directory
+    back_up "file" "$TMUX_CONF" "$BACKUP_SUFFIX"
+    back_up "dir" "$TMUX_DIR" "$BACKUP_SUFFIX"
 
     # create a symlink to the .tmux.conf
-    ln -s $CONFIG_DIR/tmux/.tmux.config $TMUX_CONF
+    ln -s "${CONFIG_DIR}/tmux/.tmux.config" "$TMUX_CONF"
 
     # setup tmux plugin manager and install plugins
-    git clone https://github.com/tmux-plugins/tpm ${TMUX_DIR}/plugins/tpm && /bin/bash -c "${TMUX_DIR}/plugins/tpm/bin/install_plugins"
+    git clone https://github.com/tmux-plugins/tpm "${TMUX_DIR}/plugins/tpm" && /bin/bash -c "${TMUX_DIR}/plugins/tpm/bin/install_plugins"
+}
+
+
 }
 
 
 main() {
+    # Check for Homebrew and install if we don't have it
+    if [ ! $(which brew) ]; then 
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+
+    # Check for homebrew version git and install if we don't have it
+    if [ ! $(which git | grep "homebrew") ]; then 
+        brew install git
+        source "$ZPROFILE"
+    fi
+
+    # backup the old .config/ directory
+    back_up "dir" "$DOTFILES_DIR" "$BACKUP_SUFFIX"
+
+    # clone the dotfiles to HOME
+    git clone https://github.com/ "$DOTFILES_DIR"
+
     echo "Setting up DevEnv for your Mac..."
     setup_zsh
     setup_homebrew
