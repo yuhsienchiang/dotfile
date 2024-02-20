@@ -3,13 +3,16 @@
     <h1 align="center">Dotfile</h1>
 </div>
 
-This repo keeps as my personal dotfiles and helps me setup development env quickly.
+This repo keeps as my personal dotfiles and helps me setup development environment quickly.
+
+- You are welcome to fork this repo and use it.
+- The scripts and configs are crafted to fit my needs, beware that adjustments might be required to have it work on your device.
 
 ## Requirement
 
 - MacOS
 - Zsh
-- Alacritty >= 0.13.0
+- [Alacritty](https://github.com/alacritty/alacritty) >= 0.13.0
 
 ## 📦 Install
 
@@ -23,16 +26,18 @@ Run the command bellow to setup the dev env:
 
 ### Packages
 
-| Packages                                        | Description                                                                              |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [homebrew](https://brew.sh/)                    | The Missing Package Manager for macOS.                                                   |
-| [tmux](https://github.com/tmux/tmux)            | Terminal multiplexer.                                                                    |
-| [neovim](https://github.com/neovim/neovim)      | Vim-fork text editor.                                                                    |
-| [bat](https://github.com/sharkdp/bat)           | A replacement of cat(1).                                                                 |
-| [eza](https://github.com/eza-community/eza)     | A modern replacement for ‘ls’.                                                           |
-| [fzf](https://github.com/junegunn/fzf)          | A command-line fuzzy finder.                                                             |
-| [fd](https://github.com/sharkdp/fd)             | A simple, fast and user-friendly alternative to 'find'.                                  |
-| [zoxide](https://github.com/ajeetdsouza/zoxide) | Smarter **cd** command which allows you to jump to directories in just a few keystrokes. |
+| Packages                                          | Description                                                                              |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [homebrew](https://brew.sh/)                      | The Missing Package Manager for macOS.                                                   |
+| [tmux](https://github.com/tmux/tmux)              | Terminal multiplexer.                                                                    |
+| [neovim](https://github.com/neovim/neovim)        | Vim-fork text editor.                                                                    |
+| [bat](https://github.com/sharkdp/bat)             | A replacement of cat(1).                                                                 |
+| [eza](https://github.com/eza-community/eza)       | A modern replacement for ‘ls’.                                                           |
+| [fzf](https://github.com/junegunn/fzf)            | A command-line fuzzy finder.                                                             |
+| [fd](https://github.com/sharkdp/fd)               | A simple, fast and user-friendly alternative to 'find'.                                  |
+| [zoxide](https://github.com/ajeetdsouza/zoxide)   | Smarter **cd** command which allows you to jump to directories in just a few keystrokes. |
+| [pyenv](https://github.com/pyenv/pyenv)           | Simple Python version management tool.                                                   |
+| [poetry](https://github.com/python-poetry/poetry) | Python packaging and dependency management tool.                                         |
 
 ### Configurations
 
@@ -93,6 +98,7 @@ Run the command bellow to setup the dev env:
 </details>
 
 #### Neovim Plugins
+
 <details>
 
 See plugin config files in [dotfile/nvim/lua/yuhsienchiang/](nvim/lua/yuhsienchiang/)
