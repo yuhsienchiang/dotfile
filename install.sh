@@ -89,19 +89,34 @@ setup_tmux() {
 
 setup_pyenv() {
     echo "Configuring pyenv..."
-    pyenv install -s 3.10.12
-    pyenv global 3.10.12
-
-    # create a virtual env for poetry
-    pyenv virtualenv 3.10.12 poetry_venv
+    if [ $(which pyenv) ]; then
+        pyenv install -s 3.10.12
+        pyenv global 3.10.12
+    else
+        echo "pyenv does not exist, skip configuring pyenv."
+    fi
 }
 
 
 setup_poetry() {
-    echo "Installing poetry..."
+    echo "Setting up poetry..."
+    # create a virtual env for poetry
+    echo "    Creating virtual env for poetry..."
+    if [ ! -e "${POETRY_VENV}" ]; then
+        pyenv virtualenv 3.10.12 poetry_venv
+        echo "    poetry_venv created."
+    else
+        echo "    poetry_venv already exists, skip creating poetry_venv."
+    fi
 
-    ${POETRY_VENV}/bin/pip install -U pip setuptools
-    ${POETRY_VENV}/bin/pip install poetry
+    echo "    Installing poetry..."
+    if ! $("${POETRY_VENV}/bin/pip" freeze | grep -q "poetry"); then
+        ${POETRY_VENV}/bin/pip install -U pip setuptools
+        ${POETRY_VENV}/bin/pip install poetry
+        echo "    poetry installed."
+    else
+        echo "    poetry already exists, skip installing."
+    fi
 }
 
 
