@@ -137,7 +137,8 @@ main() {
     back_up "dir" "$DOTFILES_DIR" "$BACKUP_SUFFIX"
 
     # clone the dotfiles to HOME
-    git clone https://github.com/ "$DOTFILES_DIR"
+    echo "Cloning Dotfile to {$DOTFILES_DIR}..."
+    git clone https://github.com/yuhsienchiang/dotfile.git "$DOTFILES_DIR"
 
     echo "Setting up DevEnv for your Mac..."
     setup_zsh
