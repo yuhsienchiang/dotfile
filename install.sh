@@ -119,6 +119,20 @@ setup_poetry() {
     fi
 }
 
+print_success() {
+    printf "\n"
+    printf "  ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗  \n"
+    printf "  ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝  \n"
+    printf "  ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗    \n"
+    printf "  ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝    \n"
+    printf "  ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗  \n"
+    printf "  ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝  \n"
+    printf "\n"
+
+    printf "Dotfile setup completed! Remember to run\n"
+    printf "\n    \$ p10k configure\n\n"
+    printf "to configure powerlevel10k.\n"
+}
 
 main() {
     # Check for Homebrew and install if we don't have it
@@ -140,17 +154,13 @@ main() {
     echo "Cloning Dotfile to {$DOTFILES_DIR}..."
     git clone https://github.com/yuhsienchiang/dotfile.git "$DOTFILES_DIR"
 
-    echo "Setting up DevEnv for your Mac..."
     setup_zsh
     setup_homebrew
     setup_tmux
     setup_pyenv
     setup_poetry
 
-    echo "DevEnv setup complete!"
-    printf "Remember to run\n"
-    printf "\n    \$ p10k configure\n\n"
-    printf "to configure powerlevel10k.\n"
+    print_success
 }
 
 main
