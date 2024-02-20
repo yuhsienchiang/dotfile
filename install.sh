@@ -113,7 +113,7 @@ main() {
     fi
 
     # Check for homebrew version git and install if we don't have it
-    if [ ! $(which git | grep "homebrew") ]; then 
+    if $(which git | grep -q "homebrew"); then 
         brew install git
         source "$ZPROFILE"
     fi
