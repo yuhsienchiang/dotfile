@@ -128,15 +128,23 @@ return {
 		-------------------
 		-- Layout Config --
 		-------------------
-		dashboard_theme.config.layout = {
-			{ type = "padding", val = pad_1 },
-			dashboard_theme.section.header,
-			{ type = "padding", val = pad_2 },
-			dashboard_theme.section.buttons,
-			{ type = "padding", val = pad_3 },
-			dashboard_theme.section.footer,
-			{ type = "padding", val = pad_last },
-		}
+        if pad_tot < 4 then
+            dashboard_theme.config.layout = {
+                { type = "padding", val = 4 },
+                dashboard_theme.section.buttons,
+                { type = "padding", val = 4 },
+            }
+        else
+            dashboard_theme.config.layout = {
+                { type = "padding", val = pad_1 },
+                dashboard_theme.section.header,
+                { type = "padding", val = pad_2 },
+                dashboard_theme.section.buttons,
+                { type = "padding", val = pad_3 },
+                dashboard_theme.section.footer,
+                { type = "padding", val = pad_last },
+            }
+        end
 
 		dashboard_theme.opts.opts.noautocmd = true
 
