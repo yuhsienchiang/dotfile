@@ -62,7 +62,6 @@ return {
 				icons_enabled = true,
 				always_divide_middle = true,
 				section_separators = { left = "", right = "" },
-				-- section_separators = { left = "", right = "" },
 				component_separators = { left = "|", right = "|" },
 				disabled_filetypes = {
 					statusline = {
@@ -159,7 +158,6 @@ return {
 							return os.date("%R")
 						end,
 						color = { fg = catppuccin_color.base, bg = catppuccin_color.flamingo },
-						-- separator = { left = "", right = "" },
 					},
 				},
 			},
@@ -172,25 +170,6 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
-			-- tabline = {
-			-- 	lualine_y = {
-			-- 		{
-			-- 			"tabs",
-			-- 			mode = 2,
-			-- 			tabs_color = {
-			-- 				active = { fg = catppuccin_color.base, bg = catppuccin_color.blue },
-			-- 				inactive = { fg = catppuccin_color.base, bg = catppuccin_color.surface1 },
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	lualine_z = {
-			-- 		{
-			-- 			tab_numbers,
-			-- 			separator = { left = "", right = "" },
-			-- 			color = { fg = catppuccin_color.base, bg = catppuccin_color.green, gui = "bold" },
-			-- 		},
-			-- 	},
-			-- },
 		})
 	end,
 }
