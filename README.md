@@ -3,7 +3,7 @@
     <h1 align="center">Dotfile</h1>
 </div>
 
-This repo keeps as my personal dotfiles and helps me setup development environment quickly.
+This repo keeps my personal dotfiles and helps me setup development environment quickly.
 
 - You are welcome to fork this repo and use it.
 - The scripts and configs are crafted to fit my needs, beware that adjustments might be required to have it work on your device.

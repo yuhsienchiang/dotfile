@@ -136,7 +136,7 @@ return {
 			},
 			sorting = {
 				priority_weight = 1.0,
-				comarators = {
+				comparators = {
 					cmp_compare.locality,
 					cmp_compare.recently_used,
 					cmp_compare.score,
