@@ -2,7 +2,7 @@ return {
 	"folke/which-key.nvim",
 	init = function()
 		vim.o.timeout = true
-		vim.o.timeoutlen = 300
+		vim.o.timeoutlen = 500
 	end,
 	config = function()
 		local which_key_status, which_key = pcall(require, "which-key")
