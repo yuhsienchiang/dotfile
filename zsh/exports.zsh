@@ -16,7 +16,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # Poetry
-export PATH=$HOME/.pyenv/versions/poetry_venv/bin:$PATH
+export PATH=$PATH:$HOME/.pyenv/versions/poetry_venv/bin
 
 # Zoxide
 export _ZO_DATA_DIR="$HOME/.cache/zoxide"
