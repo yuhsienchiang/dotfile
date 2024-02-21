@@ -1,25 +1,14 @@
-local function smart_cursor_home()
-	local api = vim.api
-	local cursor_position = api.nvim_win_get_cursor(0)
-	local current_line_string = api.nvim_get_current_line():sub(0, cursor_position[2])
-	local start_idx, _ = string.find(current_line_string, "%S")
-	if start_idx == nil then
-		api.nvim_win_set_cursor(0, { cursor_position[1], 0 })
-	else
-		api.nvim_win_set_cursor(0, { cursor_position[1], start_idx - 1 })
-	end
-end
-
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true })
 
 -- cursor movement
-vim.keymap.set("n",        "<C-Right>", "$",               { desc = "Far Right", silent = true })
-vim.keymap.set("i",        "<C-Right>", "<C-o>$",          { desc = "Far Right", silent = true })
-vim.keymap.set({"n", "i"}, "<C-Left>",  smart_cursor_home, { desc = "Far Left", silent = true })
-vim.keymap.set("n",        "<C-Up>",    "gg",              { desc = "Far Top", silent = true })
-vim.keymap.set("i",        "<C-Up>",    "<C-o>gg",         { desc = "Far Top", silent = true })
-vim.keymap.set("n",        "<C-Down>",  "G",               { desc = "Far Bottom", silent = true })
-vim.keymap.set("i",        "<C-Down>",  "<C-o>G",          { desc = "Far Bottom", silent = true })
+vim.keymap.set("n", "<C-Right>", "$",       { desc = "Far Right", silent = true })
+vim.keymap.set("i", "<C-Right>", "<C-o>$",  { desc = "Far Right", silent = true })
+vim.keymap.set("n", "<C-Left>",  "^",       { desc = "Far Left", silent = true })
+vim.keymap.set("i", "<C-Left>",  "<C-o>^",  { desc = "Far Left", silent = true })
+vim.keymap.set("n", "<C-Up>",    "gg",      { desc = "Far Top", silent = true })
+vim.keymap.set("i", "<C-Up>",    "<C-o>gg", { desc = "Far Top", silent = true })
+vim.keymap.set("n", "<C-Down>",  "G",       { desc = "Far Bottom", silent = true })
+vim.keymap.set("i", "<C-Down>",  "<C-o>G",  { desc = "Far Bottom", silent = true })
 
 -- window manipulation
 vim.keymap.set("n", "<leader><Down>",   ":wincmd j<CR>",               { desc = "Move Down", silent = true })
@@ -58,12 +47,12 @@ vim.keymap.set("n", "<leader>vc", ":VenvSelectCached<CR>", { desc = "Select Venv
 
 -- Git
 -- LazyGit
-vim.keymap.set("n",          "<leader>gll", ":LazyGit<CR>",                                 { desc = "Open Lazygit", silent = true })
-vim.keymap.set("n",          "<leader>glL", ":LazyGitCurrentFile<CR>",                      { desc = "Open Lazygit project root", silent = true })
+vim.keymap.set("n", "<leader>gll", ":LazyGit<CR>",            { desc = "Open Lazygit", silent = true })
+vim.keymap.set("n", "<leader>glL", ":LazyGitCurrentFile<CR>", { desc = "Open Lazygit project root", silent = true })
 -- Diffview
-vim.keymap.set("n",          "<leader>gdd", ":DiffviewOpen <CR>",                           { desc = "Open Diffview", silent = true })
-vim.keymap.set("n",          "<leader>gdh", ":DiffviewFileHistory <CR>",                    { desc = "All diff history", silent = true })
-vim.keymap.set("n",          "<leader>gdH", ":DiffviewFileHistory %<CR>",                   { desc = "Current file diff history", silent = true })
+vim.keymap.set("n", "<leader>gdd", ":DiffviewOpen <CR>",         { desc = "Open Diffview", silent = true })
+vim.keymap.set("n", "<leader>gdh", ":DiffviewFileHistory <CR>",  { desc = "All diff history", silent = true })
+vim.keymap.set("n", "<leader>gdH", ":DiffviewFileHistory %<CR>", { desc = "Current file diff history", silent = true })
 -- Gitsigns
 vim.keymap.set("n",          "<leader>gh]", ":Gitsigns next_hunk<CR>",                      { desc = "Next Hunk", silent = true })
 vim.keymap.set("n",          "<leader>gh[", ":Gitsigns prev_hunk<CR>",                      { desc = "Prev Hunk", silent = true })
