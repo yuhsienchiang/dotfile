@@ -143,6 +143,11 @@ print_success() {
     printf "Dotfile setup completed! Remember to run\n"
     printf "\n    \$ p10k configure\n\n"
     printf "to configure powerlevel10k.\n"
+    printf "\n"
+    printf "Also run:\n"
+    printf "\n    \$ git config --global user.name 'YOUR_NAME'\n\n"
+    printf "\n    \$ git config --global user.email 'your@email.com'\n\n"
+    printf "to setup git configuration.\n"
 }
 
 main() {

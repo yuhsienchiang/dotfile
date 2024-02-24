@@ -1,0 +1,11 @@
+[core]
+    editor = nvim
+	pager = bat
+[merge]
+    tool = nvim
+[mergetool "nvim"]
+    cmd = nvim -f -c \"DiffviewOpen\"
+[mergetool]
+    prompt = false
+[init]
+	defaultBranch = main
