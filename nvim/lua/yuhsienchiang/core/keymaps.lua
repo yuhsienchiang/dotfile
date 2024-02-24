@@ -79,6 +79,9 @@ vim.keymap.set("i", ",", ",<C-g>u", { silent = true, desc = "undo break points",
 vim.keymap.set("i", ".", ".<C-g>u", { silent = true, desc = "undo break points", noremap = true })
 vim.keymap.set("i", ";", ";<C-g>u", { silent = true, desc = "undo break points", noremap = true })
 
+-- Noice
+vim.keymap.set("n", "<leader>nd", ":NoiceDismiss<CR>", { desc = "Close Noice Notification", silent = true })
+
 -- Quit shortcuts
 vim.keymap.set("n", "<leader>qq", "<cmd>wqa<CR>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>",  { desc = "Force quit" })

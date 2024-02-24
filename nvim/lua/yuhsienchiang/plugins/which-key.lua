@@ -79,6 +79,7 @@ return {
 			["<leader>e"] = { name = "Format" },
 			["<leader>t"] = { name = "Tab" },
 			["<leader>w"] = { name = "Window" },
+			["<leader>n"] = { name = "Noice" },
 			["<leader>q"] = { name = "Quit Options" },
 		})
 	end,
