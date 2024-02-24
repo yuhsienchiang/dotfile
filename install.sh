@@ -31,11 +31,15 @@ back_up() {
         if [ -f "$2" ] || [ -h "$2" ]; then
             mv -f "$2" "${2}-${3}"
             echo "Existing $2 backed up to ${2}-${3}"
+        else
+            echo "No existing $2 found."
         fi
     elif [ "$1" = "dir" ]; then
         if [ -e "$2" ]; then
             mv -f "$2" "${2}-${3}"
             echo "Existing $2 backed up to ${2}-${3}"
+        else
+            echo "No existing $2 found."
         fi
     fi
 }
@@ -44,10 +48,12 @@ back_up() {
 setup_zsh() {
     echo "Configuring zsh..."
     # backup the old .zprofile and .zshrc
+    echo "    Backing up the old .zprofile and .zshrc..."
     back_up "file" "$ZPROFILE" "$BACKUP_SUFFIX"
     back_up "file" "${ZDOT_DIR}/.zshrc" "$BACKUP_SUFFIX"
 
     # create a symlink to the .zprofile
+    echo "    Creating .zprofile link..."
     ln -s "${DOTFILES_DIR}/zsh/.zprofile" "${ZPROFILE}"
  
     # loading the .zprofile
@@ -56,6 +62,7 @@ setup_zsh() {
 
     # Install zap - zsh plugin
     # without overriding the existing .zshrc with --keep option
+    echo "    Installing zap..."
     zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
 }
 
@@ -66,6 +73,7 @@ setup_homebrew() {
     brew install bat zoxide exa fzf fd tmux neovim ripgrep lazygit pyenv pyenv-virtualenv lolcat cowsay
 
     # Install font
+    echo "Install fonts..."
     brew tap homebrew/cask-fonts
     brew install font-meslo-lg-nerd-font
     brew install font-fira-code-nerd-font
@@ -76,13 +84,16 @@ setup_tmux() {
     echo "Configuring tmux..."
 
     # backup the old .tmux.conf and .tmux directory
+    echo "    Backing up the old .tmux.conf and .tmux directory..."
     back_up "file" "$TMUX_CONF" "$BACKUP_SUFFIX"
     back_up "dir" "$TMUX_DIR" "$BACKUP_SUFFIX"
 
     # create a symlink to the .tmux.conf
+    echo "    Creating .tmux.conf link..."
     ln -s "${CONFIG_DIR}/tmux/.tmux.config" "$TMUX_CONF"
 
     # setup tmux plugin manager and install plugins
+    echo "    Setting up tmux plugin manager & plugins..."
     git clone https://github.com/tmux-plugins/tpm "${TMUX_DIR}/plugins/tpm" && /bin/bash -c "${TMUX_DIR}/plugins/tpm/bin/install_plugins"
 }
 
@@ -135,19 +146,24 @@ print_success() {
 }
 
 main() {
-    # Check for Homebrew and install if we don't have it
+    echo "Setting up Dotfile for your Mac..."
+    echo "Checking for Homebrew..."
     if [ ! $(which brew) ]; then 
+        echo "    Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 
     # Check for homebrew version git and install if we don't have it
+    echo "Checking for git..."
     if $(which git | grep -q "homebrew"); then 
+        echo "    Installing git..."
         brew install git
         source "$ZPROFILE"
     fi
 
     # backup the old .config/ directory
+    echo "Backing up old .config/ directory..."
     back_up "dir" "$DOTFILES_DIR" "$BACKUP_SUFFIX"
 
     # clone the dotfiles to HOME
