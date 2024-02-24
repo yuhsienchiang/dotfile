@@ -14,7 +14,7 @@ return {
 		selector.setup({
 			search_venv_managers = true,
 			search_workspace = true,
-			search = true,
+			search = false,
 			pyenv_path = "/Users/yuhsienchiang/.pyenv/versions",
 			dap_enabled = false,
 			auto_refresh = false,
