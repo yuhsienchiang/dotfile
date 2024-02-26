@@ -170,7 +170,7 @@ return {
 		},
 		prompt = {
 			enabled = true,
-			prefix = { { " ⚡", "FlashPromptIcon" } },
+			prefix = { { " 󱐋 ", "FlashPromptIcon" } },
 			win_config = {
 				relative = "editor",
 				width = 1, -- when <=1 it's a percentage of the editor width

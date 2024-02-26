@@ -126,7 +126,7 @@ return {
 				debounce_delay = 100,
 				show_on_dirs = true,
 				show_on_open_dirs = false,
-				icons = { hint = "", info = "", warning = "", error = "" },
+				icons = { hint = "", info = "", warning = "", error = "" },
 			},
 			on_attach = on_attach,
 		})
