@@ -149,8 +149,5 @@ return {
 		cmp.event:on("menu_opened", function()
 			vim.b.copilot_suggestion_hidden = false
 		end)
-
-		-- Maximum number of items to show in the popup menu
-		vim.cmd([[ set pumheight=10 ]])
 	end,
 }
