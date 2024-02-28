@@ -1,6 +1,7 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	module = true,
+    cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
+    event = { "BufEnter" },
 	config = function()
 		--        vim.g.loaded_netrw = 1
 		--        vim.g.loaded_netrwPlugin = 1

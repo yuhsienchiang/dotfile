@@ -1,6 +1,18 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	dependencies = { "mason.nvim" },
+	lazy = true,
+	cmd = "ConformInfo",
+	keys = {
+		{
+			"<leader>ef",
+			function()
+				require("conform").format({ lsp_fallback = true, timeout_ms = 3000 })
+			end,
+			mode = { "n", "v" },
+			desc = "Format",
+		},
+	},
 	config = function()
 		local conform_status, conform = pcall(require, "conform")
 		if not conform_status then
@@ -17,20 +29,11 @@ return {
 				html = { "prettier" },
 				css = { "prettier" },
 				javascript = { "prettier" },
-				ymal ={ "prettier" },
-				markdown={ "prettier" },
-				json={ "prettier" },
+				ymal = { "prettier" },
+				markdown = { "prettier" },
+				json = { "prettier" },
 			},
 			notify_on_error = true,
 		})
-
-		vim.keymap.set({ "n", "v" }, "<leader>ef", function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-                quiet = false,
-				timeout_ms = 3000,
-			})
-		end, { desc = "Format" })
 	end,
 }

@@ -1,6 +1,6 @@
 return {
 	"kdheepak/lazygit.nvim",
-	-- optional for floating window border decoration
+    cmd = { "LazyGit", "LazyGitCurrentFile" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},

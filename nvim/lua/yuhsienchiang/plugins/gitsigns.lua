@@ -1,6 +1,6 @@
 return {
 	"lewis6991/gitsigns.nvim",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufNewFile", "BufReadPost" },
 	config = function()
 		local gitsigns_status, gitsigns = pcall(require, "gitsigns")
 		if not gitsigns_status then

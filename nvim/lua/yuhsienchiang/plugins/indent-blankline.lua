@@ -1,7 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
-	main = "ibl",
-	event = { "BufReadPost", "BufNewFile" },
+	event = { "BufNewFile", "BufReadPost" },
 	init = function()
 		vim.opt.list = true
 		vim.opt.listchars:append("eol:↴")
