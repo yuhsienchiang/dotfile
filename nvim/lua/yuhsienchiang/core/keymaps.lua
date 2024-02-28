@@ -1,15 +1,27 @@
+local function smart_cursor_home()
+	local api = vim.api
+	local cursor_position = api.nvim_win_get_cursor(0)
+	local current_line_string = api.nvim_get_current_line():sub(0, cursor_position[2])
+	local start_idx, _ = string.find(current_line_string, "%S")
+	if start_idx == nil then
+		api.nvim_win_set_cursor(0, { cursor_position[1], 0 })
+	else
+		api.nvim_win_set_cursor(0, { cursor_position[1], start_idx - 1 })
+	end
+end
+
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true, noremap = true })
 
 -- cursor movement
-vim.keymap.set("n", "<C-Right>", "$",       { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set("i", "<C-Right>", "<C-o>$",  { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set("n", "<C-Left>",  "^",       { desc = "Far Left",   silent = true, noremap = true })
-vim.keymap.set("i", "<C-Left>",  "<C-o>^",  { desc = "Far Left",   silent = true, noremap = true })
-vim.keymap.set("n", "<C-Up>",    "gg",      { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("i", "<C-Up>",    "<C-o>gg", { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("n", "<C-Down>",  "G",       { desc = "Far Bottom", silent = true, noremap = true })
-vim.keymap.set("i", "<C-Down>",  "<C-o>G",  { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set("n", "<C-Right>", "$",               { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set("i", "<C-Right>", "<C-o>$",          { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set("n", "<C-Left>",  smart_cursor_home, { desc = "Far Left",   silent = true, noremap = true })
+vim.keymap.set("i", "<C-Left>",  smart_cursor_home, { desc = "Far Left",   silent = true, noremap = true })
+vim.keymap.set("n", "<C-Up>",    "gg",              { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set("i", "<C-Up>",    "<C-o>gg",         { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set("n", "<C-Down>",  "G",               { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set("i", "<C-Down>",  "<C-o>G",          { desc = "Far Bottom", silent = true, noremap = true })
 
 -- window manipulation
 vim.keymap.set("n", "<leader><Down>",   ":wincmd j<CR>",               { desc = "Move Down",              silent = true, noremap = true })
