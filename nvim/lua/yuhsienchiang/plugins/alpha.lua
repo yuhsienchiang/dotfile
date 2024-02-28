@@ -80,7 +80,7 @@ return {
 			button({ shortcut = "w", hl = { { "AlphaButtonIcon5", 0, 12 }, { "AlphaButtonTxt", 11, 50 } } }, " 󰊄   Find word",":Telescope live_grep <CR>"),
 			button({ shortcut = "u", hl = { { "AlphaButtonIcon6", 0, 10 }, { "AlphaButtonTxt", 10, 50 } } }, "󰦛    Restore last", ":lua require('persistence').load({last = true})<CR>"),
 			button({ shortcut = "U", hl = { { "AlphaButtonIcon7", 0, 10 }, { "AlphaButtonTxt", 10, 50 } } }, "󰦛    Restore here", ":lua require('persistence').load()<CR>"),
-			button({ shortcut = "s", hl = { { "AlphaButtonIcon8", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+			button({ shortcut = "s", hl = { { "AlphaButtonIcon8", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Settings", ":e $MYVIMRC | :cd %:p:h<CR>"),
 			button({ shortcut = "q", hl = { { "AlphaButtonIcon9", 0, 8  }, { "AlphaButtonTxt", 8, 50  } } }, "     Quit", ":qa<CR>"),
 		}
 

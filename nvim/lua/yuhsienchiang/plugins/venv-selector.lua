@@ -14,13 +14,13 @@ return {
 
 		selector.setup({
 			search_venv_managers = true,
-			search_workspace = true,
+			search_workspace = false,
 			search = false,
 			pyenv_path = "/Users/yuhsienchiang/.pyenv/versions",
 			dap_enabled = false,
 			auto_refresh = false,
 			parents = 2,
-			name = { "venv", "pyrightconfig.json" }, -- NOTE: You can also use a lua table here for multiple names: {"venv", ".venv"}`
+			name = { "venv" }, -- NOTE: You can also use a lua table here for multiple names: {"venv", ".venv"}`
 			fd_binary_name = "fd",
 		})
 

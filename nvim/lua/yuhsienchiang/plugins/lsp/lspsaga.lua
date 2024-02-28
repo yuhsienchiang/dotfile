@@ -15,7 +15,7 @@ return {
 			ui = {
 				border = "rounded",
 				devicon = true,
-				winblend = 0,
+				winblend = 10,
 				expand = " ",
 				collapse = " ",
 				kind = {},

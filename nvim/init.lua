@@ -4,7 +4,7 @@ if not vim.g.vscode then
     require("yuhsienchiang.lazy")
     require("yuhsienchiang.core")
 
-    local theme_status, theme = pcall(require, "yuhsienchiang.plugins.theme." .. theme_name)
+    local theme_status, _ = pcall(require, "yuhsienchiang.plugins.theme." .. theme_name)
     if theme_status then
         vim.cmd.colorscheme(theme_name)
     else

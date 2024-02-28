@@ -3,8 +3,8 @@ return {
     cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
     event = { "BufEnter" },
 	config = function()
-		--        vim.g.loaded_netrw = 1
-		--        vim.g.loaded_netrwPlugin = 1
+		vim.g.loaded_netrw = 1
+		vim.g.loaded_netrwPlugin = 1
 
 		local function on_attach(bufnr)
 			local tree_api_setup, tree_api = pcall(require, "nvim-tree.api")
@@ -48,7 +48,7 @@ return {
 		end
 
 		nvimtree.setup({
-			disable_netrw = false,
+			disable_netrw = true,
 			view = {
 				width = 35,
 			},

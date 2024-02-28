@@ -4,14 +4,10 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- Buffer Completions
 		"hrsh7th/cmp-path", -- Path Completions
-		-- "zbirenbaum/copilot-cmp",
 		"L3MON4D3/LuaSnip", -- Snippet Engine
 		"saadparwaiz1/cmp_luasnip", -- Snippet Completions
 		"rafamadriz/friendly-snippets", -- Bunch of Snippets
-		{
-			"hrsh7th/cmp-nvim-lsp",
-			dependencies = { "nvim-tree/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
-		}, -- LSP Completions
+		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
 		local cmp_status, cmp = pcall(require, "cmp")
@@ -35,7 +31,6 @@ return {
 		end
 
 		require("luasnip.loaders.from_vscode").lazy_load()
-		-- vim.opt.completeopt = "menu,menuone,noselect"
 
 		cmp.setup({
 			completion = {
