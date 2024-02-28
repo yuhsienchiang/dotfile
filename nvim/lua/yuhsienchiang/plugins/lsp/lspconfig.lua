@@ -55,7 +55,7 @@ return {
 		    print("mason_lspconfig not found")
 			return
 		end
-		
+
         local mason_tool_installer_status, mason_tool_installer = pcall(require, "mason-tool-installer")
 		if not mason_tool_installer_status then
 			print("mason_tool_installer not found")
