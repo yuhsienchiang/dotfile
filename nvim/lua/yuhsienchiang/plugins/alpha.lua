@@ -148,6 +148,16 @@ return {
 
 		dashboard_theme.opts.opts.noautocmd = true
 
-		alpha.setup(dashboard_theme.opts)
+        if vim.o.filetype == "lazy" then
+            vim.cmd.close()
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "DashboardLoaded",
+                callback = function()
+                    require("lazy").show()
+                end,
+            })
+        end
+
+        alpha.setup(dashboard_theme.opts)
 	end,
 }
