@@ -33,26 +33,6 @@ local opts = {
 		pills = true,
 		icons = {
 			cmd = " ",
-			event = " ",
-			plugin = " ",
-			source = " ",
-			start = " ",
-			lazy = " 󰒲",
-			config = "",
-			ft = " ",
-			init = " ",
-			import = " ",
-			keys = " ",
-			loaded = "●",
-			not_loaded = "○",
-			runtime = " ",
-			task = "✔ ",
-			list = {
-				"●",
-				"➜",
-				"★",
-				"‒",
-			},
 		},
 		throttle = 20, -- how frequently should the ui process render events
 		custom_keys = {},
@@ -91,4 +71,5 @@ vim.g.mapleader = " "
 lazy.setup({
    { import = "yuhsienchiang.plugins" },
    { import = "yuhsienchiang.plugins.lsp" },
+   { import = "yuhsienchiang.plugins.dap" },
 }, opts)

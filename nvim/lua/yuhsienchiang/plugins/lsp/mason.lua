@@ -17,9 +17,9 @@ return {
 				width = 0.8,
 				height = 0.9,
 				icons = {
-					package_installed = "",
-					package_pending = "",
-					package_uninstalled = "",
+                    package_pending = " ",
+                    package_installed = " ",
+					package_uninstalled = " ",
 				},
 
 				keymaps = {
