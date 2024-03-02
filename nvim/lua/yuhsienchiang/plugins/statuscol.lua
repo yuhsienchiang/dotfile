@@ -22,12 +22,22 @@ return {
 			relculright = false,
 
 			segments = {
+                {
+                    sign = {
+                        name = { "Dap*" },
+                        maxwidth = 1, -- maximum number of signs that will be displayed in this segment
+                        colwidth = 2, -- number of display cells per sign in this segment
+                        auto = false, -- when true, the segment will not be drawn if no signs matching the pattern are currently placed in the buffer.
+						fillchar = " ", -- character used to fill a segment with less signs than maxwidth
+                    },
+                },
 				{
 					sign = {
 						name = { "Diagnostic" },
-						colwidth = 1,
-						auto = false,
-						fillchar = " ",
+						maxwidth = 1, -- maximum number of signs that will be displayed in this segment
+                        colwidth = 1, -- number of display cells per sign in this segment
+						auto = false, -- when true, the segment will not be drawn if no signs matching the pattern are currently placed in the buffer.
+						fillchar = " ", -- character used to fill a segment with less signs than maxwidth
 					},
 				},
 				{
@@ -38,9 +48,10 @@ return {
 				{
 					sign = {
 						namespace = { "gitsigns*" },
-						colwidth = 2,
-						auto = false,
-						fillchar = " ",
+						maxwidth = 1, -- maximum number of signs that will be displayed in this segment
+						colwidth = 1, -- number of display cells per sign in this segment
+						auto = false, -- when true, the segment will not be drawn if no signs matching the pattern are currently placed in the buffer.
+						fillchar = " ", -- character used to fill a segment with less signs than maxwidth
 					},
 				},
 			},

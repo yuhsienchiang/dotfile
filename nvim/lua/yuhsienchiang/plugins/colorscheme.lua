@@ -102,7 +102,6 @@ return {
 						TelescopeSelection = { fg = colors.flamingo, bg = colors.base, bold = true },
 						TelescopeSelectionCaret = { fg = colors.flamingo, bg = colors.base, bold = true },
 						TelescopePromptPrefix = { fg = colors.flamingo, bg = colors.base },
-
 						TelescopeNormal = { bg = colors.base },
 						TelescopeTitle = { fg = colors.base, bg = colors.rosewater, bold = true },
 						TelescopeBorder = { fg = colors.overlay2, bg = colors.base },
@@ -149,7 +148,8 @@ return {
 						TreesitterContext = { bold = true },
 						TreesitterContextLineNumber = { link = "CursorLineNr" },
 
-						-- CmpItemKindCopilot = { fg = colors.mauve },
+						-- DAP
+                        DapStoppedLine = { link = "Visual" },
 					}
 				end,
 

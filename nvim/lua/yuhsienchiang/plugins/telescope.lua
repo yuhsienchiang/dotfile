@@ -8,6 +8,9 @@ return {
 			build = "make",
 			enabled = vim.fn.executable("make") == 1,
 		},
+        {
+            "nvim-telescope/telescope-ui-select.nvim",
+        },
 	},
 	config = function()
 		local telescope_setup, telescope = pcall(require, "telescope")
@@ -23,6 +26,12 @@ return {
 			return
 		end
 
+		local themes_setup, themes = pcall(require, "telescope.themes")
+		if not themes_setup then
+			print("telescope.themes not found")
+			return
+		end
+
 		local extensions = {
 			fzf = {
 				fuzzy = true, -- false will only do exact matching
@@ -30,6 +39,9 @@ return {
 				override_file_sorter = true, -- override the file sorter
 				case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			},
+            ["ui-select"] = {
+                themes.get_dropdown({})
+            },
 		}
 
 		telescope.setup({
@@ -109,5 +121,6 @@ return {
 		})
 		telescope.load_extension("fzf")
 		telescope.load_extension("noice")
+        telescope.load_extension("ui-select")
 	end,
 }

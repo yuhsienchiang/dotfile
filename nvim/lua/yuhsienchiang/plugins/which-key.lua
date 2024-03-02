@@ -81,6 +81,7 @@ return {
 			["<leader>t"] = { name = "Tab" },
 			["<leader>w"] = { name = "Window" },
 			["<leader>n"] = { name = "Noice" },
+			["<leader>u"] = { name = "Debug" },
 			["<leader>q"] = { name = "Quit Options" },
 		})
 	end,
