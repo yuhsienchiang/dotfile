@@ -2,10 +2,11 @@ return {
 	"nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
     event = { "BufEnter" },
-	config = function()
+    init = function ()
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
-
+    end,
+	config = function()
 		local function on_attach(bufnr)
 			local tree_api_setup, tree_api = pcall(require, "nvim-tree.api")
 			if not tree_api_setup then
@@ -47,18 +48,18 @@ return {
 			vim.keymap.set("n", "<C-[>", up_cd,                               opts("Up & Change Directory"))
 
             -- File manipulation
-			vim.keymap.set("n", "a", tree_api.fs.create, opts("Create"))
-			vim.keymap.set("n", "d", tree_api.fs.remove, opts("Delete"))
-			vim.keymap.set("n", "c", tree_api.fs.copy.node, opts("Copy: file"))
-			vim.keymap.set("n", "x", tree_api.fs.cut, opts("Cut"))
-			vim.keymap.set("n", "p", tree_api.fs.paste, opts("Paste"))
-			vim.keymap.set("n", "r", tree_api.fs.rename, opts("Rename"))
+			vim.keymap.set("n", "a", tree_api.fs.create,         opts("Create"))
+			vim.keymap.set("n", "d", tree_api.fs.remove,         opts("Delete"))
+			vim.keymap.set("n", "c", tree_api.fs.copy.node,      opts("Copy: file"))
+			vim.keymap.set("n", "x", tree_api.fs.cut,            opts("Cut"))
+			vim.keymap.set("n", "p", tree_api.fs.paste,          opts("Paste"))
+			vim.keymap.set("n", "r", tree_api.fs.rename,         opts("Rename"))
 			vim.keymap.set("n", "f", tree_api.live_filter.start, opts("Filter"))
 
-			vim.keymap.set("n", "y", tree_api.fs.copy.filename, opts("Copy: filename"))
+			vim.keymap.set("n", "y", tree_api.fs.copy.filename,      opts("Copy: filename"))
 			vim.keymap.set("n", "Y", tree_api.fs.copy.relative_path, opts("Copy: relative path"))
 
-			vim.keymap.set("n", "R", tree_api.tree.reload, opts("Refresh"))
+			vim.keymap.set("n", "R", tree_api.tree.reload,      opts("Refresh"))
 			vim.keymap.set("n", "?", tree_api.tree.toggle_help, opts("Help"))
 		end
 
