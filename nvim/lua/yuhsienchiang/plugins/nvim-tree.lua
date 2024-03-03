@@ -16,15 +16,35 @@ return {
 				return { desc = "nvim-tree: " .. desc, noremap = true, silent = true, nowait = true, buffer = bufnr }
 			end
 
-			vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
-			vim.keymap.set("n", "w", tree_api.tree.collapse_all, opts("Close All Directory"))
-			vim.keymap.set("n", "v", tree_api.node.open.vertical, opts("Open: Vertical Split"))
-			vim.keymap.set("n", "s", tree_api.node.open.horizontal, opts("Open: Horizontal Split"))
-			vim.keymap.set("n", "t", tree_api.node.open.tab, opts("Open: Tab"))
+            local function up_cd()
+                tree_api.tree.change_root_to_parent()
+                vim.api.nvim_command("tcd " .. ".")
+            end
+
+            local function down_cd()
+                local node_under_cursor = tree_api.tree.get_node_under_cursor()
+                if node_under_cursor.absolute_path == nil and node_under_cursor.name == ".." then
+                    up_cd()
+                elseif not (node_under_cursor.absolute_path == nil) and node_under_cursor.type == "directory" then
+                    -- go to child
+                    tree_api.tree.change_root_to_node(node_under_cursor)
+                    vim.api.nvim_command("tcd " .. ".")
+                else
+                    return
+                end
+            end
+
+			vim.keymap.set("n", "<CR>", tree_api.node.open.edit,       opts("Open"))
+			vim.keymap.set("n", "w",    tree_api.tree.collapse_all,    opts("Close All Directory"))
+			vim.keymap.set("n", "v",    tree_api.node.open.vertical,   opts("Open: Vertical Split"))
+			vim.keymap.set("n", "s",    tree_api.node.open.horizontal, opts("Open: Horizontal Split"))
+			vim.keymap.set("n", "t",    tree_api.node.open.tab,        opts("Open: Tab"))
 
             -- Navigation
-			vim.keymap.set("n", "]", tree_api.tree.change_root_to_node, opts("DOWN"))
-			vim.keymap.set("n", "[", tree_api.tree.change_root_to_parent, opts("UP"))
+			vim.keymap.set("n", "]",     tree_api.tree.change_root_to_node,   opts("Down"))
+            vim.keymap.set("n", "<C-]>", down_cd,                             opts("Down & Change Directory"))
+			vim.keymap.set("n", "[",     tree_api.tree.change_root_to_parent, opts("Up"))
+			vim.keymap.set("n", "<C-[>", up_cd,                               opts("Up & Change Directory"))
 
             -- File manipulation
 			vim.keymap.set("n", "a", tree_api.fs.create, opts("Create"))
