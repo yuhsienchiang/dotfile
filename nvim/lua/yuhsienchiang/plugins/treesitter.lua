@@ -36,6 +36,7 @@ return {
 				"typescript",
 				"json",
 				"regex",
+                "tmux",
                 "toml",
 				"bash",
 				"dockerfile",
@@ -44,8 +45,6 @@ return {
                 "git_config",
                 "git_rebase",
                 "gitcommit",
-
-
 			},
 			-- auto install above language parsers
 			auto_install = true,
