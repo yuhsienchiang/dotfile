@@ -1,7 +1,7 @@
 return {
 	"luukvbaal/statuscol.nvim",
 	dependencies = { "lewis6991/gitsigns.nvim" },
-	lazy = false,
+	event = { "BufNewFile", "BufReadPost" },
 	config = function()
 		local statuscol_status, statuscol = pcall(require, "statuscol")
 		if not statuscol_status then
@@ -17,8 +17,8 @@ return {
 		statuscol.setup({
 			setopt = true,
 			-- configuration goes here, for example:
-			ft_ignore = { "NvimTree", "alpha", "lazy" },
-			bf_ignore = { "NvimTree", "alpha", "lazy" },
+			ft_ignore = { "NvimTree", "alpha", "lazy", "dashboard" },
+			bf_ignore = { "NvimTree", "alpha", "lazy", "dashboard" },
 			relculright = false,
 
 			segments = {
