@@ -13,7 +13,7 @@ return {
 			search_workspace = false,
 			search = false,
 			pyenv_path = "/Users/yuhsienchiang/.pyenv/versions",
-			dap_enabled = false,
+			dap_enabled = true,
 			auto_refresh = false,
 			parents = 2,
 			name = { "venv" }, -- NOTE: You can also use a lua table here for multiple names: {"venv", ".venv"}`
