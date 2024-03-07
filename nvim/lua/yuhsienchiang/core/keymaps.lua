@@ -12,6 +12,20 @@ end
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true, noremap = true })
 
+-- better up/down
+vim.keymap.set({ "n", "x" }, "j",      "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "k",      "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<Up>",   "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
+-- set n to always search forward and N to always search backwards
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
+vim.keymap.set("x", "n", "'Nn'[v:searchforward]",      { expr = true, desc = "Next search result" })
+vim.keymap.set("o", "n", "'Nn'[v:searchforward]",      { expr = true, desc = "Next search result" })
+vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev search result" })
+vim.keymap.set("x", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev search result" })
+vim.keymap.set("o", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev search result" })
 -- cursor movement
 vim.keymap.set("n", "<C-Right>", "$",               { desc = "Far Right",  silent = true, noremap = true })
 vim.keymap.set("i", "<C-Right>", "<C-o>$",          { desc = "Far Right",  silent = true, noremap = true })
