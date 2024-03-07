@@ -20,6 +20,11 @@ return {
             local function up_cd()
                 tree_api.tree.change_root_to_parent()
                 vim.api.nvim_command("tcd " .. ".")
+                vim.notify(
+                    vim.fn.getcwd(),
+                    vim.log.levels.INFO,
+                    { title = "NvimTree: Change Directory" }
+                )
             end
 
             local function down_cd()
@@ -30,6 +35,11 @@ return {
                     -- go to child
                     tree_api.tree.change_root_to_node(node_under_cursor)
                     vim.api.nvim_command("tcd " .. ".")
+                    vim.notify(
+                        vim.fn.getcwd(),
+                        vim.log.levels.INFO,
+                        { title = "NvimTree: Change Directory" }
+                    )
                 else
                     return
                 end
@@ -63,12 +73,7 @@ return {
 			vim.keymap.set("n", "?", tree_api.tree.toggle_help, opts("Help"))
 		end
 
-		local setup, nvimtree = pcall(require, "nvim-tree")
-		if not setup then
-			return
-		end
-
-		nvimtree.setup({
+		require("nvim-tree").setup({
 			disable_netrw = true,
 			view = {
 				width = 35,
