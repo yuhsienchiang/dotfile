@@ -6,11 +6,8 @@ return {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "macchiato", -- latte, frappe, macchiato, mocha
-				background = {
-					light = "latte",
-					dark = "macchiato",
-				},
+				flavour = "mocha", -- latte, frappe, macchiato, mocha
+				background = { light = "latte", dark = "mocha", },
 				term_colors = true,
 				dim_inactive = {
 					enabled = true, -- dims the background color of inactive window
@@ -109,14 +106,11 @@ return {
 						TelescopeMultiSelection = { fg = colors.flamingo, bg = colors.base },
 
 						-- GitSigns
-						GitSignsAdd = { fg = colors.green, bg = colors.base, bold = true },
-						GitSignsDelete = { fg = colors.red, bg = colors.base, bold = true },
 						GitSignsChange = { fg = colors.blue, bg = colors.base, bold = true },
 
 						-- WhichKey
 						WhichKeyFloat = { bg = colors.base }, -- the background color of the float window
 						WhichKey = { fg = colors.maroon },
-						WhichKeyBorder = { fg = colors.overlay2 },
 						WhichKeyGroup = { fg = colors.yellow },
 						WhichKeyDesc = { fg = colors.text },
 
@@ -136,7 +130,6 @@ return {
 						DiagnosticSignInfo = { fg = colors.sky, bg = "none" },
 						DiagnosticSignHint = { fg = colors.teal, bg = "none" },
 						-- TreesitterContext
-						TreesitterContext = { bold = true },
 						TreesitterContextLineNumber = { link = "CursorLineNr" },
 
 						-- DAP
@@ -151,7 +144,7 @@ return {
 
 	{
 		"AlexvZyl/nordic.nvim",
-        enaled = false,
+        enabled = false,
 		lazy = true,
 		priority = 1000,
 		config = function()
@@ -332,7 +325,7 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = true,
 		priority = 1000,
-        enaled = false,
+        enabled = false,
 		config = function()
 			local tokyonight_status, tokyonight = pcall(require, "tokyonight")
 			if not tokyonight_status then

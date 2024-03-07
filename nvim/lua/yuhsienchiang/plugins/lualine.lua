@@ -23,23 +23,11 @@ return {
 			},
 			insert = {
 				a = { bg = catppuccin_color.green, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.blue },
-			},
-			terminal = {
-				a = { bg = catppuccin_color.green, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.blue },
-			},
-			command = {
-				a = { bg = catppuccin_color.peach, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.blue },
+				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.green },
 			},
 			visual = {
 				a = { bg = catppuccin_color.maroon, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.blue },
-			},
-			replace = {
-				a = { bg = catppuccin_color.yellow, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.blue },
+				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.maroon },
 			},
 			inactive = {
 				a = { fg = catppuccin_color.surface1, bg = catppuccin_color.mantle },
@@ -69,7 +57,6 @@ return {
 				component_separators = { left = "|", right = "|" },
 				disabled_filetypes = {
 					statusline = {
-						"alpha",
 						"checkhealth",
                         "dashboard",
 						"help",
@@ -80,7 +67,6 @@ return {
 						"startuptime",
 					},
 					winbar = {
-						"alpha",
 						"checkhealth",
                         "dashboard",
 						"help",
