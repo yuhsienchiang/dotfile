@@ -57,5 +57,3 @@ opt.undolevels = 10000
 
 opt.hidden = true
 opt.wildmode = "longest:full,full"
--- highlight yanked text
-vim.cmd([[ au TextYankPost * silent! lua vim.highlight.on_yank {higroup="Search", timeout=300} ]])
