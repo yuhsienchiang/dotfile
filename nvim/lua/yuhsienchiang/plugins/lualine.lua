@@ -29,6 +29,10 @@ return {
 				a = { bg = catppuccin_color.maroon, fg = catppuccin_color.base, gui = "bold" },
 				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.maroon },
 			},
+			replace = {
+				a = { bg = catppuccin_color.yellow, fg = catppuccin_color.base, gui = "bold" },
+				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.yellow },
+			},
 			inactive = {
 				a = { fg = catppuccin_color.surface1, bg = catppuccin_color.mantle },
 				b = { fg = catppuccin_color.surface1, bg = catppuccin_color.mantle, gui = "bold" },
