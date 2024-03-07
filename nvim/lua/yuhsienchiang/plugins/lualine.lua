@@ -146,9 +146,9 @@ return {
 				},
 				lualine_z = {
 					{
-						function()
-							return os.date("%R")
-						end,
+                        function()
+                            return " " .. os.date("%R")
+                        end,
 						color = { fg = catppuccin_color.base, bg = catppuccin_color.flamingo },
 					},
 				},
