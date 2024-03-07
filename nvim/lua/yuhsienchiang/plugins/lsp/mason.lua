@@ -3,13 +3,7 @@ return {
 	cmd = "Mason",
 	build = ":MasonUpdate",
 	config = function()
-		local mason_status, mason = pcall(require, "mason")
-		if not mason_status then
-			print("mason not found")
-			return
-		end
-
-		mason.setup({
+		require("mason").setup({
 			ui = {
 				-- Whether to automatically check for new versions when opening the :Mason window.
 				check_outdated_packages_on_open = true,

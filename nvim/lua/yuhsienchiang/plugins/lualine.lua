@@ -13,12 +13,6 @@ return {
         end
     end,
 	config = function()
-		local lualine_setup, lualine = pcall(require, "lualine")
-		if not lualine_setup then
-			print("lualine not found")
-			return
-		end
-
 		local catppuccin_color = require("catppuccin.palettes").get_palette("macchiato")
 
 		local catppuccin_theme = {
@@ -66,7 +60,7 @@ return {
 			end
 		end
 
-		lualine.setup({
+		require("lualine").setup({
 			options = {
 				theme = catppuccin_theme,
 				icons_enabled = true,

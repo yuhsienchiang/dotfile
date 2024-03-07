@@ -3,16 +3,8 @@ return {
 	dependencies = { "lewis6991/gitsigns.nvim" },
 	event = { "BufNewFile", "BufReadPost" },
 	config = function()
-		local statuscol_status, statuscol = pcall(require, "statuscol")
-		if not statuscol_status then
-			print("statuscol not found")
-			return
-		end
-		local builtin_status, builtin = pcall(require, "statuscol.builtin")
-		if not builtin_status then
-			print("statuscol not found")
-			return
-		end
+		local statuscol = require("statuscol")
+		local builtin = require("statuscol.builtin")
 
 		statuscol.setup({
 			setopt = true,

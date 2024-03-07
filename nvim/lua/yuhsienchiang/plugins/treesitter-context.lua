@@ -3,13 +3,7 @@ return {
 	event = "VeryLazy",
 	enabled = true,
 	config = function()
-		local context_status, context = pcall(require, "treesitter-context")
-		if not context_status then
-			print("treesitter-context not found")
-			return
-		end
-
-        context.setup({
+        require("treesitter-context").setup({
             enable = true,
             max_lines = 3,
             multiline_threshold = 1,

@@ -6,11 +6,7 @@ return {
 		vim.o.timeoutlen = 500
 	end,
 	config = function()
-		local which_key_status, which_key = pcall(require, "which-key")
-		if not which_key_status then
-			print("which_key not found")
-			return
-		end
+		local which_key = require("which-key")
 
 		which_key.setup({
 			plugins = {

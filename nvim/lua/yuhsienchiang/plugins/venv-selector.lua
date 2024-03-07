@@ -6,11 +6,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 	},
 	config = function()
-		local selector_status, selector = pcall(require, "venv-selector")
-		if not selector_status then
-			print("venv-selector not found")
-			return
-		end
+		local selector = require("venv-selector")
 
 		selector.setup({
 			search_venv_managers = true,

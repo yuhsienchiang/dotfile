@@ -14,13 +14,7 @@ return {
 		},
 	},
 	config = function()
-		local conform_status, conform = pcall(require, "conform")
-		if not conform_status then
-			print("conform not found")
-			return
-		end
-
-		conform.setup({
+		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "isort", "black" },

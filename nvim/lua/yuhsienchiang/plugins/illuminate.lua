@@ -2,13 +2,7 @@ return {
 	"RRethy/vim-illuminate",
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
-		local illuminate_status, illuminate = pcall(require, "illuminate")
-		if not illuminate_status then
-			print("illuminate not found")
-			return
-		end
-
-		illuminate.configure({
+		require("illuminate").configure({
 			providers = {
 				"lsp",
 				"treesitter",

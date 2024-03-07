@@ -3,12 +3,7 @@ return {
 	cmd = "Copilot",
 	event = "InsertEnter",
 	config = function()
-		local copilot_setup, copilot = pcall(require, "copilot")
-		if not copilot_setup then
-			print("copilot not found")
-            return
-		end
-		copilot.setup({
+		require("copilot").setup({
 			panel = {
 				enabled = false,
 				auto_refresh = true,

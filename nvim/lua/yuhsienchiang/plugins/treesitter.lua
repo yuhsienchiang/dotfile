@@ -4,13 +4,7 @@ return {
 	event = { "BufNewFile", "BufReadPost", "VeryLazy" },
 	build = ":TSUpdate",
 	config = function()
-		local treesitter_status, treesitter = pcall(require, "nvim-treesitter.configs")
-		if not treesitter_status then
-			print("treesitter.configs not found")
-			return
-		end
-
-		treesitter.setup({
+		require("nvim-treesitter.configs").setup({
 			-- enable syntax highlighting
 			highlight = {
 				enable = true,

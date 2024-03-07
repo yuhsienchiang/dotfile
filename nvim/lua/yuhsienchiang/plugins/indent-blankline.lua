@@ -7,13 +7,7 @@ return {
 		vim.opt.listchars:append("space: ")
 	end,
 	config = function()
-		local indent_status, indent = pcall(require, "ibl")
-		if not indent_status then
-			print("indent-blankline not found")
-			return
-		end
-
-		indent.setup({
+		require("ibl").setup({
 			enabled = true,
 			indent = { char = "▏", tab_char = "▏", smart_indent_cap = true },
 			scope = {

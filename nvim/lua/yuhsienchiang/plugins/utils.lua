@@ -13,12 +13,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		lazy = true,
         config = function()
-            local devicons_status, devicons = pcall(require, "nvim-web-devicons")
-            if not devicons_status then
-                print("nvim-web-devicons not found")
-                return
-            end
-            devicons.setup({
+            require("nvim-web-devicons").setup({
                 override = {
                     toml = {
                         icon = "",

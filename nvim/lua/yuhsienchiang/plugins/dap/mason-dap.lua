@@ -5,8 +5,6 @@ return {
     cmd = { "DapInstall", "DapUninstall" },
     opts = {
         automatic_installation = true,
-        ensure_installed = {
-            "python",
-        },
+        ensure_installed = { "python" },
     }
 }

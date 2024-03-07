@@ -46,32 +46,14 @@ return {
 			severity_sort = true,
 		})
 
-		local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-		if not lspconfig_status then
-			return
-		end
-
-		local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
-		if not mason_lspconfig_status then
-		    print("mason_lspconfig not found")
-			return
-		end
-
-        local mason_tool_installer_status, mason_tool_installer = pcall(require, "mason-tool-installer")
-		if not mason_tool_installer_status then
-			print("mason_tool_installer not found")
-			return
-		end
-
-        local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-        if not cmp_nvim_lsp_status then
-            return
-        end
+		local lspconfig = require("lspconfig")
+		local mason_lspconfig = require("mason-lspconfig")
+        local mason_tool_installer = require("mason-tool-installer")
+        local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
         mason_lspconfig.setup({
             ensure_installed = opts.lsp_server,
             automatic_installation = true,
-
         })
 
         mason_tool_installer.setup({

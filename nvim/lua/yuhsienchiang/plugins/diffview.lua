@@ -3,15 +3,9 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     config = function()
-        local diffview_setup, diffview = pcall(require, "diffview")
-        if not diffview_setup then
-            print("diffview not found")
-            return
-        end
-
         vim.opt.fillchars:append({ diff = "╱" })
 
-        diffview.setup({
+        require("diffview").setup({
             diff_binaries = false, -- Show diffs for binaries
             enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
             git_cmd = { "git" }, -- The git executable followed by default args.

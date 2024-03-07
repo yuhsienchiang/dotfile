@@ -8,29 +8,11 @@ return {
 			build = "make",
 			enabled = vim.fn.executable("make") == 1,
 		},
-        {
-            "nvim-telescope/telescope-ui-select.nvim",
-        },
+        { "nvim-telescope/telescope-ui-select.nvim" },
 	},
 	config = function()
-		local telescope_setup, telescope = pcall(require, "telescope")
-		if not telescope_setup then
-			print("telescope not found")
-			return
-		end
-
-		-- import telescope.actions safely
-		local actions_setup, actions = pcall(require, "telescope.actions")
-		if not actions_setup then
-			print("telescope.actions not found")
-			return
-		end
-
-		local themes_setup, themes = pcall(require, "telescope.themes")
-		if not themes_setup then
-			print("telescope.themes not found")
-			return
-		end
+		local telescope = require("telescope")
+		local actions = require("telescope.actions")
 
 		local extensions = {
 			fzf = {
@@ -40,7 +22,7 @@ return {
 				case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			},
             ["ui-select"] = {
-                themes.get_dropdown({})
+                require("telescope.themes").get_dropdown({})
             },
 		}
 

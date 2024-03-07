@@ -3,11 +3,6 @@ return {
     event = "VimEnter",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function ()
-		local dashboard_setup, dashboard = pcall(require, "dashboard")
-		if not dashboard_setup then
-			return
-		end
-
         local logo = [[
          ██████╗ ██████╗ ██████╗ ███████╗            ██████╗ ██████╗ ██████╗ ███████╗        
         ██╔════╝██╔═══██╗██╔══██╗██╔════╝  ██╗      ██╔════╝██╔═══██╗██╔══██╗██╔════╝        
@@ -39,7 +34,7 @@ return {
             button.icon_hl = "DashboardIcon" .. id
         end
 
-        dashboard.setup({
+        require("dashboard").setup({
             theme = "doom",
             config = {
                 header = vim.split(logo, "\n"),

@@ -19,9 +19,7 @@ return {
 				},
 				no_italic = false,
 				no_bold = false,
-				styles = {
-					comments = { "italic" },
-				},
+				styles = { comments = { "italic" } },
 				integrations = {
 					cmp = true,
                     dap = true,
@@ -29,14 +27,8 @@ return {
                     dashboard = true,
 					flash = true,
 					gitsigns = true,
-					illuminate = {
-						enabled = true,
-						lsp = false,
-					},
-					indent_blankline = {
-						enabled = true,
-						colored_indent_levels = false,
-					},
+					illuminate = { enabled = true, lsp = false },
+					indent_blankline = { enabled = true, colored_indent_levels = false },
 					lsp_saga = true,
 					mason = true,
 					mini = true,
@@ -54,17 +46,13 @@ return {
 							warnings = { "underline" },
 							information = { "underline" },
 						},
-						inlay_hints = {
-							background = true,
-						},
+						inlay_hints = { background = true },
 					},
 					noice = false,
 					notify = true,
 					nvimtree = true,
 					treesitter = true,
-					telescope = {
-						enabled = true,
-					},
+					telescope = { enabled = true },
 					which_key = true,
 				},
 				color_overrides = {},
