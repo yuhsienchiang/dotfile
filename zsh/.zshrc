@@ -16,23 +16,14 @@ fi
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-# Load and initialise completion system
-autoload -Uz compinit
-compinit
-bindkey -e
-
 # Load 3rd part plugins
-plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "romkatv/powerlevel10k"
 
 # Load local configuration
-CASE_SENSITIVE=false
-HYPHEN_INSENSITIVE=true
-COMPLETION_WAITING_DOTS=true
-plug "$HOME/.config/zsh/completion.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
 plug "$HOME/.config/zsh/aliases.zsh"
+plug "$HOME/.config/zsh/plugins/completion.zsh"
 plug "$HOME/.config/zsh/plugins/fzf/fzf-file-widget.zsh"
 plug "$HOME/.config/zsh/plugins/fzf/fzf-cd-widget.zsh"
 plug "$HOME/.config/zsh/plugins/fzf/fzf-history-widget.zsh"
