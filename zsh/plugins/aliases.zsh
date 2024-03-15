@@ -1,4 +1,3 @@
-
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
@@ -9,8 +8,12 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+# FZF
+alias fzfp="fzf --preview 'bat {}' --preview-window=right,65%,~5"
+
 # neovim as default editor
 alias vim="nvim"
+alias vimf="vim \$(fzfp)"
 
 # replace ls with eza
 alias ls='eza --group-directories-first --icons'

@@ -20,7 +20,7 @@ export PATH=$PATH:$HOME/.pyenv/versions/poetry_venv/bin
 
 # Zoxide
 export _ZO_DATA_DIR="$HOME/.cache/zoxide"
-export _ZO_ECHO=1
+export _ZO_ECHO=0
 eval "$(zoxide init --cmd cd zsh)"
 
 # FZF
