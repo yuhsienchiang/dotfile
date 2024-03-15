@@ -48,6 +48,7 @@ return {
 						["<C-k>"] = actions.preview_scrolling_down,
 					},
 					i = {
+                        ["<esc>"] = actions.close,
 						["<C-v>"] = actions.select_vertical,
 						["<C-s>"] = actions.select_horizontal,
 						["<C-t>"] = actions.select_tab,
