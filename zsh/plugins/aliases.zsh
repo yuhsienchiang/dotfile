@@ -9,7 +9,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # FZF
-alias fzfp="fzf --preview 'bat {}' --preview-window=right,65%,~5"
+alias fzfp="fzf --preview 'bat --color always --style='plain' {}' --preview-window=right,66%,~5"
 
 # neovim as default editor
 alias vim="nvim"
