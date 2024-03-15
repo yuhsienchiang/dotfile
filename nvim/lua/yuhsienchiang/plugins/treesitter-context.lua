@@ -1,7 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter-context",
-	event = "VeryLazy",
-	enabled = true,
+    lazy = true,
 	config = function()
         require("treesitter-context").setup({
             enable = true,
