@@ -22,3 +22,14 @@ export PATH=$PATH:$HOME/.pyenv/versions/poetry_venv/bin
 export _ZO_DATA_DIR="$HOME/.cache/zoxide"
 export _ZO_ECHO=1
 eval "$(zoxide init --cmd cd zsh)"
+
+# FZF
+# default
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border=rounded --cycle'
+export FZF_DEFAULT_COMMAND='fd -tf -tl --hidden --follow --no-ignore-vcs'
+
+# ctrl-t: past selected to prompt
+export FZF_CTRL_T_COMMAND='fd -td -tf -tx -tl --hidden --follow --no-ignore-vcs'
+
+# alt-c: change directory to selected (keymap is remapped to ctrl-f in .zshrc)
+export FZF_ALT_C_COMMAND='fd -td --hidden --follow --no-ignore-vcs'

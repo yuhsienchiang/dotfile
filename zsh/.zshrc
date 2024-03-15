@@ -24,7 +24,6 @@ bindkey -e
 # Load 3rd part plugins
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "zap-zsh/fzf"
 plug "romkatv/powerlevel10k"
 
 # Load local configuration
@@ -34,4 +33,8 @@ COMPLETION_WAITING_DOTS=true
 plug "$HOME/.config/zsh/completion.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
 plug "$HOME/.config/zsh/aliases.zsh"
+plug "$HOME/.config/zsh/plugins/fzf/fzf-file-widget.zsh"
+plug "$HOME/.config/zsh/plugins/fzf/fzf-cd-widget.zsh"
+plug "$HOME/.config/zsh/plugins/fzf/fzf-history-widget.zsh"
+plug "$HOME/.config/zsh/plugins/fzf/fzf-completion.zsh"
 
