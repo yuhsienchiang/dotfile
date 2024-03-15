@@ -8,10 +8,7 @@ return {
     end,
 	config = function()
 		local function on_attach(bufnr)
-			local tree_api_setup, tree_api = pcall(require, "nvim-tree.api")
-			if not tree_api_setup then
-				return
-			end
+			local tree_api = require("nvim-tree.api")
 
 			local opts = function(desc)
 				return { desc = "nvim-tree: " .. desc, noremap = true, silent = true, nowait = true, buffer = bufnr }
@@ -52,10 +49,10 @@ return {
 			vim.keymap.set("n", "t",    tree_api.node.open.tab,        opts("Open: Tab"))
 
             -- Navigation
-			vim.keymap.set("n", "]",     tree_api.tree.change_root_to_node,   opts("Down"))
-            vim.keymap.set("n", "<C-]>", down_cd,                             opts("Down & Change Directory"))
-			vim.keymap.set("n", "[",     tree_api.tree.change_root_to_parent, opts("Up"))
-			vim.keymap.set("n", "<C-[>", up_cd,                               opts("Up & Change Directory"))
+			vim.keymap.set("n", "]", tree_api.tree.change_root_to_node,   opts("Down"))
+            vim.keymap.set("n", "}", down_cd,                             opts("Down & Change Directory"))
+			vim.keymap.set("n", "[", tree_api.tree.change_root_to_parent, opts("Up"))
+			vim.keymap.set("n", "{", up_cd,                               opts("Up & Change Directory"))
 
             -- File manipulation
 			vim.keymap.set("n", "a", tree_api.fs.create,         opts("Create"))
@@ -75,15 +72,12 @@ return {
 
 		require("nvim-tree").setup({
 			disable_netrw = true,
-			view = {
-				width = 35,
-			},
+			view = { width = 35 },
 			git = {
 				enable = true,
 				show_on_dirs = true,
 				show_on_open_dirs = false,
 			},
-
 			filters = {
 				dotfiles = false,
 				git_ignored = false,
