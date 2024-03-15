@@ -13,7 +13,7 @@ alias fzfp="fzf --preview 'bat --color always --style='plain' {}' --preview-wind
 
 # neovim as default editor
 alias vim="nvim"
-alias vimf="vim \$(fzfp)"
+alias vimf="file=\$(fzfp); if [[ -n \$file ]]; then nvim \$file; else return 0; fi"
 
 # replace ls with eza
 alias ls='eza --group-directories-first --icons'
