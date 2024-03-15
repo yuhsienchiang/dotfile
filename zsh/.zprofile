@@ -8,3 +8,5 @@ export XDG_DATA_HOME=$HOME/.local/share
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
 export HISTFILE=${ZDOTDIR}/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
