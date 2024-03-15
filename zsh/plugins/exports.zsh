@@ -5,7 +5,7 @@ export EDITOR="nvim"
 export TERMINAL="alacritty"
 
 # Bat (cat replacement) colorscheme
-export BAT_THEME="Catppuccin-macchiato"
+export BAT_THEME="Catppuccin-mocha"
 
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
