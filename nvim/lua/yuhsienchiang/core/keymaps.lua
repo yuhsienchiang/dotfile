@@ -73,13 +73,14 @@ vim.keymap.set("n", "<leader>tl",       ":tabnext<CR>",     { desc = "Next tab",
 vim.keymap.set("n", "<leader>tq",       ":tabclose<CR>",    { desc = "Quit tab", silent = true, noremap = true })
 
 -- Telescope
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>",  { desc = "Find files",          silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fr", ":Telescope oldfiles<CR>",    { desc = "Recent files",        silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fs", ":Telescope live_grep<CR>",   { desc = "Find strings",        silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fc", ":Telescope grep_string<CR>", { desc = "Find current string", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>",     { desc = "Find opened buffers", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fm", ":Telescope man_pages<CR>",   { desc = "Search man pages",    silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>",   { desc = "Search help tags",    silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>",                                        { desc = "Find files",          silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fr", ":lua require('telescope.builtin').oldfiles({only_cwd=true})<CR>",  { desc = "Recent files (CWD)",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fR", ":lua require('telescope.builtin').oldfiles({only_cwd=false})<CR>", { desc = "Recent files",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fs", ":Telescope live_grep<CR>",                                         { desc = "Find strings",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fc", ":Telescope grep_string<CR>",                                       { desc = "Find current string", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>",                                           { desc = "Find opened buffers", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fm", ":Telescope man_pages<CR>",                                         { desc = "Search man pages",    silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>",                                         { desc = "Search help tags",    silent = true, noremap = true })
 
 -- Markdown Preview
 vim.keymap.set("n", "<leader>mm", ":MarkdownPreviewToggle<CR>", { desc = "Toggle MarkdownPreview", silent = true, noremap = true })
