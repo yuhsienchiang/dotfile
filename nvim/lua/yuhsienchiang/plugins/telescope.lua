@@ -63,8 +63,7 @@ return {
 			},
 			pickers = {
 				find_files = {
-					hidden = false,
-					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+					find_command = { "fd", "-tf", "-tl", "--hidden", "--follow", "--no-ignore-vcs" },
 					sorting_strategy = "ascending",
 					layout_strategy = "center",
 					layout_config = {
@@ -93,10 +92,6 @@ return {
 							["<C-d>"] = actions.delete_buffer,
 						},
 					},
-				},
-				oldfiles = {
-					hidden = false,
-					find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
 				},
 			},
 			extensions = extensions,
