@@ -9,11 +9,11 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # FZF
-alias fzfp="fzf --preview 'bat --color always --style='plain' {}' --preview-window=right,66%,~5"
+alias fzfp="fzf --preview 'bat --color always --style='plain' {}' --preview-window=right,70%,~5"
 
 # neovim as default editor
 alias vim="nvim"
-alias vimf="file=\$(fzfp); if [[ -n \$file ]]; then nvim \$file; else return 0; fi"
+alias vimf="fzfp --print0 | xargs -0 -o nvim"
 
 # replace ls with eza
 alias ls='eza --group-directories-first --icons'

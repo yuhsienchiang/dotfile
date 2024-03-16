@@ -1,10 +1,8 @@
-#!/bin/sh
-
 if [[ -z $TMUX ]]; then
-    # default editor
+    # Default Editor
     export EDITOR="nvim"
 
-    # default terminal emulator
+    # Default Terminal Emulator
     export TERMINAL="alacritty"
 
     # Bat (cat replacement) colorscheme
@@ -25,13 +23,8 @@ if [[ -z $TMUX ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 
     # FZF
-    # default
+    export FZF_DEFAULT_COMMAND='fd -tf -tl --hidden --follow --no-ignore-vcs'        # default: used by fzf commands without keymap
     export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border=rounded --cycle'
-    export FZF_DEFAULT_COMMAND='fd -tf -tl --hidden --follow --no-ignore-vcs'
-
-    # ctrl-t: past selected to prompt
-    export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
-
-    # alt-c: change directory to selected (keymap is remapped to ctrl-f in .zshrc)
-    export FZF_ALT_C_COMMAND='fd -td --hidden --follow --no-ignore-vcs'
+    export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"                               # ctrl-t: past selected to prompt
+    export FZF_ALT_C_COMMAND='fd -td --hidden --follow --no-ignore-vcs'              # alt-c: change directory to selected (keymap is remapped to ctrl-f in .zshrc)
 fi
