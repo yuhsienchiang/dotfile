@@ -48,15 +48,15 @@ vim.keymap.set("v", ">", ">gv")
 
 -- Window
 -- Window Navigation
-vim.keymap.set("n", "<leader>wh",       ":wincmd h<CR>",               { desc = "Move Left",              silent = true, noremap = true })
-vim.keymap.set("n", "<leader>wj",       ":wincmd j<CR>",               { desc = "Move Down",              silent = true, noremap = true })
-vim.keymap.set("n", "<leader>wk",       ":wincmd k<CR>",               { desc = "Move Up",                silent = true, noremap = true })
-vim.keymap.set("n", "<leader>wl",       ":wincmd l<CR>",               { desc = "Move Right",             silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wh", ":wincmd h<CR>", { desc = "Move Left",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wj", ":wincmd j<CR>", { desc = "Move Down",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wk", ":wincmd k<CR>", { desc = "Move Up",    silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wl", ":wincmd l<CR>", { desc = "Move Right", silent = true, noremap = true })
 -- Window Resize
-vim.keymap.set("n", "<leader>w<Up>",    "<cmd>resize +4<cr>",          { desc = "Increase window height", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>w<Down>",  "<cmd>resize -4<cr>",          { desc = "Decrease window height", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>w<Left>",  "<cmd>vertical resize -4<cr>", { desc = "Decrease window width",  silent = true, noremap = true })
-vim.keymap.set("n", "<leader>w<Right>", "<cmd>vertical resize +4<cr>", { desc = "Increase window width",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wK", "<cmd>resize +4<cr>",          { desc = "Increase window height", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wJ", "<cmd>resize -4<cr>",          { desc = "Decrease window height", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wH", "<cmd>vertical resize -4<cr>", { desc = "Decrease window width",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wL", "<cmd>vertical resize +4<cr>", { desc = "Increase window width",  silent = true, noremap = true })
 
 -- Buffer Navigation
 vim.keymap.set("n", "<leader>b<Left>",  ":bprevious<CR>",   { desc = "Prev buffer", silent = true, noremap = true })
