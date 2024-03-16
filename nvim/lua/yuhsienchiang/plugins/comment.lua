@@ -9,11 +9,11 @@ return {
 		comment.setup({
 			toggler = {
 				line = "<C-m>",
-                block = ""
+                block = "<C-S-m>"
 			},
 			opleader = {
 				line = "<C-m>",
-                block = ""
+                block = "<C-S-m>"
 			},
 			mappings = {
 				basic = true,
