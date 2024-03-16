@@ -19,8 +19,8 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "romkatv/powerlevel10k"
 
 # Load local configuration
-plug "$HOME/.config/zsh/plugins/completion.zsh"
 plug "$HOME/.config/zsh/plugins/exports.zsh"
+plug "$HOME/.config/zsh/plugins/completion.zsh"
 plug "$HOME/.config/zsh/plugins/aliases.zsh"
 plug "$HOME/.config/fzf/fzf-file-widget.zsh"
 plug "$HOME/.config/fzf/fzf-cd-widget.zsh"
