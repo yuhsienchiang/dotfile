@@ -36,7 +36,7 @@ fzf-cd-widget() {
     zle reset-prompt
     return $ret
 }
-zle     -N             fzf-cd-widget
+zle     -N            fzf-cd-widget
 bindkey -M emacs '^F' fzf-cd-widget
 bindkey -M vicmd '^F' fzf-cd-widget
 bindkey -M viins '^F' fzf-cd-widget
