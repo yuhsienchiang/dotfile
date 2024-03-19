@@ -52,6 +52,9 @@ vim.keymap.set("n", "<leader>wh", ":wincmd h<CR>", { desc = "Move Left",  silent
 vim.keymap.set("n", "<leader>wj", ":wincmd j<CR>", { desc = "Move Down",  silent = true, noremap = true })
 vim.keymap.set("n", "<leader>wk", ":wincmd k<CR>", { desc = "Move Up",    silent = true, noremap = true })
 vim.keymap.set("n", "<leader>wl", ":wincmd l<CR>", { desc = "Move Right", silent = true, noremap = true })
+-- Window Split
+vim.keymap.set("n", "<leader>wv", ":vsplitCR>", { desc = "Move Right", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ws", ":split<CR>", { desc = "Move Right", silent = true, noremap = true })
 -- Window Resize
 vim.keymap.set("n", "<leader>wK", "<cmd>resize +4<cr>",          { desc = "Increase window height", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>wJ", "<cmd>resize -4<cr>",          { desc = "Decrease window height", silent = true, noremap = true })
@@ -102,6 +105,7 @@ vim.keymap.set("n", "<leader>glL", ":LazyGitCurrentFile<CR>", { desc = "Open Laz
 vim.keymap.set("n", "<leader>gdd", ":DiffviewOpen <CR>",         { desc = "Open Diffview",             silent = true, noremap = true })
 vim.keymap.set("n", "<leader>gdh", ":DiffviewFileHistory <CR>",  { desc = "All diff history",          silent = true, noremap = true })
 vim.keymap.set("n", "<leader>gdH", ":DiffviewFileHistory %<CR>", { desc = "Current file diff history", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>gdq", ":tabclose<CR>",              { desc = "Quit Diffview",             silent = true, noremap = true })
 -- Gitsigns
 vim.keymap.set("n",          "<leader>gh]", ":Gitsigns next_hunk<CR>",         { desc = "Next Hunk",       silent = true, noremap = true })
 vim.keymap.set("n",          "<leader>gh[", ":Gitsigns prev_hunk<CR>",         { desc = "Prev Hunk",       silent = true, noremap = true })
