@@ -13,10 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {
 	root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
-	defaults = {
-		lazy = false, -- should plugins be lazy-loaded?
-		version = nil,
-	},
+	defaults = { lazy = false, version = nil },
 	lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
 	install = {
 		missing = true,
@@ -31,9 +28,7 @@ local opts = {
 		title_pos = "center",
 		-- Show pills on top of the Lazy window
 		pills = true,
-		icons = {
-			cmd = " ",
-		},
+		icons = { cmd = " " },
 		throttle = 20, -- how frequently should the ui process render events
 		custom_keys = {},
 	},
@@ -45,9 +40,7 @@ local opts = {
 		frequency = 360000, -- check for updates every hour
 	},
 	performance = {
-		cache = {
-			enabled = true,
-		},
+		cache = { enabled = true },
 		rtp = {
 			disabled_plugins = {
 				"gzip",
@@ -61,14 +54,9 @@ local opts = {
 	state = vim.fn.stdpath("state") .. "/lazy/state.json", -- state info for checker and other things
 }
 
-local lazy_status, lazy = pcall(require, "lazy")
-if not lazy_status then
-	return
-end
-
 vim.g.mapleader = " "
 
-lazy.setup({
+require("lazy").setup({
    { import = "yuhsienchiang.plugins" },
    { import = "yuhsienchiang.plugins.lsp" },
    { import = "yuhsienchiang.plugins.dap" },

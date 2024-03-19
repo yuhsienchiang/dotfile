@@ -18,9 +18,7 @@ return {
 		require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
-			completion = {
-				completeopt = "menu,menuone,noselect",
-			},
+			completion = { completeopt = "menu,menuone,noselect" },
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -106,7 +104,6 @@ return {
 						if entry.source.name == "nvim_lsp" or entry.source.name == "luasnip" then
 							vim_item.dup = 0
 						end
-
 						return vim_item
 					end,
 				}),
