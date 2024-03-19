@@ -79,6 +79,7 @@ return {
 						NvimTreeWinSeparator = { fg = colors.peach, bold = true },
 
 						-- noice
+                        NoiceCmdline = { bg = colors.base },
 						NoiceCmdlineIcon = { fg = colors.yellow, bg = colors.base },
 						NoiceCmdlineIconSearch = { fg = colors.yellow, bg = colors.base },
 						NoicePopupmenu = { bg = colors.base }, -- change to NormalFloat to make it look like other floats
