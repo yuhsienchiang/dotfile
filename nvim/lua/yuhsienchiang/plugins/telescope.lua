@@ -8,7 +8,7 @@ return {
 			build = "make",
 			enabled = vim.fn.executable("make") == 1,
 		},
-        { "nvim-telescope/telescope-ui-select.nvim" },
+		{ "nvim-telescope/telescope-ui-select.nvim" },
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -21,9 +21,9 @@ return {
 				override_file_sorter = true, -- override the file sorter
 				case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			},
-            ["ui-select"] = {
-                require("telescope.themes").get_dropdown({})
-            },
+			["ui-select"] = {
+				require("telescope.themes").get_dropdown({}),
+			},
 		}
 
 		telescope.setup({
@@ -120,6 +120,6 @@ return {
 		})
 		telescope.load_extension("fzf")
 		telescope.load_extension("noice")
-        telescope.load_extension("ui-select")
+		telescope.load_extension("ui-select")
 	end,
 }
