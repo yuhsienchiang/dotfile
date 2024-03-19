@@ -11,8 +11,6 @@ if [[ -z $TMUX ]]; then
     # Pyenv
     export PYENV_ROOT="$HOME/.pyenv"
     [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
 
     # Poetry
     export PATH=$PATH:$HOME/.pyenv/versions/poetry_venv/bin
@@ -20,7 +18,6 @@ if [[ -z $TMUX ]]; then
     # Zoxide
     export _ZO_DATA_DIR="$HOME/.cache/zoxide"
     export _ZO_ECHO=0
-    eval "$(zoxide init --cmd cd zsh)"
 
     # FZF
     export FZF_DEFAULT_COMMAND='fd -tf -tl --hidden --follow --no-ignore-vcs'        # default: used by fzf commands without keymap
@@ -28,3 +25,7 @@ if [[ -z $TMUX ]]; then
     export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"                               # ctrl-t: past selected to prompt
     export FZF_ALT_C_COMMAND='fd -td --hidden --follow --no-ignore-vcs'              # alt-c: change directory to selected (keymap is remapped to ctrl-f in .zshrc)
 fi
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(zoxide init --cmd cd zsh)"
