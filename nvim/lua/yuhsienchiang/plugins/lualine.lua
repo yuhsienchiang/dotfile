@@ -134,6 +134,15 @@ return {
 						end,
 						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
 					},
+                    {
+                        function()
+                            return require("noice").api.status.mode.get()
+                        end,
+                        cond = function()
+                            return package.loaded["noice"] and require("noice").api.status.mode.has()
+                        end,
+                        color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base }
+                    },
 				},
 				lualine_y = {
 					{
