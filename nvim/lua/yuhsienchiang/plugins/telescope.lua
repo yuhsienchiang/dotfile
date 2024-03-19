@@ -98,6 +98,23 @@ return {
 						},
 					},
 				},
+                oldfiles = {
+					sorting_strategy = "ascending",
+					layout_strategy = "center",
+					layout_config = {
+						center = {
+							width = 0.5,
+							height = 0.5,
+						},
+					},
+					borderchars = {
+						prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+						results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+					},
+					prompt_title = false,
+					results_title = false,
+					previewer = false,
+                }
 			},
 			extensions = extensions,
 		})
