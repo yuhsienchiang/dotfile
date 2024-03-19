@@ -12,7 +12,7 @@ return {
 			large_file_cutoff = 2000,
 			filetypes_denylist = {
 				"NvimTree",
-                "alpha"
+                "dashboard",
 			},
 			large_file_overrides = {
 				providers = { "lsp" },
