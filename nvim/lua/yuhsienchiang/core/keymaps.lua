@@ -117,7 +117,9 @@ vim.keymap.set("n",          "<leader>ghu", ":Gitsigns undo_stage_buffer<CR>", {
 vim.keymap.set("n",          "<leader>ghd", ":Gitsigns diffthis ~<CR>",        { desc = "Diff This",       silent = true, noremap = true })
 
 -- Noice
-vim.keymap.set("n", "<leader>nd", ":NoiceDismiss<CR>", { desc = "Close Noice Notification", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nd", ":NoiceDismiss<CR>", { desc = "Close Noice Notification",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nh", ":NoiceHistory<CR>",  { desc = "Show Notification History", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nl", ":NoiceLast<CR>",    { desc = "Show Last Notification",    silent = true, noremap = true })
 
 -- Add redo break points
 vim.keymap.set("i", ",", ",<C-g>u", { desc = "undo break points", silent = true, noremap = true })
