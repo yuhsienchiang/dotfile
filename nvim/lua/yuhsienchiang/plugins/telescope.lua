@@ -71,12 +71,7 @@ return {
 					find_command = { "fd", "-tf", "-tl", "--hidden", "--follow", "--no-ignore-vcs" },
 					sorting_strategy = "ascending",
 					layout_strategy = "center",
-					layout_config = {
-						center = {
-							width = 0.5,
-							height = 0.5,
-						},
-					},
+					layout_config = { center = { width = 0.5, height = 0.5, } },
 					borderchars = {
 						prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
 						results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
@@ -90,23 +85,14 @@ return {
 				buffers = {
 					hidden = true,
 					mappings = {
-						n = {
-							["<C-d>"] = actions.delete_buffer,
-						},
-						i = {
-							["<C-d>"] = actions.delete_buffer,
-						},
+						n = { ["<C-d>"] = actions.delete_buffer },
+						i = { ["<C-d>"] = actions.delete_buffer },
 					},
 				},
                 oldfiles = {
 					sorting_strategy = "ascending",
 					layout_strategy = "center",
-					layout_config = {
-						center = {
-							width = 0.5,
-							height = 0.5,
-						},
-					},
+					layout_config = { center = { width = 0.5, height = 0.5, } },
 					borderchars = {
 						prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
 						results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },

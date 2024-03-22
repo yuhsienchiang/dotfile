@@ -10,9 +10,7 @@ return {
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			-- enable syntax highlighting
-			highlight = {
-				enable = true,
-			},
+			highlight = { enable = true },
 			-- enable indentation
 			indent = { enable = true },
 			-- ensure these language parsers are installed

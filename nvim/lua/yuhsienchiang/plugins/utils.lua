@@ -15,9 +15,7 @@ return {
         config = function()
             require("nvim-web-devicons").setup({
                 override = {
-                    toml = {
-                        icon = "",
-                    }
+                    toml = { icon = "" }
                 }
             })
         end,
