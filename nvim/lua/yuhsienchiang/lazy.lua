@@ -28,7 +28,11 @@ local opts = {
 		title_pos = "center",
 		-- Show pills on top of the Lazy window
 		pills = true,
-		icons = { cmd = " " },
+        icons = {
+            cmd = " " ,
+            loaded = "",
+            not_loaded = "",
+        },
 		throttle = 20, -- how frequently should the ui process render events
 		custom_keys = {},
 	},
