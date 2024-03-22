@@ -17,8 +17,9 @@ return {
             "jsonls",
             "lua_ls",
             "marksman",
-            "pyright",
+            -- "pyright",
             "yamlls",
+            "basedpyright"
         },
         formatter = {
             "black",
