@@ -45,7 +45,7 @@ return {
 						},
 						inlay_hints = { background = true },
 					},
-					noice = false,
+					noice = true,
 					notify = true,
 					nvimtree = true,
 					treesitter = true,
