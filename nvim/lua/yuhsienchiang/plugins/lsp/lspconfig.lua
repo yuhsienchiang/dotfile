@@ -51,6 +51,8 @@ return {
         local mason_tool_installer = require("mason-tool-installer")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
+        require("lspconfig.ui.windows").default_options = { border = "single", }
+
         mason_lspconfig.setup({
             ensure_installed = opts.lsp_server,
             automatic_installation = true,
