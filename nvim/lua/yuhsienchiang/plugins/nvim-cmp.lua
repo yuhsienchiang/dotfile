@@ -38,8 +38,11 @@ return {
 					scrollbar = false,
 				}),
 			},
-			mapping = {
-				["<Tab>"] = cmp.mapping(function(fallback)
+            mapping = cmp.mapping.preset.insert({
+                ["<CR>"] = cmp.mapping.confirm({ select = false }),
+				["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+				["<C-e>"] = cmp.mapping.abort(),
+				["<Tab>"] = function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
 					elseif luasnip.expandable() then
@@ -49,8 +52,8 @@ return {
 					else
 						fallback()
 					end
-				end, { "i", "s" }),
-				["<S-Tab>"] = cmp.mapping(function(fallback)
+				end,
+				["<S-Tab>"] = function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
 					elseif luasnip.jumpable(-1) then
@@ -58,21 +61,8 @@ return {
 					else
 						fallback()
 					end
-				end, { "i", "s" }),
-
-				["<C-k>"] = cmp.mapping.scroll_docs(-4),
-				["<C-j>"] = cmp.mapping.scroll_docs(4),
-				["<CR>"] = cmp.mapping.confirm({ select = false }),
-				["<S-CR>"] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Replace,
-					select = false,
-				}),
-				["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-				["<C-e>"] = cmp.mapping({
-					i = cmp.mapping.abort(),
-					c = cmp.mapping.close(),
-				}),
-			},
+				end,
+            }),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp", priority = 8 }, -- lsp
 				{ name = "luasnip", priority = 8 }, -- snippets
@@ -122,6 +112,17 @@ return {
 				},
 			},
 		})
+
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline({
+                ["<CR>"] = cmp.mapping.confirm({ select = false }),
+            }),
+            sources = cmp.config.sources({
+                { name = 'cmdline', priority = 10 },
+				{ name = "path", priority = 6 }, -- file system paths
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
+        })
 
 		cmp.event:on("menu_opened", function()
 			vim.b.copilot_suggestion_hidden = false
