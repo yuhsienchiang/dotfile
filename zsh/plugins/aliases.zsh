@@ -9,7 +9,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # FZF
-alias fzfp="fzf --preview 'bat --color always --style='plain' {}' --preview-window=right,70%,~5"
+alias fzfp="fzf-tmux -p 65%,60% --preview 'bat --color always --style='plain' {}' --preview-window=right,40%,~5"
 
 # neovim as default editor
 alias vim="nvim"
