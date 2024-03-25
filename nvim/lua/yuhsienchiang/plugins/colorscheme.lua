@@ -57,21 +57,13 @@ return {
 					return {
 						-- native nvim
 						VertSplit = { fg = colors.peach, bold = true },
+                        WinSeparator = { link = "VertSplit" },
 						CursorLineNr = { fg = colors.lavender, bold = true },
 
 						-- Dashboard
 						DashboardHeader = { fg = colors.yellow },
 						DashboardFooter = { fg = colors.surface1 },
-						DashboardIcon1  = { fg = colors.green },
-						DashboardIcon2  = { fg = colors.peach },
-						DashboardIcon3  = { fg = colors.maroon },
-						DashboardIcon4  = { fg = colors.flamingo },
-						DashboardIcon5  = { fg = colors.flamingo },
-						DashboardIcon6  = { fg = colors.teal },
-						DashboardIcon7  = { fg = colors.teal },
-						DashboardIcon8  = { fg = colors.blue },
-						DashboardIcon9  = { fg = "#a1aab8" },
-						DashboardIcon10 = { fg = colors.red },
+						DashboardIcon   = { fg = colors.blue },
 						DashboardDesc   = { fg = colors.text },
 						DashboardKey    = { fg = colors.peach },
 
@@ -84,7 +76,6 @@ return {
 						NoiceCmdlineIconSearch = { fg = colors.yellow, bg = colors.base },
 						NoicePopupmenu = { bg = colors.base }, -- change to NormalFloat to make it look like other floats
 						NoicePopupmenuBorder = { fg = colors.overlay2, bg = colors.base }, -- border highlight
-						NoicePopupmenuSelected = { bg = colors.surface1 }, -- used for highlighting the selected item
 						NoicePopupmenuMatch = { fg = colors.text, bold = true }, -- used to highlight the part of the item that matches the input
 
 						-- Telescope

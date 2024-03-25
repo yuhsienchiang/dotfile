@@ -26,12 +26,12 @@ return {
             { desc = "Quit",         icon = "   ", key = "q", action = "qa"},
         }
 
-        for id, button in ipairs(buttons) do
+        for _, button in ipairs(buttons) do
             button.desc = string.rep(" ", 10) .. button.desc .. string.rep(" ", 40 - #button.desc)
             button.desc_hl = "DashboardDesc"
             button.key_format = "  %s"
             button.key_hl = "DashboardKey"
-            button.icon_hl = "DashboardIcon" .. id
+            button.icon_hl = "DashboardIcon"
         end
 
         require("dashboard").setup({
