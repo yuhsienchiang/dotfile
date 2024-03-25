@@ -9,8 +9,9 @@ TERM = "xterm-256color"
 decorations = "buttonless"
 dynamic_title = false
 opacity = 1.0
-title = "Alacritty"
 padding = {x = 12, y = 10}
+startup_mode = "Maximized"
+option_as_alt = "OnlyLeft"
 
 [scrolling]
 history = 10000
@@ -24,12 +25,15 @@ italic = { style = "Italic" }
 bold_italic = { style = "Bold Italic" }
 
 [cursor]
-style = {shape = "Beam", blinking = "Off"}
-unfocused_hollow = false
+style = { shape = "Beam",  blinking= "Always" }
+unfocused_hollow = true
 
 [bell]
 animation = "EaseOutExpo"
 duration = 0
+
+[selection]
+save_to_clipboard = true
 
 [keyboard]
 bindings = [
