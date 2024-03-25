@@ -24,6 +24,9 @@ if [[ -z $TMUX ]]; then
     export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border=rounded --cycle'
     export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"                               # ctrl-t: past selected to prompt
     export FZF_ALT_C_COMMAND='fd -td --hidden --follow --no-ignore-vcs'              # alt-c: change directory to selected (keymap is remapped to ctrl-f in .zshrc)
+
+    # Sesh
+    export PATH="$HOME/.config/sesh:$PATH"
 fi
 
 eval "$(pyenv init -)"
