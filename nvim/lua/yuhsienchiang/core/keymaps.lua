@@ -53,7 +53,7 @@ vim.keymap.set("n", "<leader>wj", ":wincmd j<CR>", { desc = "Move Down",  silent
 vim.keymap.set("n", "<leader>wk", ":wincmd k<CR>", { desc = "Move Up",    silent = true, noremap = true })
 vim.keymap.set("n", "<leader>wl", ":wincmd l<CR>", { desc = "Move Right", silent = true, noremap = true })
 -- Window Split
-vim.keymap.set("n", "<leader>wv", ":vsplitCR>", { desc = "Move Right", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wv", ":vsplit<CR>", { desc = "Move Right", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>ws", ":split<CR>", { desc = "Move Right", silent = true, noremap = true })
 -- Window Resize
 vim.keymap.set("n", "<leader>wK", "<cmd>resize +4<cr>",          { desc = "Increase window height", silent = true, noremap = true })
