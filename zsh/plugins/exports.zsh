@@ -1,6 +1,7 @@
 if [[ -z $TMUX ]]; then
     # Default Editor
     export EDITOR="nvim"
+    export VISUAL="nvim"
 
 
     # Bat (cat replacement) colorscheme

@@ -8,6 +8,9 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+if [[ $TERMINAL == "kitty" ]]; then
+    alias icat="kitten icat"
+fi
 # neovim as default editor
 alias vim="nvim"
 
