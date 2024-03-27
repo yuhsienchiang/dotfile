@@ -2,8 +2,6 @@ if [[ -z $TMUX ]]; then
     # Default Editor
     export EDITOR="nvim"
 
-    # Default Terminal Emulator
-    export TERMINAL="alacritty"
 
     # Bat (cat replacement) colorscheme
     export BAT_THEME="Catppuccin-mocha"
