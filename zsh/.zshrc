@@ -15,6 +15,7 @@ fi
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 # Load 3rd part plugins
+plug "$HOME/.config/zsh-syntax-highlight/catppuccin_mocha-zsh-syntax-highlighting.zsh"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "romkatv/powerlevel10k"
 
