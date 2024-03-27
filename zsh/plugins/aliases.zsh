@@ -8,12 +8,14 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-# FZF
-alias fzfp="fzf-tmux -p 65%,60% --preview 'bat --color always --style='plain' {}' --preview-window=right,40%,~5"
-
 # neovim as default editor
 alias vim="nvim"
-alias vimf="fzfp --print0 | xargs -0 -o nvim"
+
+# FZF
+alias vimf="fzfp --multi --print0 | xargs -0 -o nvim -O"
+alias fzfp="fzf-tmux -p 65%,60% --preview 'bat --color always --style='plain' {}' --preview-window=right,40%,~5"
+alias brewf="brew formulae | fzf-tmux --multi -p 65%,60% --preview 'brew info {}' --preview-window=right,60% | xargs brew install"
+alias ubrewf="brew leaves | fzf-tmux -p 65%,60% --preview 'brew info {}' --preview-window=right,60% | xargs brew uninstall"
 
 # replace ls with eza
 alias ls='eza --group-directories-first --icons'
