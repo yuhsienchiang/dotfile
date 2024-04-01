@@ -6,14 +6,16 @@ return {
 		local comment = require("Comment")
 		local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
 
+        -- set keybindings that works in and outside tmux
+        -- https://stackoverflow.com/questions/76883693/when-i-use-nvim-c-keymapping-does-not-working-in-tmux
 		comment.setup({
 			toggler = {
-				line = "<C-m>",
-                block = "<C-S-m>"
+				line = "<C-\\>",
+                block = "<C-S-\\>"
 			},
 			opleader = {
-				line = "<C-m>",
-                block = "<C-S-m>"
+				line = "<C-\\>",
+                block = "<C-S-\\>"
 			},
 			mappings = {
 				basic = true,
