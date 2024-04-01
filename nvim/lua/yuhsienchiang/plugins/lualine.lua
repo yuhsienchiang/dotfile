@@ -40,7 +40,7 @@ return {
 			},
 		}
 
-		local actived_venv = function()
+		local activated_venv = function()
 			local venv_name = require("venv-selector").get_active_venv()
 			if vim.bo.filetype ~= "python" then
 				return ""
@@ -86,9 +86,7 @@ return {
 			sections = {
 				lualine_a = {
 					{
-						function()
-							return " "
-						end,
+						function() return " " end,
 						component_separators = { left = "", right = "" },
 						section_separators = { left = "", right = "" },
 						padding = 0,
@@ -128,10 +126,7 @@ return {
 				},
 				lualine_x = {
 					{
-						actived_venv,
-						on_click = function()
-							vim.cmd.VenvSelect()
-						end,
+						activated_venv,
 						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
 					},
                     {
@@ -159,9 +154,7 @@ return {
 				},
 				lualine_z = {
 					{
-                        function()
-                            return " " .. os.date("%R")
-                        end,
+                        function() return " " .. os.date("%R") end,
 						color = { fg = catppuccin_color.base, bg = catppuccin_color.flamingo },
 					},
 				},
