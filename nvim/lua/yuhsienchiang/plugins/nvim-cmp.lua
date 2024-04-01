@@ -88,7 +88,6 @@ return {
 						Table = "",
 						Calendar = "",
 						Null = "󰟢",
-						-- Copilot = "",
 					},
 					-- remove duplicates
 					before = function(entry, vim_item)
@@ -100,7 +99,7 @@ return {
 				}),
 			},
 			view = {
-				entries = { name = "custom", selection_order = "near_cursor" },
+				entries = { name = "custom", selection_order = "near_cursor", follow_cursor = true },
 			},
 			sorting = {
 				priority_weight = 1.0,
