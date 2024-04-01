@@ -6,6 +6,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
+                compile_path = vim.fn.stdpath "cache" .. "/catppuccin",
 				flavour = "mocha", -- latte, frappe, macchiato, mocha
 				background = { light = "latte", dark = "mocha", },
 				term_colors = true,
@@ -85,15 +86,9 @@ return {
 						TelescopeNormal = { bg = colors.base },
 						TelescopeTitle = { fg = colors.base, bg = colors.rosewater, bold = true },
 						TelescopeBorder = { fg = colors.overlay2, bg = colors.base },
-						TelescopePromptNormal = { bg = colors.base },
 						TelescopePromptTitle = { fg = colors.base, bg = colors.flamingo, bold = true },
-						TelescopePromptBorder = { fg = colors.overlay2, bg = colors.base },
-						TelescopeResultsNormal = { bg = colors.base },
 						TelescopeResultsTitle = { fg = colors.base, bg = colors.green, bold = true },
-						TelescopeResultsBorder = { fg = colors.overlay2, bg = colors.base },
-						TelescopePreviewNormal = { bg = colors.base },
 						TelescopePreviewTitle = { fg = colors.base, bg = colors.blue, bold = true },
-						TelescopePreviewBorder = { fg = colors.overlay2, bg = colors.base },
 						TelescopeMultiIcon = { fg = colors.flamingo, bg = colors.base, bold = true },
 						TelescopeMultiSelection = { fg = colors.flamingo, bg = colors.base },
 

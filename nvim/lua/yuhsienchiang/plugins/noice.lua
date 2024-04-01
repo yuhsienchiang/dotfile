@@ -1,28 +1,6 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
-	dependencies = {
-		"MunifTanjim/nui.nvim",
-		{
-			"rcarriga/nvim-notify",
-			opts = {
-				timeout = 2500,
-				max_height = function()
-					return math.floor(vim.o.lines * 0.75)
-				end,
-				max_width = function()
-					return math.floor(vim.o.columns * 0.75)
-				end,
-				on_open = function(win)
-					vim.api.nvim_win_set_config(win, { zindex = 100 })
-				end,
-			},
-			init = function()
-				vim.opt.termguicolors = true
-				vim.notify = require("notify")
-			end,
-		},
-	},
 	opts = {
 		throttle = 1000 / 50, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
 		presets = {

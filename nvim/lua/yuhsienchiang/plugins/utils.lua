@@ -6,7 +6,7 @@ return {
 
 	{
 		"onsails/lspkind.nvim",
-		event = "VeryLazy",
+        lazy = true,
 	},
 
 	{

@@ -1,6 +1,6 @@
 return {
 	"akinsho/bufferline.nvim",
-    event = "VeryLazy",
+    event = "TabNew",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
 		local bufferline_setup, bufferline = pcall(require, "bufferline")
