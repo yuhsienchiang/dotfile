@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-sesh cn $(sesh list -tz | \
+sesh cn $(sesh list | \
     fzf-tmux \
         -p 55%,60% \
         --no-sort \
