@@ -1,7 +1,6 @@
 return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function ()
         local logo = [[
          ██████╗ ██████╗ ██████╗ ███████╗            ██████╗ ██████╗ ██████╗ ███████╗        
@@ -15,14 +14,14 @@ return {
 
         local buttons = {
             { desc = "New file",     icon = "   ", key = "n", action = "ene | startinsert"},
-            { desc = "Recent file",  icon = "   ", key = "r", action = "lua require('telescope.builtin').oldfiles({only_cwd=true})"},
-            { desc = "Explorer",     icon = "󰙅   ", key = "e", action = "NvimTreeOpen"},
+            { desc = "Explorer",     icon = "󰙅   ", key = "s", action = "NvimTreeOpen"},
             { desc = "Find file",    icon = "  ", key = "f", action = "Telescope find_files"},
+            { desc = "Recent file",  icon = "  ", key = "r", action = "lua require('telescope.builtin').oldfiles({only_cwd=true})"},
             { desc = "Find word",    icon = " 󰊄 ", key = "w", action = "Telescope live_grep"},
             { desc = "Restore last", icon = "󰦛  ", key = "u", action = "lua require('persistence').load({last = true})"},
             { desc = "Restore here", icon = "󰦛  ", key = "U", action = "lua require('persistence').load()"},
             { desc = "Lazy",         icon = "󰒲   ", key = "l", action = "Lazy"},
-            { desc = "Setting",      icon = "   ", key = "s", action = "e $MYVIMRC | cd %:p:h | NvimTreeOpen"},
+            { desc = "Setting",      icon = "   ", key = "c", action = "e $MYVIMRC | cd %:p:h | NvimTreeOpen"},
             { desc = "Quit",         icon = "   ", key = "q", action = "qa"},
         }
 
