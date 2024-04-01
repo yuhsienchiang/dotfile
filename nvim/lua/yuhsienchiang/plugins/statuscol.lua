@@ -18,7 +18,7 @@ return {
                     sign = {
                         name = { "Dap*" },
                         maxwidth = 1, -- maximum number of signs that will be displayed in this segment
-                        colwidth = 2, -- number of display cells per sign in this segment
+                        colwidth = 1, -- number of display cells per sign in this segment
                         auto = false, -- when true, the segment will not be drawn if no signs matching the pattern are currently placed in the buffer.
 						fillchar = " ", -- character used to fill a segment with less signs than maxwidth
                     },
@@ -35,7 +35,7 @@ return {
 				{
 					text = { " ", builtin.lnumfunc, " " },
 					condition = { true, builtin.not_empty },
-					colwidth = 4,
+					colwidth = 3,
 				},
 				{
 					sign = {
