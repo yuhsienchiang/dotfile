@@ -1,7 +1,8 @@
 # Print welcome message if cowsay and lolcat are installed
-if [ $(which cowsay) ] && [ $(which lolcat) ]; then
-    cowsay -f elephant "Time to Code!" | lolcat
-fi
+# if [ $(which cowsay) ] && [ $(which lolcat) ]; then
+#     cowsay -f elephant "Time to Code!" | lolcat
+# fi
+$HOME/.config/zsh/plugins/pfetch
 
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
