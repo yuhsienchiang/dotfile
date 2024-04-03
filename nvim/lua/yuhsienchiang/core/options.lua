@@ -38,7 +38,7 @@ opt.pumblend = 10
 opt.pumheight = 10
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.splitkeep = "screen"
-opt.scrolloff = 20
+opt.scrolloff = 8
 opt.sidescrolloff = 20
 
 -- backspace
