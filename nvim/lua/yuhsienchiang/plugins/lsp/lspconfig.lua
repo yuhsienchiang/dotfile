@@ -5,7 +5,8 @@ return {
 	dependencies = {
 		"mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-        'WhoIsSethDaniel/mason-tool-installer.nvim'
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        "jay-babu/mason-nvim-dap.nvim",
 	},
     opts = {
         lsp_server = {
