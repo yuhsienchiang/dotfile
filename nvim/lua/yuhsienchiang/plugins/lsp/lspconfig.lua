@@ -1,13 +1,13 @@
 return {
-	"neovim/nvim-lspconfig",
-	event = { "BufReadPost", "BufNewFile" },
-	cmd = { "LspInfo", "LspInstall", "LspUninstall" },
-	dependencies = {
-		"mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+    dependencies = {
+        "mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         "jay-babu/mason-nvim-dap.nvim",
-	},
+    },
     opts = {
         lsp_server = {
             "bashls",
@@ -30,26 +30,26 @@ return {
             "stylua", -- lua formatter
         },
     },
-	config = function(_, opts)
-		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-		for name, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. name
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+    config = function(_, opts)
+        local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+        for name, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. name
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        end
 
-		vim.diagnostic.config({
-			underline = false,
-			update_in_insert = false,
-			virtual_text = {
-				spacing = 4,
-				source = "if_many",
-				prefix = " ",
-			},
-			severity_sort = true,
-		})
+        vim.diagnostic.config({
+            underline = false,
+            update_in_insert = false,
+            virtual_text = {
+                spacing = 4,
+                source = "if_many",
+                prefix = " ",
+            },
+            severity_sort = true,
+        })
 
-		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
+        local lspconfig = require("lspconfig")
+        local mason_lspconfig = require("mason-lspconfig")
         local mason_tool_installer = require("mason-tool-installer")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -61,9 +61,9 @@ return {
         })
 
         mason_tool_installer.setup({
-			ensure_installed = opts.formatter,
+            ensure_installed = opts.formatter,
             run_on_start = true,
-		})
+        })
 
         local lsp_capabilities = vim.tbl_deep_extend(
             "force",
@@ -95,5 +95,5 @@ return {
             end
         })
 
-	end,
+    end,
 }

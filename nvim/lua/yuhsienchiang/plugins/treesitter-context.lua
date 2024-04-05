@@ -1,7 +1,7 @@
 return {
-	"nvim-treesitter/nvim-treesitter-context",
+    "nvim-treesitter/nvim-treesitter-context",
     lazy = true,
-	config = function()
+    config = function()
         require("treesitter-context").setup({
             enable = true,
             max_lines = 3,
@@ -9,5 +9,5 @@ return {
             mode = 'cursor',
             separator ='',
         })
-	end,
+    end,
 }

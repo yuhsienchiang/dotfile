@@ -1,7 +1,7 @@
 return {
-	settings = {
-		json = {
-			validate = { enable = true },
-		},
-	},
+    settings = {
+        json = {
+            validate = { enable = true },
+        },
+    },
 }
