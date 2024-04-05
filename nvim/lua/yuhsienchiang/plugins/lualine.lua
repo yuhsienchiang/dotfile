@@ -40,18 +40,6 @@ return {
 			},
 		}
 
-		local activated_venv = function()
-			local venv_name = require("venv-selector").get_active_venv()
-			if vim.bo.filetype ~= "python" then
-				return ""
-			end
-			if venv_name ~= nil then
-				return string.gsub(venv_name, "/Users/yuhsienchiang/.pyenv/versions/", "(pyenv) ")
-			else
-				return "venv"
-			end
-		end
-
 		require("lualine").setup({
 			options = {
 				theme = catppuccin_theme,
@@ -126,7 +114,7 @@ return {
 				},
 				lualine_x = {
 					{
-						activated_venv,
+						require("yuhsienchiang.util.venv").activated_venv,
 						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
 					},
                     {

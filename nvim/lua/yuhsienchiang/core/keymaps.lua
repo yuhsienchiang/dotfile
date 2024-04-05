@@ -1,14 +1,3 @@
-local function smart_cursor_home()
-	local cursor_position = vim.api.nvim_win_get_cursor(0)
-	local current_line_string = vim.api.nvim_get_current_line():sub(0, cursor_position[2])
-	local start_idx, _ = string.find(current_line_string, "%S")
-	if start_idx == nil then
-		vim.api.nvim_win_set_cursor(0, { cursor_position[1], 0 })
-	else
-		vim.api.nvim_win_set_cursor(0, { cursor_position[1], start_idx - 1 })
-	end
-end
-
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true, noremap = true })
 
@@ -28,13 +17,13 @@ vim.keymap.set("x", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Pr
 vim.keymap.set("o", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev search result" })
 
 -- cursor movement
-vim.keymap.set("n",          "<C-Right>", "$",               { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set("i",          "<C-Right>", "<C-o>$",          { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set({ "n", "i" }, "<C-Left>",  smart_cursor_home, { desc = "Far Left",   silent = true, noremap = true })
-vim.keymap.set("n",          "<C-Up>",    "gg",              { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("i",          "<C-Up>",    "<C-o>gg",         { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("n",          "<C-Down>",  "G",               { desc = "Far Bottom", silent = true, noremap = true })
-vim.keymap.set("i",          "<C-Down>",  "<C-o>G",          { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set("n",          "<C-Right>", "$",                                               { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set("i",          "<C-Right>", "<C-o>$",                                          { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set({ "n", "i" }, "<C-Left>",  require("yuhsienchiang.util.cursor").smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
+vim.keymap.set("n",          "<C-Up>",    "gg",                                              { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set("i",          "<C-Up>",    "<C-o>gg",                                         { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set("n",          "<C-Down>",  "G",                                               { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set("i",          "<C-Down>",  "<C-o>G",                                          { desc = "Far Bottom", silent = true, noremap = true })
 
 -- better up/down
 vim.keymap.set({ "n", "x" }, "j",      "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
