@@ -39,6 +39,7 @@ return {
 					},
 					scroll_speed = 5,
 				},
+                path_display = { "smart" },
 				mappings = {
 					n = {
 						["<C-v>"] = actions.select_vertical,
@@ -48,6 +49,7 @@ return {
 						["<C-n>"] = actions.preview_scrolling_down,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
 					i = {
 						["<esc>"] = actions.close,
@@ -58,6 +60,7 @@ return {
 						["<C-n>"] = actions.preview_scrolling_down,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-j>"] = actions.move_selection_next,
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
 				},
 				prompt_prefix = " 󰍉 ",
