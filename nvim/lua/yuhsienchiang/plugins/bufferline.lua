@@ -1,6 +1,7 @@
 return {
 	"akinsho/bufferline.nvim",
     event = "TabNew",
+    version = "*",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
 		local bufferline_setup, bufferline = pcall(require, "bufferline")
@@ -19,14 +20,14 @@ return {
 				numbers = function(opts)
 					return string.format("%s", opts.raise(opts.ordinal))
 				end,
-				close_command = "bdelete %d", -- can be a string | function, | false see "Mouse actions"
+				close_command = "tabclose %d", -- can be a string | function, | false see "Mouse actions"
 				right_mouse_command = false,
 				left_mouse_command = false,
 				indicator = {
 					icon = "▎",
 					style = "icon",
 				},
-				buffer_close_icon = " 󰅚 ",
+				buffer_close_icon = " 󰅖 ",
 				modified_icon = " ● ",
 				close_icon = "󰅖",
 				left_trunc_marker = "",
@@ -49,13 +50,14 @@ return {
 				color_icons = true, -- whether or not to add the filetype icon highlights
 				show_buffer_icons = true, -- disable filetype icons for buffers
 				show_buffer_close_icons = true,
-				show_close_icon = false,
-				show_tab_indicators = false,
+                show_close_icon = true,
+                show_tab_indicators = true,
+                show_duplicate_prefix = false, -- whether to show duplicate buffer prefix
 				separator_style = {"▎", "▎"},
 				enforce_regular_tabs = false,
 				always_show_bufferline = false,
 				hover = {
-					enabled = true,
+                    enabled = false,
 					delay = 200,
 					reveal = { "close" },
 				},
