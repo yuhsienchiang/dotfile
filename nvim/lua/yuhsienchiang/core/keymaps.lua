@@ -1,6 +1,10 @@
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true, noremap = true })
 
+-- better yank/delete/replace
+vim.keymap.set("n", "x", '"_x', { desc = "Delete without yanking", silent = true, noremap = true })
+vim.keymap.set("x", "p", "P",   { desc = "Replace without yanking", silent = true, noremap = true })
+
 -- better up/down
 vim.keymap.set({ "n", "x" }, "j",      "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -42,8 +46,9 @@ vim.keymap.set("n", "<leader>wj", ":wincmd j<CR>", { desc = "Move Down",  silent
 vim.keymap.set("n", "<leader>wk", ":wincmd k<CR>", { desc = "Move Up",    silent = true, noremap = true })
 vim.keymap.set("n", "<leader>wl", ":wincmd l<CR>", { desc = "Move Right", silent = true, noremap = true })
 -- Window Split
-vim.keymap.set("n", "<leader>wv", ":vsplit<CR>", { desc = "Move Right", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ws", ":split<CR>", { desc = "Move Right", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wv", ":vsplit<CR>",    { desc = "Split Window Vertical",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ws", ":split<CR>",     { desc = "Split Window Horizontal", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>wt", ":tab split<CR>", { desc = "Open Window Tab",         silent = true, noremap = true })
 -- Window Resize
 vim.keymap.set("n", "<leader>wK", "<cmd>resize +4<cr>",          { desc = "Increase window height", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>wJ", "<cmd>resize -4<cr>",          { desc = "Decrease window height", silent = true, noremap = true })
@@ -96,18 +101,19 @@ vim.keymap.set("n", "<leader>gdh", ":DiffviewFileHistory <CR>",  { desc = "All d
 vim.keymap.set("n", "<leader>gdH", ":DiffviewFileHistory %<CR>", { desc = "Current file diff history", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>gdq", ":tabclose<CR>",              { desc = "Quit Diffview",             silent = true, noremap = true })
 -- Gitsigns
-vim.keymap.set("n",          "<leader>gh]", ":Gitsigns next_hunk<CR>",         { desc = "Next Hunk",       silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>gh[", ":Gitsigns prev_hunk<CR>",         { desc = "Prev Hunk",       silent = true, noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>",        { desc = "Stage Hunk",      silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghS", ":Gitsigns stage_buffer<CR>",      { desc = "Stage Buffer",    silent = true, noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>",        { desc = "Reset Hunk",      silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghR", ":Gitsigns reset_buffer<CR>",      { desc = "Reset Buffer",    silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghu", ":Gitsigns undo_stage_buffer<CR>", { desc = "Undo Stage Hunk", silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghd", ":Gitsigns diffthis ~<CR>",        { desc = "Diff This",       silent = true, noremap = true })
+vim.keymap.set("n",          "<leader>gh]", ":Gitsigns next_hunk<CR>",         { desc = "Next Hunk",         silent = true, noremap = true })
+vim.keymap.set("n",          "<leader>gh[", ":Gitsigns prev_hunk<CR>",         { desc = "Prev Hunk",         silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>",        { desc = "Stage Hunk",        silent = true, noremap = true })
+vim.keymap.set("n",          "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>",   { desc = "Undo Stage Hunk",   silent = true, noremap = true })
+vim.keymap.set("n",          "<leader>ghS", ":Gitsigns stage_buffer<CR>",      { desc = "Stage Buffer",      silent = true, noremap = true })
+vim.keymap.set("n",          "<leader>ghU", ":Gitsigns undo_stage_buffer<CR>", { desc = "Undo Stage Buffer", silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>",        { desc = "Reset Hunk",        silent = true, noremap = true })
+vim.keymap.set("n",          "<leader>ghR", ":Gitsigns reset_buffer<CR>",      { desc = "Reset Buffer",      silent = true, noremap = true })
+vim.keymap.set("n",          "<leader>ghd", ":Gitsigns diffthis ~<CR>",        { desc = "Diff This",         silent = true, noremap = true })
 
 -- Noice
 vim.keymap.set("n", "<leader>nd", ":NoiceDismiss<CR>", { desc = "Close Noice Notification",  silent = true, noremap = true })
-vim.keymap.set("n", "<leader>nh", ":NoiceHistory<CR>",  { desc = "Show Notification History", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nh", ":NoiceHistory<CR>", { desc = "Show Notification History", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>nl", ":NoiceLast<CR>",    { desc = "Show Last Notification",    silent = true, noremap = true })
 
 -- Add redo break points
@@ -117,6 +123,6 @@ vim.keymap.set("i", ";", ";<C-g>u", { desc = "undo break points", silent = true,
 
 
 -- Quit shortcuts
-vim.keymap.set("n", "<leader>qq", "<cmd>wqa<CR>", { desc = "Quit all"    , silent = true, noremap = true })
-vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>",  { desc = "Force quit"  , silent = true, noremap = true })
+vim.keymap.set("n", "<leader>qq", "<cmd>wqa<CR>", { desc = "Quit all",     silent = true, noremap = true })
+vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>",  { desc = "Force quit",   silent = true, noremap = true })
 vim.keymap.set("n", "<leader>qw", "<cmd>wq<CR>",  { desc = "Write & Quit", silent = true, noremap = true })
