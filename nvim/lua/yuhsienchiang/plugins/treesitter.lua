@@ -3,10 +3,7 @@ return {
     version = false,
     event = { "BufNewFile", "BufReadPost" },
     build = ":TSUpdate",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "nvim-treesitter/nvim-treesitter-context",
-    },
+    dependencies = { "nvim-treesitter/nvim-treesitter-context", },
     config = function()
         require("nvim-treesitter.configs").setup({
             -- enable syntax highlighting
@@ -48,8 +45,8 @@ return {
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection = "<leader>aa", -- set to `false` to disable one of the mappings
-                    node_incremental = "<leader>aa",
+                    init_selection = "<M-v>", -- set to `false` to disable one of the mappings
+                    node_incremental = "<M-v>",
                     scope_incremental = false,
                     node_decremental = "<bs>",
                 },

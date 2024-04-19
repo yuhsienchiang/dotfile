@@ -1,43 +1,46 @@
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true, noremap = true })
 
+-- Better
 -- better yank/delete/replace
-vim.keymap.set("n", "x", '"_x', { desc = "Delete without yanking", silent = true, noremap = true })
+vim.keymap.set("n", "x", '"_x', { desc = "Delete without yanking",  silent = true, noremap = true })
 vim.keymap.set("x", "p", "P",   { desc = "Replace without yanking", silent = true, noremap = true })
 
--- better up/down
-vim.keymap.set({ "n", "x" }, "j",      "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "k",      "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Up>",   "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
--- set n to always search forward and N to always search backwards
+-- better n/N: set n to always search forward and N to always search backwards
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
-vim.keymap.set("x", "n", "'Nn'[v:searchforward]",      { expr = true, desc = "Next search result" })
-vim.keymap.set("o", "n", "'Nn'[v:searchforward]",      { expr = true, desc = "Next search result" })
-vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev search result" })
-vim.keymap.set("x", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev search result" })
-vim.keymap.set("o", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev search result" })
-
--- cursor movement
-vim.keymap.set("n",          "<C-Right>", "$",                                               { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set("i",          "<C-Right>", "<C-o>$",                                          { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set({ "n", "i" }, "<C-Left>",  require("yuhsienchiang.util.cursor").smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
-vim.keymap.set("n",          "<C-Up>",    "gg",                                              { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("i",          "<C-Up>",    "<C-o>gg",                                         { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("n",          "<C-Down>",  "G",                                               { desc = "Far Bottom", silent = true, noremap = true })
-vim.keymap.set("i",          "<C-Down>",  "<C-o>G",                                          { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", { desc = "Next search result", expr = true, silent = true })
+vim.keymap.set("x", "n", "'Nn'[v:searchforward]",      { desc = "Next search result", expr = true, silent = true })
+vim.keymap.set("o", "n", "'Nn'[v:searchforward]",      { desc = "Next search result", expr = true, silent = true })
+vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", { desc = "Prev search result", expr = true, silent = true })
+vim.keymap.set("x", "N", "'nN'[v:searchforward]",      { desc = "Prev search result", expr = true, silent = true })
+vim.keymap.set("o", "N", "'nN'[v:searchforward]",      { desc = "Prev search result", expr = true, silent = true })
 
 -- better up/down
-vim.keymap.set({ "n", "x" }, "j",      "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "k",      "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<Up>",   "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "j",      "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Better Down", expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "k",      "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up",   expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<Up>",   "v:count == 0 ? 'gk' : 'k'", { desc = "Better Up",   expr = true, silent = true })
 
--- Better indenting
+-- better indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+-- Move Lines
+vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==",        { desc = "Move Down", silent = true })
+vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down", silent = true })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv",        { desc = "Move Down", silent = true })
+vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==",        { desc = "Move Up",   silent = true })
+vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up",   silent = true })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv",        { desc = "Move Up",   silent = true })
+
+-- cursor movement
+vim.keymap.set({ "n", "v" },      "<C-l>", "$",                                               { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set("i",               "<C-l>", "<C-o>$",                                          { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set({ "n", "v", "i" }, "<C-h>", require("yuhsienchiang.util.cursor").smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
+vim.keymap.set({ "n", "v" },      "<C-k>", "gg",                                              { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set("i",               "<C-k>", "<C-o>gg",                                         { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set({ "n", "v" },      "<C-j>", "G",                                               { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set("i",               "<C-j>", "<C-o>G",                                          { desc = "Far Bottom", silent = true, noremap = true })
 
 -- Window
 -- Window Navigation
@@ -69,6 +72,16 @@ vim.keymap.set("n", "<leader>t<Right>", ":tabnext<CR>",     { desc = "Next tab",
 vim.keymap.set("n", "<leader>tl",       ":tabnext<CR>",     { desc = "Next tab", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>tq",       ":tabclose<CR>",    { desc = "Quit tab", silent = true, noremap = true })
 
+-- Add redo break points
+vim.keymap.set("i", ",", ",<C-g>u", { desc = "undo break points", silent = true, noremap = true })
+vim.keymap.set("i", ".", ".<C-g>u", { desc = "undo break points", silent = true, noremap = true })
+vim.keymap.set("i", ";", ";<C-g>u", { desc = "undo break points", silent = true, noremap = true })
+
+-- Quit shortcuts
+vim.keymap.set("n", "<leader>qq", "<cmd>wqa<CR>", { desc = "Quit all",     silent = true, noremap = true })
+vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>",  { desc = "Force quit",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>qw", "<cmd>wq<CR>",  { desc = "Write & Quit", silent = true, noremap = true })
+-- Plugins
 -- Telescope
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>",                                        { desc = "Find files",          silent = true, noremap = true })
 vim.keymap.set("n", "<leader>fr", ":lua require('telescope.builtin').oldfiles({only_cwd=true})<CR>",  { desc = "Recent files (CWD)",  silent = true, noremap = true })
@@ -116,13 +129,6 @@ vim.keymap.set("n", "<leader>nd", ":NoiceDismiss<CR>", { desc = "Close Noice Not
 vim.keymap.set("n", "<leader>nh", ":NoiceHistory<CR>", { desc = "Show Notification History", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>nl", ":NoiceLast<CR>",    { desc = "Show Last Notification",    silent = true, noremap = true })
 
--- Add redo break points
-vim.keymap.set("i", ",", ",<C-g>u", { desc = "undo break points", silent = true, noremap = true })
-vim.keymap.set("i", ".", ".<C-g>u", { desc = "undo break points", silent = true, noremap = true })
-vim.keymap.set("i", ";", ";<C-g>u", { desc = "undo break points", silent = true, noremap = true })
-
-
--- Quit shortcuts
-vim.keymap.set("n", "<leader>qq", "<cmd>wqa<CR>", { desc = "Quit all",     silent = true, noremap = true })
-vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>",  { desc = "Force quit",   silent = true, noremap = true })
-vim.keymap.set("n", "<leader>qw", "<cmd>wq<CR>",  { desc = "Write & Quit", silent = true, noremap = true })
+-- Todo
+vim.keymap.set("n", "<leader>ot", ":TodoTelescope<CR>", { desc = "TODO Telescope", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>oo", ":TodoLocList<CR>",   { desc = "TODO LocList", silent = true, noremap = true })

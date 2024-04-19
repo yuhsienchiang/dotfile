@@ -69,12 +69,19 @@ return {
             ["<leader>m"]  = { name = "Markdown" },
             ["<leader>b"]  = { name = "Buffer" },
             ["<leader>d"]  = { name = "Lspsaga" },
+            ["<leader>o"]  = { name = "TODO" },
             ["<leader>e"]  = { name = "Format" },
             ["<leader>t"]  = { name = "Tab" },
             ["<leader>w"]  = { name = "Window" },
             ["<leader>n"]  = { name = "Noice" },
             ["<leader>u"]  = { name = "Debug" },
             ["<leader>q"]  = { name = "Quit Options" },
+        })
+        which_key.register({
+            mode = { "v" },
+            ["<leader>g"]  = { name = "Git" },
+            ["<leader>gh"] = { name = "Gitsigns" },
+            ["<leader>e"]  = { name = "Format" },
         })
     end,
 }
