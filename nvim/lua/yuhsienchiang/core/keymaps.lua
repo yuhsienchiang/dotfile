@@ -33,14 +33,17 @@ vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==",        { desc = "Move Up",   si
 vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up",   silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv",        { desc = "Move Up",   silent = true })
 
--- cursor movement
-vim.keymap.set({ "n", "v" },      "<C-l>", "$",                                               { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set("i",               "<C-l>", "<C-o>$",                                          { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set({ "n", "v", "i" }, "<C-h>", require("yuhsienchiang.util.cursor").smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
-vim.keymap.set({ "n", "v" },      "<C-k>", "gg",                                              { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("i",               "<C-k>", "<C-o>gg",                                         { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set({ "n", "v" },      "<C-j>", "G",                                               { desc = "Far Bottom", silent = true, noremap = true })
-vim.keymap.set("i",               "<C-j>", "<C-o>G",                                          { desc = "Far Bottom", silent = true, noremap = true })
+-- Don't override last yank when deleting empty line
+vim.keymap.set("n", "dd", require("yuhsienchiang.util.keymap").smart_dd, { noremap = true, expr = true})
+
+-- smart cursor movement
+vim.keymap.set({ "n", "v", "x", "o" },      "<C-l>", "$",                                               { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set("i",                         "<C-l>", "<C-o>$",                                          { desc = "Far Right",  silent = true, noremap = true })
+vim.keymap.set({ "n", "v", "i", "x", "o" }, "<C-h>", require("yuhsienchiang.util.keymap").smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
+vim.keymap.set({ "n", "v", "x", "o" },      "<C-k>", "gg",                                              { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set("i",                         "<C-k>", "<C-o>gg",                                         { desc = "Far Top",    silent = true, noremap = true })
+vim.keymap.set({ "n", "v", "x", "o" },      "<C-j>", "G",                                               { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set("i",                         "<C-j>", "<C-o>G",                                          { desc = "Far Bottom", silent = true, noremap = true })
 
 -- Window
 -- Window Navigation

@@ -1,7 +1,7 @@
 return {
-    settings = {
-        basedpyright = {
-            typeCheckingMode = "basic",
-        },
-    },
+	settings = {
+		basedpyright = {
+			typeCheckingMode = "basic",
+		},
+	},
 }

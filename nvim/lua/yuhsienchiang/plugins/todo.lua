@@ -1,7 +1,7 @@
 return {
 	"folke/todo-comments.nvim",
-    cmd = { "TodoLocList", "TodoTelescope" },
-    event = { "BufReadPost", "BufNewFile" },
+	cmd = { "TodoLocList", "TodoTelescope" },
+	event = { "BufReadPost", "BufNewFile" },
 	dependencies = { "nvim-lua/plenary.nvim" },
 	opts = {
 		signs = false, -- show icons in the signs column
@@ -20,7 +20,7 @@ return {
 			PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
 			NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
 			TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-            RESULT = { icon = " ", color = "test", alt = { "RESULTS" } },
+			RESULT = { icon = " ", color = "test", alt = { "RESULTS" } },
 		},
 		gui_style = {
 			fg = "NONE", -- The gui style to use for the fg highlight group.
