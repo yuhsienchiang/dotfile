@@ -22,14 +22,4 @@ function M.cd_down()
 	end
 end
 
-function M.smart_toggle()
-	local currentBuf = vim.api.nvim_get_current_buf()
-	local currentBufFt = vim.api.nvim_get_option_value("filetype", { buf = currentBuf })
-	if currentBufFt == "NvimTree" then
-		tree_api.tree.toggle()
-	else
-		tree_api.tree.focus()
-	end
-end
-
 return M

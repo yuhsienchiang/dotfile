@@ -10,12 +10,16 @@ return {
 		-- https://stackoverflow.com/questions/76883693/when-i-use-nvim-c-keymapping-does-not-working-in-tmux
 		comment.setup({
 			toggler = {
-				line = "<C-\\>",
-				block = "<C-S-\\>",
+				-- line = "<C-\\>",
+				-- block = "<C-S-\\>",
+                line = "<leader>ec",
+                block = "<leader>eC",
 			},
 			opleader = {
-				line = "<C-\\>",
-				block = "<C-S-\\>",
+				-- line = "<C-\\>",
+				-- block = "<C-S-\\>",
+                line = "<leader>ec",
+                block = "<leader>eC",
 			},
 			mappings = {
 				basic = true,

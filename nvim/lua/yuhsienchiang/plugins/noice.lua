@@ -20,7 +20,8 @@ return {
 				filter = { pattern = "^:%s*!", icon = " ", lang = "bash" },
 				lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = " ", lang = "lua" },
 				help = { pattern = "^:%s*he?l?p?%s+", icon = " 󰋖" },
-				input = {}, -- Used by input()
+                substitute = { pattern = "^:%%?s/", icon = " ", ft = "regex", opts = { border = { text = { top = " sub (old/new/) " }}}},
+                input = {}, -- Used by input()
 			},
 		},
 		messages = {

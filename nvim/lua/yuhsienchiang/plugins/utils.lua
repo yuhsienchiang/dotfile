@@ -14,10 +14,11 @@ return {
 				vim.api.nvim_win_set_config(win, { zindex = 100 })
 			end,
 		},
-		init = function()
+        config = function(opt)
 			vim.opt.termguicolors = true
 			vim.notify = require("notify")
-		end,
+            require("notify").setup(opt)
+        end
 	},
 	{
 		"MunifTanjim/nui.nvim",

@@ -81,9 +81,9 @@ vim.keymap.set("i", ".", ".<C-g>u", { desc = "undo break points", silent = true,
 vim.keymap.set("i", ";", ";<C-g>u", { desc = "undo break points", silent = true, noremap = true })
 
 -- Quit shortcuts
-vim.keymap.set("n", "<leader>qq", "<cmd>wqa<CR>", { desc = "Quit all",     silent = true, noremap = true })
-vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>",  { desc = "Force quit",   silent = true, noremap = true })
-vim.keymap.set("n", "<leader>qw", "<cmd>wq<CR>",  { desc = "Write & Quit", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>qq", "<cmd>wqa<CR>", { desc = "Write all & Quit", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>",  { desc = "Force Quit",       silent = true, noremap = true })
+vim.keymap.set("n", "<leader>qw", "<cmd>wq<CR>",  { desc = "Write & Quit",     silent = true, noremap = true })
 -- Plugins
 -- Telescope
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>",                                        { desc = "Find files",          silent = true, noremap = true })
@@ -133,5 +133,5 @@ vim.keymap.set("n", "<leader>nh", ":NoiceHistory<CR>", { desc = "Show Notificati
 vim.keymap.set("n", "<leader>nl", ":NoiceLast<CR>",    { desc = "Show Last Notification",    silent = true, noremap = true })
 
 -- Todo
-vim.keymap.set("n", "<leader>ot", ":TodoTelescope<CR>", { desc = "TODO Telescope", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>oo", ":TodoLocList<CR>",   { desc = "TODO LocList", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>of", ":TodoTelescope<CR>", { desc = "TODO Telescope", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>oo", ":TodoLocList<CR>",   { desc = "TODO LocList",   silent = true, noremap = true })

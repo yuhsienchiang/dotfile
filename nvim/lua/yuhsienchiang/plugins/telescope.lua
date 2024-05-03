@@ -39,7 +39,6 @@ return {
 					},
 					scroll_speed = 5,
 				},
-				path_display = { "smart" },
 				mappings = {
 					n = {
 						["<C-v>"] = actions.select_vertical,
@@ -79,7 +78,7 @@ return {
 						prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
 						results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
 					},
-					prompt_title = false,
+					prompt_title = "Find",
 					results_title = false,
 					previewer = false,
 				},
@@ -100,7 +99,7 @@ return {
 						prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
 						results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
 					},
-					prompt_title = false,
+					prompt_title = "Recents",
 					results_title = false,
 					previewer = false,
 				},

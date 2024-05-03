@@ -21,7 +21,7 @@ alias brewf="brew formulae | fzf-tmux --multi -p 65%,60% --preview 'brew info {}
 alias ubrewf="brew leaves | fzf-tmux --multi -p 65%,60% --preview 'brew info {}' --preview-window=right,60% | xargs brew uninstall"
 
 # replace ls with eza
-alias ls='eza --group-directories-first --icons'
+alias ls='eza --group-directories-first --color=always --icons=always --no-time --no-user'
 alias ll='ls -l --git'
 alias l='ll -a'
 alias tree='l --tree'
