@@ -130,6 +130,10 @@ return {
 					},
 				},
 				lualine_x = {
+                    {
+                        require("yuhsienchiang.util.harpoon_action").harpoon_lualine,
+						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+                    },
 					{
 						require("yuhsienchiang.util.venv").activated_venv,
 						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
@@ -148,11 +152,6 @@ return {
 					{
 						"filetype",
 						colored = false,
-						color = { fg = catppuccin_color.base, bg = catppuccin_color.maroon },
-						separator = "|",
-					},
-					{
-						"progress",
 						color = { fg = catppuccin_color.base, bg = catppuccin_color.maroon },
 						separator = "|",
 					},

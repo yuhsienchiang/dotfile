@@ -27,7 +27,7 @@ function M.harpoon_add()
 	end
 	local message = " " .. vim.fn.expand("%:t") .. "  " .. idx
 
-	vim.notify(message, vim.log.levels.INFO, { title = "Harpoon" })
+	vim.notify(message, vim.log.levels.INFO, { title = "Harpoon", render = "compact" })
 end
 
 local function filter_empty_string(list)
@@ -142,7 +142,7 @@ function M.harpoon_telescope()
 			prompt_title = "Harpoon",
 			finder = generate_new_finder(),
 			sorter = conf.generic_sorter({}),
-            sorting_strategy = "ascending",
+			sorting_strategy = "ascending",
 			previewer = false,
 			layout_config = { center = { width = 0.4, height = 0.4 } },
 			layout_strategy = "center",
@@ -152,13 +152,42 @@ function M.harpoon_telescope()
 				results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
 			},
 			attach_mappings = function(_, map)
-				map({"i", "n"}, "<c-d>", delete_harpoon_mark)
-				map({"i", "n"}, "<c-n>", move_mark_up)
-				map({"i", "n"}, "<c-p>", move_mark_down)
+				map({ "i", "n" }, "<c-d>", delete_harpoon_mark)
+				map({ "i", "n" }, "<c-n>", move_mark_up)
+				map({ "i", "n" }, "<c-p>", move_mark_down)
 				return true
 			end,
 		})
 		:find()
+end
+
+function M.harpoon_lualine()
+	local harpoon_entries = harpoon:list()
+    local root_dir = harpoon_entries.config:get_root_dir()
+	local indicators = { "1", "2", "3", "4", "5" }
+	local active_indicators = { "[1]", "[2]", "[3]", "[4]", "[5]" }
+	local separator = " "
+
+	local current_file_path = vim.api.nvim_buf_get_name(0)
+
+	local length = math.min(harpoon_entries:length(), #indicators)
+	local status = {}
+
+	for i = 1, length do
+		local entry = harpoon_entries:get(i)
+
+		local indicator = "-"
+        if entry ~= nil then
+            local entry_path = root_dir .. "/" .. entry.value
+            if entry_path == current_file_path then
+                indicator = active_indicators[i]
+            else
+                indicator = indicators[i]
+            end
+        end
+		table.insert(status, indicator)
+	end
+	return table.concat(status, separator)
 end
 
 return M
