@@ -1,6 +1,17 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	cmd = { "NvimTreeOpen", "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
+	cmd = {
+		"NvimTreeToggle",
+		"NvimTreeFocus",
+		"NvimTreeFindFile",
+		"NvimTreeOpen",
+		"TreeToggle",
+		"TreeFocus",
+		"TreeFindFile",
+		"TreeToggleFloat",
+		"TreeFocusFloat",
+		"TreeFindFileFloat",
+	},
 	init = function()
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
@@ -121,9 +132,35 @@ return {
 				debounce_delay = 100,
 				show_on_dirs = true,
 				show_on_open_dirs = false,
-				icons = { hint = "", info = "", warning = "", error = "" },
+				icons = { hint = "󰠠", info = "", warning = "", error = "" },
 			},
 			on_attach = on_attach,
 		})
+
+		local Util = require("yuhsienchiang.util.explorer")
+
+		vim.api.nvim_create_user_command("TreeToggle", function()
+			Util.nvim_tree_toggle("left")
+		end, { desc = "nvim-tree: toggle", bar = true })
+
+		vim.api.nvim_create_user_command("TreeFocus", function()
+			Util.nvim_tree_focus("left")
+		end, { desc = "nvim-tree: focus", bar = true })
+
+		vim.api.nvim_create_user_command("TreeFindFile", function()
+			Util.nvim_tree_find_file("left")
+		end, { desc = "nvim-tree: find file", bar = true })
+
+		vim.api.nvim_create_user_command("TreeToggleFloat", function()
+			Util.nvim_tree_toggle("float")
+		end, { desc = "nvim-tree: toggle float", bar = true })
+
+		vim.api.nvim_create_user_command("TreeFocusFloat", function()
+			Util.nvim_tree_focus("float")
+		end, { desc = "nvim-tree: focus float", bar = true })
+
+		vim.api.nvim_create_user_command("TreeFindFileFloat", function()
+			Util.nvim_tree_find_file("float")
+		end, { desc = "nvim-tree: find file float", bar = true })
 	end,
 }

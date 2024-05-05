@@ -99,9 +99,12 @@ vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>",                   
 vim.keymap.set("n", "<leader>mm", ":MarkdownPreviewToggle<CR>", { desc = "Toggle MarkdownPreview", silent = true, noremap = true })
 
 -- nvim-tree
-vim.keymap.set("n", "<leader>ss", ":NvimTreeToggle<CR>",   { desc = "Toggle NvimTree",         silent = true, noremap = true })
-vim.keymap.set("n", "<leader>sf", ":NvimTreeFocus<CR>",    { desc = "Focus on NvimTree",       silent = true, noremap = true })
-vim.keymap.set("n", "<leader>sl", ":NvimTreeFindFile<CR>", { desc = "Locate File on NvimTree", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ss", ":TreeToggle<CR>",        { desc = "Toggle NvimTree",                silent = true, noremap = true })
+vim.keymap.set("n", "<leader>sf", ":TreeFocus<CR>",         { desc = "Focus on NvimTree",              silent = true, noremap = true })
+vim.keymap.set("n", "<leader>sl", ":TreeFindFile<CR>",      { desc = "Locate File on NvimTree",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>sS", ":TreeToggleFloat<CR>",   { desc = "Toggle NvimTree: Float",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>sF", ":TreeFocusFloat<CR>",    { desc = "Focus on NvimTree: Float",       silent = true, noremap = true })
+vim.keymap.set("n", "<leader>sL", ":TreeFindFileFloat<CR>", { desc = "Locate File on NvimTree: Float", silent = true, noremap = true })
 
 -- venv selector
 vim.keymap.set("n", "<leader>vs", ":VenvSelect<CR>",       { desc = "Select Venv",           silent = true, noremap = true })

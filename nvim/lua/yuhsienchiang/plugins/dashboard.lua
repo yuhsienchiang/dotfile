@@ -14,7 +14,7 @@ return {
 
         local buttons = {
             { desc = "New file",     icon = "   ", key = "n", action = "ene | startinsert"},
-            { desc = "Explorer",     icon = "󰙅   ", key = "s", action = "NvimTreeOpen"},
+            { desc = "Explorer",     icon = "󰙅   ", key = "s", action = "TreeToggle"},
             { desc = "Find file",    icon = "   ", key = "f", action = "Telescope find_files"},
             { desc = "Recent file",  icon = "   ", key = "r", action = "lua require('telescope.builtin').oldfiles({only_cwd=true})"},
             { desc = "Find word",    icon = "󰊄   ", key = "w", action = "Telescope live_grep"},
