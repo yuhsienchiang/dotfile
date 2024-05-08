@@ -17,47 +17,47 @@ return {
 		vim.g.loaded_netrwPlugin = 1
 	end,
 	config = function()
-		local function on_attach(bufnr)
-			local tree_api = require("nvim-tree.api")
-			local Util = require("yuhsienchiang.util.explorer")
+		local tree_api = require("nvim-tree.api")
+		local Util = require("yuhsienchiang.util.explorer")
 
+		local function on_attach(bufnr)
 			local opts = function(desc)
 				return { desc = "nvim-tree: " .. desc, noremap = true, silent = true, nowait = true, buffer = bufnr }
 			end
 
-			vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
-			vim.keymap.set("n", "q", tree_api.tree.close_in_this_tab, opts("Close Tree"))
+			vim.keymap.set("n", "<CR>",  tree_api.node.open.edit,         opts("Open"))
+			vim.keymap.set("n", "q",     tree_api.tree.close_in_this_tab, opts("Close Tree"))
 			vim.keymap.set("n", "<ESC>", tree_api.tree.close_in_this_tab, opts("Close Tree"))
-			vim.keymap.set("n", "w", tree_api.tree.collapse_all, opts("Close All Directory"))
-			vim.keymap.set("n", "v", tree_api.node.open.vertical, opts("Open: Vertical Split"))
-			vim.keymap.set("n", "s", tree_api.node.open.horizontal, opts("Open: Horizontal Split"))
-			vim.keymap.set("n", "t", tree_api.node.open.tab, opts("Open: Tab"))
+			vim.keymap.set("n", "w",     tree_api.tree.collapse_all,      opts("Close All Directory"))
+			vim.keymap.set("n", "v",     tree_api.node.open.vertical,     opts("Open: Vertical Split"))
+			vim.keymap.set("n", "s",     tree_api.node.open.horizontal,   opts("Open: Horizontal Split"))
+			vim.keymap.set("n", "t",     tree_api.node.open.tab,          opts("Open: Tab"))
 
 			-- Navigation
-			vim.keymap.set("n", "]", tree_api.tree.change_root_to_node, opts("Down"))
+			vim.keymap.set("n", "]", tree_api.tree.change_root_to_node,   opts("Down"))
 			vim.keymap.set("n", "[", tree_api.tree.change_root_to_parent, opts("Up"))
-			vim.keymap.set("n", "}", Util.cd_down, opts("Down & Change Directory"))
-			vim.keymap.set("n", "{", Util.cd_up, opts("Up & Change Directory"))
+			vim.keymap.set("n", "}", Util.cd_down,                        opts("Down & Change Directory"))
+			vim.keymap.set("n", "{", Util.cd_up,                          opts("Up & Change Directory"))
 
 			-- File manipulation
-			vim.keymap.set("n", "a", tree_api.fs.create, opts("Create"))
-			vim.keymap.set("n", "d", tree_api.fs.remove, opts("Delete"))
-			vim.keymap.set("n", "c", tree_api.fs.copy.node, opts("Copy: file"))
-			vim.keymap.set("n", "x", tree_api.fs.cut, opts("Cut"))
-			vim.keymap.set("n", "p", tree_api.fs.paste, opts("Paste"))
-			vim.keymap.set("n", "r", tree_api.fs.rename, opts("Rename"))
+			vim.keymap.set("n", "a", tree_api.fs.create,         opts("Create"))
+			vim.keymap.set("n", "d", tree_api.fs.remove,         opts("Delete"))
+			vim.keymap.set("n", "c", tree_api.fs.copy.node,      opts("Copy: file"))
+			vim.keymap.set("n", "x", tree_api.fs.cut,            opts("Cut"))
+			vim.keymap.set("n", "p", tree_api.fs.paste,          opts("Paste"))
+			vim.keymap.set("n", "r", tree_api.fs.rename,         opts("Rename"))
 			vim.keymap.set("n", "f", tree_api.live_filter.start, opts("Filter"))
 
-			vim.keymap.set("n", "y", tree_api.fs.copy.filename, opts("Copy: filename"))
+			vim.keymap.set("n", "y", tree_api.fs.copy.filename,      opts("Copy: filename"))
 			vim.keymap.set("n", "Y", tree_api.fs.copy.relative_path, opts("Copy: relative path"))
 
-			vim.keymap.set("n", "R", tree_api.tree.reload, opts("Refresh"))
+			vim.keymap.set("n", "R", tree_api.tree.reload,      opts("Refresh"))
 			vim.keymap.set("n", "?", tree_api.tree.toggle_help, opts("Help"))
 		end
 
 		require("nvim-tree").setup({
 			disable_netrw = true,
-			view = { width = 35 },
+			view = { width = 35, side = "left" },
 			git = {
 				enable = true,
 				show_on_dirs = true,
@@ -137,30 +137,7 @@ return {
 			on_attach = on_attach,
 		})
 
-		local Util = require("yuhsienchiang.util.explorer")
-
-		vim.api.nvim_create_user_command("TreeToggle", function()
-			Util.nvim_tree_toggle("left")
-		end, { desc = "nvim-tree: toggle", bar = true })
-
-		vim.api.nvim_create_user_command("TreeFocus", function()
-			Util.nvim_tree_focus("left")
-		end, { desc = "nvim-tree: focus", bar = true })
-
-		vim.api.nvim_create_user_command("TreeFindFile", function()
-			Util.nvim_tree_find_file("left")
-		end, { desc = "nvim-tree: find file", bar = true })
-
-		vim.api.nvim_create_user_command("TreeToggleFloat", function()
-			Util.nvim_tree_toggle("float")
-		end, { desc = "nvim-tree: toggle float", bar = true })
-
-		vim.api.nvim_create_user_command("TreeFocusFloat", function()
-			Util.nvim_tree_focus("float")
-		end, { desc = "nvim-tree: focus float", bar = true })
-
-		vim.api.nvim_create_user_command("TreeFindFileFloat", function()
-			Util.nvim_tree_find_file("float")
-		end, { desc = "nvim-tree: find file float", bar = true })
+		-- setup nvim-tree side and float view command & autocmd
+		Util.custom_setup()
 	end,
 }
