@@ -5,7 +5,6 @@ local harpoon = require("harpoon")
 
 -- telescope
 local action_state = require("telescope.actions.state")
-local action_utils = require("telescope.actions.utils")
 local entry_display = require("telescope.pickers.entry_display")
 local finders = require("telescope.finders")
 local pickers = require("telescope.pickers")
@@ -18,10 +17,11 @@ function M.harpoon_add()
 	local harpoon_entries = harpoon:list()
 	local length = harpoon_entries:length()
 	local idx = length
+	local current_file_path = vim.fn.expand("%")
 
 	for i = 1, length do
 		local harpoon_entry = harpoon_entries:get(i)
-		if harpoon_entry ~= nil and harpoon_entry.value == vim.fn.expand("%") then
+		if harpoon_entry ~= nil and harpoon_entry.value == current_file_path then
 			idx = i
 		end
 	end
@@ -88,20 +88,10 @@ end
 
 local delete_harpoon_mark = function(prompt_bufnr)
 	local selection = action_state.get_selected_entry()
+	if not selection then
+		return
+	end
 	harpoon:list():remove(selection.value)
-
-	local function get_selections()
-		local results = {}
-		action_utils.map_selections(prompt_bufnr, function(entry)
-			table.insert(results, entry)
-		end)
-		return results
-	end
-
-	local selections = get_selections()
-	for _, current_selection in ipairs(selections) do
-		harpoon:list():remove(current_selection.value)
-	end
 
 	local current_picker = action_state.get_current_picker(prompt_bufnr)
 	current_picker:refresh(generate_new_finder(), { reset_prompt = true })
@@ -109,8 +99,11 @@ end
 
 local move_mark_up = function(prompt_bufnr)
 	local selection = action_state.get_selected_entry()
-	local length = harpoon:list():length()
+	if not selection then
+		return
+	end
 
+	local length = harpoon:list():length()
 	if selection.index == length then
 		return
 	end
@@ -126,6 +119,9 @@ end
 
 local move_mark_down = function(prompt_bufnr)
 	local selection = action_state.get_selected_entry()
+	if not selection then
+		return
+	end
 	if selection.index == 1 then
 		return
 	end
@@ -163,7 +159,7 @@ end
 
 function M.harpoon_lualine()
 	local harpoon_entries = harpoon:list()
-    local root_dir = harpoon_entries.config:get_root_dir()
+	local root_dir = harpoon_entries.config:get_root_dir()
 	local indicators = { "1", "2", "3", "4", "5" }
 	local active_indicators = { "[1]", "[2]", "[3]", "[4]", "[5]" }
 	local separator = " "
@@ -176,15 +172,15 @@ function M.harpoon_lualine()
 	for i = 1, length do
 		local entry = harpoon_entries:get(i)
 
-		local indicator = "-"
-        if entry ~= nil then
-            local entry_path = root_dir .. "/" .. entry.value
-            if entry_path == current_file_path then
-                indicator = active_indicators[i]
-            else
-                indicator = indicators[i]
-            end
-        end
+		local indicator = "_"
+		if entry ~= nil then
+			local entry_path = root_dir .. "/" .. entry.value
+			if entry_path == current_file_path then
+				indicator = active_indicators[i]
+			else
+				indicator = indicators[i]
+			end
+		end
 		table.insert(status, indicator)
 	end
 	return table.concat(status, separator)
