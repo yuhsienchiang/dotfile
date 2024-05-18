@@ -10,9 +10,7 @@ return {
 		require("ibl").setup({
 			enabled = true,
 			indent = { char = "▏", tab_char = "▏", smart_indent_cap = true },
-			scope = {
-				enabled = false,
-			},
+			scope = { enabled = false },
 			exclude = {
 				filetypes = {
 					"alpha",

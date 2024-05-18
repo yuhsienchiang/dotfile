@@ -1,16 +1,7 @@
 local M = {}
 
--- harpoon
-local harpoon = require("harpoon")
-
--- telescope
-local action_state = require("telescope.actions.state")
-local entry_display = require("telescope.pickers.entry_display")
-local finders = require("telescope.finders")
-local pickers = require("telescope.pickers")
-local conf = require("telescope.config").values
-
 function M.harpoon_add()
+	local harpoon = require("harpoon")
 	harpoon:list():add()
 
 	-- get the index at where the buffer was added to the list
@@ -42,6 +33,7 @@ local function filter_empty_string(list)
 end
 
 local harpoon_get_index = function(entry)
+	local harpoon = require("harpoon")
 	local harpoon_entries = harpoon:list()
 	local length = harpoon_entries:length()
 
@@ -56,6 +48,10 @@ local harpoon_get_index = function(entry)
 end
 
 local generate_new_finder = function()
+	local entry_display = require("telescope.pickers.entry_display")
+	local finders = require("telescope.finders")
+	local harpoon = require("harpoon")
+
 	return finders.new_table({
 		results = filter_empty_string(harpoon:list().items),
 		entry_maker = function(entry)
@@ -87,6 +83,9 @@ local generate_new_finder = function()
 end
 
 local delete_harpoon_mark = function(prompt_bufnr)
+	local action_state = require("telescope.actions.state")
+	local harpoon = require("harpoon")
+
 	local selection = action_state.get_selected_entry()
 	if not selection then
 		return
@@ -98,6 +97,8 @@ local delete_harpoon_mark = function(prompt_bufnr)
 end
 
 local move_mark_up = function(prompt_bufnr)
+	local action_state = require("telescope.actions.state")
+	local harpoon = require("harpoon")
 	local selection = action_state.get_selected_entry()
 	if not selection then
 		return
@@ -118,6 +119,9 @@ local move_mark_up = function(prompt_bufnr)
 end
 
 local move_mark_down = function(prompt_bufnr)
+	local action_state = require("telescope.actions.state")
+	local harpoon = require("harpoon")
+
 	local selection = action_state.get_selected_entry()
 	if not selection then
 		return
@@ -133,6 +137,9 @@ local move_mark_down = function(prompt_bufnr)
 end
 
 function M.harpoon_telescope()
+	local pickers = require("telescope.pickers")
+	local conf = require("telescope.config").values
+
 	pickers
 		.new({}, {
 			prompt_title = "Harpoon",
@@ -158,6 +165,8 @@ function M.harpoon_telescope()
 end
 
 function M.harpoon_lualine()
+	local harpoon = require("harpoon")
+
 	local harpoon_entries = harpoon:list()
 	local root_dir = harpoon_entries.config:get_root_dir()
 	local indicators = { "1", "2", "3", "4", "5" }

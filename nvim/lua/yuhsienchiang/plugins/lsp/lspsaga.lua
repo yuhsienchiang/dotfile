@@ -1,7 +1,6 @@
 return {
     "nvimdev/lspsaga.nvim",
-    event = { "LspAttach" },
-    lazy = true,
+    cmd = { "Lspsaga" },
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
@@ -9,12 +8,8 @@ return {
     config = function()
         require("lspsaga").setup({
             ui = {
-                border = "single",
-                devicon = true,
-                winblend = 10,
                 expand = " ",
                 collapse = " ",
-                kind = {},
                 imp_sign = "󰳛",
                 code_action = "󰌵",
             },
@@ -30,21 +25,17 @@ return {
                     vsplit = "<C-v>",
                     split = "<C-s>",
                     tabnew = "<C-t>",
-                    quit = "q", -- close when focusing the window
                     close = "<C-q>", -- close even if not focusing the window
                 },
             },
             finder = {
                 default = "def+ref+imp",
-                layout = "float",
-                silent = false,
                 keys = {
                     shuttle = "<TAB>",
                     toggle_or_open = "<CR>",
                     vsplit = "<C-v>",
                     split = "<C-s>",
                     tabnew = "<C-t>",
-                    quit = "q",
                     close = "<C-q>",
                 },
             },

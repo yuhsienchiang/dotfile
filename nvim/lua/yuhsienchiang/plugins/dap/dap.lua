@@ -1,6 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
-	ft = { "python" },
+    lazy = true,
 	dependencies = {
 		{
 			"rcarriga/nvim-dap-ui",
@@ -46,99 +46,6 @@ return {
 		{
 			"theHamsta/nvim-dap-virtual-text",
 			opts = {},
-		},
-	},
-	keys = {
-		{
-			"<leader>ub",
-			function()
-				require("dap").toggle_breakpoint()
-			end,
-			desc = "Toggle Breakpoint",
-		},
-		{
-			"<leader>uc",
-			function()
-				require("dap").continue()
-			end,
-			desc = "Continue",
-		},
-		{
-			"<leader>uC",
-			function()
-				require("dap").run_to_cursor()
-			end,
-			desc = "Run to Cursor",
-		},
-		{
-			"<leader>ug",
-			function()
-				require("dap").goto_()
-			end,
-			desc = "Go to line (no execute)",
-		},
-		{
-			"<leader>ui",
-			function()
-				require("dap").step_into()
-			end,
-			desc = "Step Into",
-		},
-		{
-			"<leader>uj",
-			function()
-				require("dap").down()
-			end,
-			desc = "Down",
-		},
-		{
-			"<leader>uk",
-			function()
-				require("dap").up()
-			end,
-			desc = "Up",
-		},
-		{
-			"<leader>ul",
-			function()
-				require("dap").run_last()
-			end,
-			desc = "Run Last",
-		},
-		{
-			"<leader>uo",
-			function()
-				require("dap").step_out()
-			end,
-			desc = "Step Out",
-		},
-		{
-			"<leader>uO",
-			function()
-				require("dap").step_over()
-			end,
-			desc = "Step Over",
-		},
-		{
-			"<leader>up",
-			function()
-				require("dap").pause()
-			end,
-			desc = "Pause",
-		},
-		{
-			"<leader>us",
-			function()
-				require("dap").session()
-			end,
-			desc = "Session",
-		},
-		{
-			"<leader>ut",
-			function()
-				require("dap").terminate()
-			end,
-			desc = "Terminate",
 		},
 	},
 	config = function()

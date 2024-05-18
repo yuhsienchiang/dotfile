@@ -1,16 +1,11 @@
 return {
 	"akinsho/bufferline.nvim",
 	event = "TabNew",
-	version = "*",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		local bufferline_setup, bufferline = pcall(require, "bufferline")
-		if not bufferline_setup then
-			print("bufferline not found")
-			return
-		end
+		local bufferline = require("bufferline")
 
-		local catppuccin_colors = require("catppuccin.palettes").get_palette("macchiato")
+		local catppuccin_colors = require("catppuccin.palettes").get_palette("mocha")
 
 		bufferline.setup({
 			options = {

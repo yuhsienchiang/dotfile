@@ -20,7 +20,7 @@ multiplier = 2
 
 [font]
 size = 15.0
-normal = { family ="MesloLGL Nerd Font", style = "Regular" }
+normal = { family ="MesloLGL Nerd Font Mono", style = "Regular" }
 bold = { style = "Bold" }
 italic = { style = "Italic" }
 bold_italic = { style = "Bold Italic" }

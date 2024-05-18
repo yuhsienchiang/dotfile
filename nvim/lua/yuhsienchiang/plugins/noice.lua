@@ -21,19 +21,7 @@ return {
 				lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = " ", lang = "lua" },
 				help = { pattern = "^:%s*he?l?p?%s+", icon = " 󰋖" },
                 substitute = { pattern = "^:%%?s/", icon = " ", ft = "regex", opts = { border = { text = { top = " sub (old/new/) " }}}},
-                input = {}, -- Used by input()
 			},
-		},
-		messages = {
-			enabled = true,
-			view = "notify",
-			view_error = "notify",
-			view_warn = "notify",
-			view_history = "messages",
-		},
-		popupmenu = { -- popupmenu for cmdline
-			enabled = true,
-			backend = "nui",
 		},
 		lsp = {
 			override = {
@@ -41,20 +29,10 @@ return {
 				["vim.lsp.util.stylize_markdown"] = true,
 				["cmp.entry.get_documentation"] = true,
 			},
-			progress = {
-				enabled = true,
-				format = "lsp_progress",
-				format_done = "lsp_progress_done",
-				throttle = 1000 / 30, -- frequency to update lsp progress message
-				view = "mini",
-			},
 			hover = {
-				enabled = true,
-				silent = true, -- set to true to not show a message if hover is not available
-				view = nil, -- when nil, use defaults from documentation
 				opts = {
 					border = {
-						style = "rounded",
+						style = "single",
 						padding = { 0, 0 },
 					},
 				}, -- merged with defaults from documentation
@@ -62,10 +40,6 @@ return {
 			documentation = {
 				view = "hover",
 				opts = {
-					lang = "markdown",
-					replace = true,
-					render = "plain",
-					format = { "{message}" },
 					win_options = {
 						concealcursor = "n",
 						conceallevel = 3,
@@ -77,7 +51,7 @@ return {
 						},
 					},
 					border = {
-						style = "rounded",
+						style = "single",
 						padding = { 0, 0 },
 					},
 				},
@@ -90,19 +64,12 @@ return {
 					luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
 					throttle = 50, -- Debounce lsp signature help request by 50ms
 				},
-				view = nil, -- when nil, use defaults from documentation
 				opts = {
 					border = {
-						style = "rounded",
+						style = "single",
 						padding = { 0, 0 },
 					},
 				}, -- merged with defaults from documentation
-			},
-			message = {
-				-- Messages shown by lsp servers
-				enabled = true,
-				view = "notify",
-				opts = {},
 			},
 		},
 		views = {
@@ -125,7 +92,7 @@ return {
 				relative = "editor",
 				position = { row = "97%", col = 0 },
 				border = {
-					style = "rounded",
+					style = "single",
 					padding = { 0, 0 },
 				},
 				size = {
@@ -154,7 +121,7 @@ return {
 				},
 				enter = true,
 				border = {
-					style = "rounded",
+					style = "single",
 				},
 				position = "50%",
 				size = {

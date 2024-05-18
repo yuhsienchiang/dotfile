@@ -12,9 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local opts = {
+    defaults = { lazy = true },
     install = { colorscheme = { "catppuccin", "nordic", "tokyonight" } },
     ui = {
-        size = { width = 0.8, height = 0.8 },
         border = "single",
         title = "Lazy",
         icons = {
@@ -46,5 +46,4 @@ vim.g.mapleader = " "
 require("lazy").setup({
     { import = "yuhsienchiang.plugins" },
     { import = "yuhsienchiang.plugins.lsp" },
-    { import = "yuhsienchiang.plugins.dap" },
 }, opts)

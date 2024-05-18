@@ -1,7 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPost", "BufNewFile" },
-	cmd = { "LspInfo", "LspInstall", "LspUninstall" },
 	dependencies = {
 		"mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
@@ -31,7 +30,7 @@ return {
 		},
 	},
 	config = function(_, opts)
-		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+		local signs = { Error = "", Warn = "", Hint = "󰠠", Info = "" }
 		for name, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. name
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -41,7 +40,7 @@ return {
 			underline = false,
 			update_in_insert = false,
 			virtual_text = {
-				spacing = 4,
+				spacing = 2,
 				source = "if_many",
 				prefix = " ",
 			},
@@ -72,36 +71,11 @@ return {
 			cmp_nvim_lsp.default_capabilities()
 		)
 		local keymap_on_attach = function(_, _)
-			vim.keymap.set(
-				"n",
-				"<leader>df",
-				"<cmd>Lspsaga finder<CR>",
-				{ desc = "Show references/definition", noremap = true, silent = true }
-			) -- show definition, references
-			vim.keymap.set(
-				"n",
-				"<leader>dd",
-				"<cmd>Lspsaga peek_definition<CR>",
-				{ desc = "Show definition", noremap = true, silent = true }
-			) -- see definition and make edits in window
-			vim.keymap.set(
-				"n",
-				"<leader>da",
-				"<cmd>Lspsaga code_action<CR>",
-				{ desc = "Show code actions", noremap = true, silent = true }
-			) -- see available code actions
-			vim.keymap.set(
-				"n",
-				"<leader>dh",
-				"<cmd>Lspsaga hover_doc<CR>",
-				{ desc = "Show hover doc under cursor", noremap = true, silent = true }
-			) -- show documentation for what is under cursor
-			vim.keymap.set(
-				{ "n", "i" },
-				"<C-s>",
-				vim.lsp.buf.signature_help,
-				{ desc = "Show signature help", noremap = true, silent = true }
-			)
+			vim.keymap.set( "n",          "<leader>df", "<cmd>Lspsaga finder<CR>",          { desc = "Show references/definition",  noremap = true, silent = true }) -- show definition, references
+			vim.keymap.set( "n",          "<leader>dd", "<cmd>Lspsaga peek_definition<CR>", { desc = "Show definition",             noremap = true, silent = true }) -- see definition and make edits in window
+			vim.keymap.set( "n",          "<leader>da", "<cmd>Lspsaga code_action<CR>",     { desc = "Show code actions",           noremap = true, silent = true }) -- see available code actions
+			vim.keymap.set( "n",          "<leader>dh", "<cmd>Lspsaga hover_doc<CR>",       { desc = "Show hover doc under cursor", noremap = true, silent = true }) -- show documentation for what is under cursor
+			vim.keymap.set( { "n", "i" }, "<C-s>",      vim.lsp.buf.signature_help,         { desc = "Show signature help",         noremap = true, silent = true })
 		end
 
 		mason_lspconfig.setup_handlers({

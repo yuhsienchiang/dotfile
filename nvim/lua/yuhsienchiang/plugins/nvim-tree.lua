@@ -1,17 +1,6 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	cmd = {
-		"NvimTreeToggle",
-		"NvimTreeFocus",
-		"NvimTreeFindFile",
-		"NvimTreeOpen",
-		"TreeToggle",
-		"TreeFocus",
-		"TreeFindFile",
-		"TreeToggleFloat",
-		"TreeFocusFloat",
-		"TreeFindFileFloat",
-	},
+	cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeOpen" },
 	init = function()
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
@@ -137,7 +126,5 @@ return {
 			on_attach = on_attach,
 		})
 
-		-- setup nvim-tree side and float view command & autocmd
-		Util.custom_setup()
 	end,
 }

@@ -13,25 +13,25 @@ return {
 		end
 	end,
 	config = function()
-		local catppuccin_color = require("catppuccin.palettes").get_palette("macchiato")
+		local catppuccin_color = require("catppuccin.palettes").get_palette("mocha")
 
 		local catppuccin_theme = {
 			normal = {
 				a = { bg = catppuccin_color.blue, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.blue },
+				b = { bg = catppuccin_color.base, fg = catppuccin_color.blue },
 				c = { bg = "none", fg = catppuccin_color.text },
 			},
 			insert = {
 				a = { bg = catppuccin_color.green, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.green },
+				b = { bg = catppuccin_color.base, fg = catppuccin_color.green },
 			},
 			visual = {
 				a = { bg = catppuccin_color.maroon, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.maroon },
+				b = { bg = catppuccin_color.base, fg = catppuccin_color.maroon },
 			},
 			replace = {
 				a = { bg = catppuccin_color.yellow, fg = catppuccin_color.base, gui = "bold" },
-				b = { bg = catppuccin_color.surface1, fg = catppuccin_color.yellow },
+				b = { bg = catppuccin_color.base, fg = catppuccin_color.yellow },
 			},
 			inactive = {
 				a = { fg = catppuccin_color.surface1, bg = catppuccin_color.mantle },
@@ -46,7 +46,7 @@ return {
 				icons_enabled = true,
 				always_divide_middle = true,
 				section_separators = { left = "", right = "" },
-				component_separators = { left = "|", right = "|" },
+				component_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					statusline = {
 						"checkhealth",
@@ -109,9 +109,29 @@ return {
 						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
 						separator = "|",
 					},
+				},
+				lualine_x = {
+					{
+						function()
+							return require("noice").api.status.mode.get()
+						end,
+						cond = function()
+							return package.loaded["noice"] and require("noice").api.status.mode.has()
+						end,
+						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+					},
+				},
+				lualine_y = {
+					{
+						require("yuhsienchiang.util.venv").activated_venv,
+						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+					},
+                    {
+                        require("yuhsienchiang.util.harpoon_action").harpoon_lualine,
+						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+                    },
 					{
 						"diff",
-						separator = "|",
 						symbols = {
 							added = " ",
 							modified = " ",
@@ -127,41 +147,15 @@ return {
 								}
 							end
 						end,
-					},
-				},
-				lualine_x = {
-                    {
-                        require("yuhsienchiang.util.harpoon_action").harpoon_lualine,
-						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
-                    },
-					{
-						require("yuhsienchiang.util.venv").activated_venv,
-						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
-					},
-					{
-						function()
-							return require("noice").api.status.mode.get()
-						end,
-						cond = function()
-							return package.loaded["noice"] and require("noice").api.status.mode.has()
-						end,
-						color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
-					},
-				},
-				lualine_y = {
-					{
-						"filetype",
-						colored = false,
-						color = { fg = catppuccin_color.base, bg = catppuccin_color.maroon },
-						separator = "|",
+                        color = { bg = catppuccin_color.base }
 					},
 				},
 				lualine_z = {
 					{
-						function()
-							return " " .. os.date("%R")
-						end,
-						color = { fg = catppuccin_color.base, bg = catppuccin_color.flamingo },
+						"filetype",
+						colored = false,
+						color = { fg = catppuccin_color.maroon, bg = catppuccin_color.base },
+						separator = "|",
 					},
 				},
 			},

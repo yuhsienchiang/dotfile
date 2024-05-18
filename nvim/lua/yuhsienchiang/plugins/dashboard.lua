@@ -10,14 +10,12 @@ return {
         ╚██████╗╚██████╔╝██████╔╝███████╗  ╚═╝      ╚██████╗╚██████╔╝██████╔╝███████╗        
          ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝            ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝        
         ]]
-        logo = string.rep("\n", 4) .. logo .. "\n\n"
+        logo = string.rep("\n", 6) .. logo .. "\n\n"
 
         local buttons = {
-            { desc = "New file",     icon = "   ", key = "n", action = "ene | startinsert"},
-            { desc = "Explorer",     icon = "󰙅   ", key = "s", action = "TreeToggle"},
+            { desc = "Explorer",     icon = "󰙅   ", key = "s", action = "NvimTreeToggle"},
             { desc = "Find file",    icon = "   ", key = "f", action = "Telescope find_files"},
             { desc = "Recent file",  icon = "   ", key = "r", action = "lua require('telescope.builtin').oldfiles({only_cwd=true})"},
-            { desc = "Find word",    icon = "󰊄   ", key = "w", action = "Telescope live_grep"},
             { desc = "Restore last", icon = "  ", key = "u", action = "lua require('persistence').load({last = true})"},
             { desc = "Restore here", icon = "  ", key = "U", action = "lua require('persistence').load()"},
             { desc = "Lazy",         icon = "󰒲   ", key = "l", action = "Lazy"},
@@ -40,7 +38,6 @@ return {
                 center = buttons,
                 footer = {"", "Pause and Pray | Jesus over everything" }
             },
-            hide = { statusline = false }
         })
 
         if vim.o.filetype == "lazy" then
