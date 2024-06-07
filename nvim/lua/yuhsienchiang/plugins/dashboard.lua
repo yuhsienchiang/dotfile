@@ -1,7 +1,7 @@
 return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
-    config = function ()
+    config = function()
         local logo = [[
          ██████╗ ██████╗ ██████╗ ███████╗            ██████╗ ██████╗ ██████╗ ███████╗        
         ██╔════╝██╔═══██╗██╔══██╗██╔════╝  ██╗      ██╔════╝██╔═══██╗██╔══██╗██╔════╝        
@@ -12,6 +12,7 @@ return {
         ]]
         logo = string.rep("\n", 6) .. logo .. "\n\n"
 
+        -- stylua: ignore
         local buttons = {
             { desc = "Explorer",     icon = "󰙅   ", key = "s", action = "NvimTreeToggle"},
             { desc = "Find file",    icon = "   ", key = "f", action = "Telescope find_files"},
@@ -36,7 +37,7 @@ return {
             config = {
                 header = vim.split(logo, "\n"),
                 center = buttons,
-                footer = {"", "Pause and Pray | Jesus over everything" }
+                footer = { "", "Pause and Pray | Jesus over everything" },
             },
         })
 
@@ -49,5 +50,5 @@ return {
                 end,
             })
         end
-    end
+    end,
 }

@@ -24,10 +24,12 @@ local opts = {
         },
     },
     performance = {
-        cache = { enabled = true, },
+        cache = { enabled = true },
         reset_packpath = true,
         rtp = {
             disabled_plugins = {
+                "editorconfig",
+                "rplugin",
                 "gzip",
                 "matchit",
                 "matchparen",
@@ -36,6 +38,7 @@ local opts = {
                 "tohtml",
                 "tutor",
                 "zipPlugin",
+                "spellfile",
             },
         },
     },
