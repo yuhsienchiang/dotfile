@@ -8,7 +8,6 @@ return {
             build = "make",
             enabled = vim.fn.executable("make") == 1,
         },
-        { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
         local telescope = require("telescope")
@@ -21,9 +20,6 @@ return {
                 override_generic_sorter = true, -- override the generic sorter
                 override_file_sorter = true, -- override the file sorter
                 case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-            },
-            ["ui-select"] = {
-                require("telescope.themes").get_dropdown({}),
             },
         }
 
@@ -49,7 +45,6 @@ return {
                         ["<C-n>"] = actions.preview_scrolling_down,
                         ["<C-k>"] = actions.move_selection_previous,
                         ["<C-j>"] = actions.move_selection_next,
-                        -- ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                         ["<C-q>"] = open_with_trouble,
                     },
                     i = {
@@ -68,17 +63,22 @@ return {
                 selection_caret = "    ",
                 multi_icon = " + ",
                 entry_prefix = "       ",
-                borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+                -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+                borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                preview = { treesitter = true },
+                vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
             },
             pickers = {
                 find_files = {
-                    find_command = { "fd", "-tf", "-tl", "--hidden", "--follow", "--no-ignore-vcs" },
+                    find_command = { "fd", "-tf", "-tl", "--hidden", "--follow" },
                     sorting_strategy = "ascending",
                     layout_strategy = "center",
                     layout_config = { center = { width = 0.5, height = 0.5 } },
                     borderchars = {
-                        prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-                        results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                        -- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+                        -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                        prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+                        results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
                     },
                     prompt_title = "Find",
                     results_title = false,
@@ -98,8 +98,10 @@ return {
                     layout_strategy = "center",
                     layout_config = { center = { width = 0.5, height = 0.5 } },
                     borderchars = {
-                        prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-                        results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                        -- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+                        -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                        prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+                        results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
                     },
                     prompt_title = "Recents",
                     results_title = false,
@@ -110,6 +112,5 @@ return {
         })
         telescope.load_extension("fzf")
         telescope.load_extension("noice")
-        telescope.load_extension("ui-select")
     end,
 }

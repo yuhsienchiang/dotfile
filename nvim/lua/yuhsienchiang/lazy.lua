@@ -13,15 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {
     defaults = { lazy = true },
-    install = { colorscheme = { "catppuccin", "nordic", "tokyonight" } },
-    ui = {
-        border = "single",
-        title = "Lazy",
-        icons = {
-            cmd = " ",
-            loaded = "",
-            not_loaded = "",
-        },
+    pkg = { sources = { "lazy" } },
+    rocks = { enabled = false },
+    install = {
+        missing = true,
+        colorscheme = { "catppuccin" },
     },
     performance = {
         cache = { enabled = true },
@@ -33,6 +29,8 @@ local opts = {
                 "gzip",
                 "matchit",
                 "matchparen",
+                "netrw",
+                "netrwSettings",
                 "netrwPlugin",
                 "tarPlugin",
                 "tohtml",
@@ -42,9 +40,11 @@ local opts = {
             },
         },
     },
+    readme = { enabled = false },
 }
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
     { import = "yuhsienchiang.plugins" },

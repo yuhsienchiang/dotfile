@@ -32,6 +32,12 @@ local function filter_empty_string(list)
     return next
 end
 
+function M.harpoon_clear()
+    local harpoon = require("harpoon")
+    harpoon:list():clear()
+    vim.notify("List cleared", vim.log.levels.INFO, { title = "Harpoon", render = "compact" })
+end
+
 local harpoon_get_index = function(entry)
     local harpoon = require("harpoon")
     local harpoon_entries = harpoon:list()
@@ -151,8 +157,8 @@ function M.harpoon_telescope()
             layout_strategy = "center",
             results_title = false,
             borderchars = {
-                prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-                results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+                results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
             },
             attach_mappings = function(_, map)
                 map({ "i", "n" }, "<c-d>", delete_harpoon_mark)
@@ -181,7 +187,7 @@ function M.harpoon_lualine()
     for i = 1, length do
         local entry = harpoon_entries:get(i)
 
-        local indicator = "_"
+        local indicator = ""
         if entry ~= nil then
             local entry_path = root_dir .. "/" .. entry.value
             if entry_path == current_file_path then

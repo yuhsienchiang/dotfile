@@ -16,7 +16,7 @@ return {
         local buttons = {
             { desc = "Explorer",     icon = "󰙅   ", key = "s", action = "NvimTreeToggle"},
             { desc = "Find file",    icon = "   ", key = "f", action = "Telescope find_files"},
-            { desc = "Recent file",  icon = "   ", key = "r", action = "lua require('telescope.builtin').oldfiles({only_cwd=true})"},
+            { desc = "Recent file",  icon = "   ", key = "r", action = "Telescope oldfiles only_cwd=true"},
             { desc = "Restore last", icon = "  ", key = "u", action = "lua require('persistence').load({last = true})"},
             { desc = "Restore here", icon = "  ", key = "U", action = "lua require('persistence').load()"},
             { desc = "Lazy",         icon = "󰒲   ", key = "l", action = "Lazy"},
@@ -42,11 +42,13 @@ return {
         })
 
         if vim.o.filetype == "lazy" then
-            vim.cmd.close()
-            vim.api.nvim_create_autocmd("User", {
-                pattern = "DashboardLoaded",
+            vim.api.nvim_create_autocmd("WinClosed", {
+                pattern = tostring(vim.api.nvim_get_current_win()),
+                once = true,
                 callback = function()
-                    require("lazy").show()
+                    vim.schedule(function()
+                        vim.api.nvim_exec_autocmds("UIEnter", { group = "dashboard" })
+                    end)
                 end,
             })
         end

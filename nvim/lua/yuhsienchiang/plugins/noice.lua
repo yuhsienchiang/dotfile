@@ -59,18 +59,13 @@ return {
             },
             signature = {
                 enabled = true,
-                auto_open = {
-                    enabled = false,
-                    trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
-                    luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
-                    throttle = 50, -- Debounce lsp signature help request by 50ms
-                },
+                auto_open = { enabled = false },
                 opts = {
                     border = {
                         style = "single",
                         padding = { 0, 0 },
                     },
-                }, -- merged with defaults from documentation
+                },
             },
         },
         views = {
@@ -133,15 +128,6 @@ return {
                     winhighlight = { Normal = "NoicePopup", FloatBorder = "NoicePopupBorder" },
                     winbar = "",
                     foldenable = false,
-                },
-            },
-        },
-        routes = {
-            {
-                view = "mini",
-                filter = {
-                    event = "msg_show",
-                    find = "%dL",
                 },
             },
         },

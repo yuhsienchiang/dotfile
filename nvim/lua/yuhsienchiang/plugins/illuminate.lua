@@ -8,6 +8,7 @@ return {
             filetypes_denylist = {
                 "NvimTree",
                 "dashboard",
+                "gitgraph"
             },
             large_file_overrides = {
                 providers = { "lsp" },

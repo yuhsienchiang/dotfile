@@ -1,38 +1,13 @@
 return {
     "nvim-lualine/lualine.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
         local catppuccin_color = require("catppuccin.palettes").get_palette("mocha")
 
-        local catppuccin_theme = {
-            normal = {
-                a = { bg = catppuccin_color.blue, fg = catppuccin_color.base, gui = "bold" },
-                b = { bg = catppuccin_color.base, fg = catppuccin_color.blue },
-                c = { bg = "none", fg = catppuccin_color.text },
-            },
-            insert = {
-                a = { bg = catppuccin_color.green, fg = catppuccin_color.base, gui = "bold" },
-                b = { bg = catppuccin_color.base, fg = catppuccin_color.green },
-            },
-            visual = {
-                a = { bg = catppuccin_color.maroon, fg = catppuccin_color.base, gui = "bold" },
-                b = { bg = catppuccin_color.base, fg = catppuccin_color.maroon },
-            },
-            replace = {
-                a = { bg = catppuccin_color.yellow, fg = catppuccin_color.base, gui = "bold" },
-                b = { bg = catppuccin_color.base, fg = catppuccin_color.yellow },
-            },
-            inactive = {
-                a = { fg = catppuccin_color.surface1, bg = catppuccin_color.mantle },
-                b = { fg = catppuccin_color.surface1, bg = catppuccin_color.mantle, gui = "bold" },
-                c = { fg = catppuccin_color.overlay0, bg = catppuccin_color.mantle },
-            },
-        }
-
         require("lualine").setup({
             options = {
-                theme = catppuccin_theme,
+                theme = require("yuhsienchiang.util.lualine_theme").get_catppuccin_theme("mocha"),
                 icons_enabled = true,
                 always_divide_middle = true,
                 section_separators = { left = "", right = "" },
@@ -96,8 +71,6 @@ return {
                             end
                             return str
                         end,
-                        color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
-                        separator = "|",
                     },
                 },
                 lualine_x = {
@@ -151,7 +124,20 @@ return {
             },
             -- lualine for inactive/unfoucus window
             inactive_sections = {
-                lualine_a = { "filename" },
+                lualine_a = {
+                    {
+                        "filename",
+                        file_status = true,
+                        newfile_status = true,
+                        symbols = {
+                            modified = " ●",
+                            unnamed = "[No Name]",
+                            newfile = "[New]",
+                        },
+                        padding = { left = 1, right = 1 },
+                        separator = { left = "", right = " " },
+                    },
+                },
                 lualine_b = {},
                 lualine_c = {},
                 lualine_x = {},

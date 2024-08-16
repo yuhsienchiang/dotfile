@@ -7,7 +7,7 @@ return {
             ui = {
                 -- Whether to automatically check for new versions when opening the :Mason window.
                 check_outdated_packages_on_open = true,
-                border = "single",
+                border = "rounded",
                 icons = {
                     package_pending = " ",
                     package_installed = " ",

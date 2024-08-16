@@ -15,10 +15,10 @@ fi
 alias vim="nvim"
 
 # FZF
-alias vimf="fzfp --multi --print0 | xargs -0 -o nvim -O"
 alias fzfp="fzf-tmux -p 65%,60% --preview 'bat --color always --style='plain' {}' --preview-window=right,40%,~5"
-alias brewf="brew formulae | fzf-tmux --multi -p 65%,60% --preview 'brew info {}' --preview-window=right,60% | xargs brew install"
-alias ubrewf="brew leaves | fzf-tmux --multi -p 65%,60% --preview 'brew info {}' --preview-window=right,60% | xargs brew uninstall"
+alias vimi="fzfp --multi --print0 | xargs -0 -o nvim -O"
+alias brewi="brew formulae | fzf-tmux --multi -p 65%,60% --preview 'brew info {}' --preview-window=right,60% | xargs brew install"
+alias ubrewi="brew leaves | fzf-tmux --multi -p 65%,60% --preview 'brew info {}' --preview-window=right,60% | xargs brew uninstall"
 
 # replace ls with eza
 alias ls='eza --group-directories-first --color=always --icons=always --no-time --no-user'

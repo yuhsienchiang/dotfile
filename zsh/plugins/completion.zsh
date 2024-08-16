@@ -27,6 +27,7 @@ setopt ALWAYS_TO_END
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt APPEND_HISTORY
+setopt SHARE_HISTORY             # Share history between all sessions.
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
 setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
@@ -60,6 +61,10 @@ zle_highlight=('paste:none')
 # Completion #
 ##############
 WORDCHARS=''
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %d --%f'
+zstyle ':completion:*' group-name ''
+
 bindkey -M menuselect '^o' accept-and-infer-next-history
 zstyle ':completion:*:*:*:*:*' menu select
 
@@ -69,8 +74,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:
 # Complete . and .. special directories
 zstyle ':completion:*' special-dirs true
 
-# disable named-directories autocompletion
-zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+# # disable named-directories autocompletion
+# zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 
 # Don't complete uninteresting users
 zstyle ':completion:*:*:*:users' ignored-patterns adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
@@ -94,13 +99,18 @@ expand-or-complete-with-dots() {
     zle redisplay
 }
 zle -N expand-or-complete-with-dots
-bindkey -M emacs "^I" expand-or-complete-with-dots
-bindkey -M viins "^I" expand-or-complete-with-dots
-bindkey -M vicmd "^I" expand-or-complete-with-dots
 
 # Include hidden files.
 _comp_options+=(globdots)
 
+
+bindkey -M menuselect "^I" complete-word
+bindkey -M menuselect "^[[Z" reverse-menu-complete
+bindkey -M menuselect "^[" send-break
+
+bindkey -M listscroll "^I" complete-word
+bindkey -M listscroll "^[[Z" reverse-menu-complete
+bindkey -M listscroll "^[" send-break
 
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit

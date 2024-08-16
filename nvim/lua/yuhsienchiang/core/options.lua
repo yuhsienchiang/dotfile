@@ -1,9 +1,11 @@
 local opt = vim.opt
 
+opt.timeout = true
+opt.timeoutlen = 500
+
 -- line numbers
 opt.relativenumber = true
 opt.number = true
-opt.signcolumn="number"
 
 -- tabs & indentation
 opt.tabstop = 4
@@ -14,6 +16,8 @@ opt.autoindent = true
 opt.smartindent = true
 
 -- text format
+opt.breakindent = true
+opt.breakindentopt = "list:-1"
 opt.wrap = false
 opt.formatoptions = "jcrqt"
 opt.iskeyword:append("-")
@@ -58,3 +62,10 @@ opt.undolevels = 10000
 
 opt.hidden = true
 opt.wildmode = "longest:full,full"
+
+-- session options for persistence.nvim
+opt.sessionoptions = { "buffers", "tabpages", "winsize", "help" }
+
+vim.opt.list = true
+vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("space: ")

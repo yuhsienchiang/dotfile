@@ -1,10 +1,10 @@
 return {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeOpen" },
-    init = function()
-        vim.g.loaded_netrw = 1
-        vim.g.loaded_netrwPlugin = 1
-    end,
+    -- init = function()
+    --     vim.g.loaded_netrw = 1
+    --     vim.g.loaded_netrwPlugin = 1
+    -- end,
     config = function()
         local tree_api = require("nvim-tree.api")
         local Util = require("yuhsienchiang.util.explorer")
@@ -16,7 +16,6 @@ return {
 
             vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
             vim.keymap.set("n", "q", tree_api.tree.close_in_this_tab, opts("Close Tree"))
-            vim.keymap.set("n", "<ESC>", tree_api.tree.close_in_this_tab, opts("Close Tree"))
             vim.keymap.set("n", "w", tree_api.tree.collapse_all, opts("Close All Directory"))
             vim.keymap.set("n", "v", tree_api.node.open.vertical, opts("Open: Vertical Split"))
             vim.keymap.set("n", "s", tree_api.node.open.horizontal, opts("Open: Horizontal Split"))
@@ -46,7 +45,7 @@ return {
 
         require("nvim-tree").setup({
             disable_netrw = true,
-            view = { width = 35, side = "left" },
+            view = { width = 32, side = "right", centralize_selection = true },
             git = {
                 enable = true,
                 show_on_dirs = true,
@@ -73,7 +72,6 @@ return {
                 icons = {
                     webdev_colors = true,
                     git_placement = "after",
-                    modified_placement = "after",
                     padding = " ",
                     show = {
                         file = true,
@@ -84,8 +82,6 @@ return {
                     },
                     glyphs = {
                         folder = {
-                            arrow_closed = "", -- arrow when folder is closed
-                            arrow_open = "", -- arrow when folder is open
                             default = "",
                             open = "",
                             empty = "",

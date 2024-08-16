@@ -1,11 +1,6 @@
 return {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufNewFile", "BufReadPost" },
-    init = function()
-        vim.opt.list = true
-        vim.opt.listchars:append("eol:↴")
-        vim.opt.listchars:append("space: ")
-    end,
     config = function()
         require("ibl").setup({
             enabled = true,
@@ -23,6 +18,7 @@ return {
                     "NvimTree",
                     "TelescopePrompt",
                     "TelescopeResults",
+                    "markdown",
                 },
                 buftypes = {
                     "nofile",
