@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+TMUX_DIR="$XDG_CONFIG_HOME/tmux"
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+SCRIPTS_DIR="$CURRENT_DIR/scripts"
+PLUGINS_DIR="$TMUX_DIR/plugins"
+
+source "$SCRIPTS_DIR/helper.sh"
+
+get_tmux_option() {
+	local option="$1"
+	local default_value="$2"
+	local option_value="$(tmux show-option -gqv "$option")"
+	if [ -z "$option_value" ]; then
+		echo "$default_value"
+	else
+		echo "$option_value"
+	fi
+}
+
+# 1. Fetches plugin names from `@plugin` variables
+# 2. Creates full plugin path
+# 3. Sources all *.tmux files from each of the plugin directories
+#	 - no errors raised if directory does not exist
+# Files are sourced as tmux config files, not as shell scripts!
+source_plugins() {
+	local plugin plugin_path
+	local plugins="$(tpm_plugins_list_helper)"
+	for plugin in $plugins; do
+		plugin_path="$(plugin_path_helper "${plugin}")"
+		silently_source_all_tmux_files "$plugin_path"
+	done
+}
+
+main() {
+    source_plugins
+}
+
+main
