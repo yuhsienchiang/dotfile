@@ -40,7 +40,7 @@ return {
                 lualine_a = {
                     {
                         function()
-                            return " "
+                            return " 󰐁"
                         end,
                         component_separators = { left = "", right = "" },
                         section_separators = { left = "", right = "" },
@@ -135,10 +135,21 @@ return {
                             newfile = "[New]",
                         },
                         padding = { left = 1, right = 1 },
-                        separator = { left = "", right = " " },
+                        separator = { left = "", right = "" },
                     },
                 },
-                lualine_b = {},
+                lualine_b = {
+                    {
+                        "branch",
+                        fmt = function(str)
+                            local strw = vim.api.nvim_strwidth(str)
+                            if strw > 20 then
+                                return ("%s..."):format(str:sub(1, 19))
+                            end
+                            return str
+                        end,
+                    },
+                },
                 lualine_c = {},
                 lualine_x = {},
                 lualine_y = {},

@@ -10,7 +10,7 @@ end
 
 function M.gitgraph_close()
     if vim.bo.filetype == "gitgraph" then
-        vim.cmd("tabclose")
+        vim.cmd("close")
     else
         return
     end
@@ -22,6 +22,24 @@ function M.gitgraph_toggle()
     else
         M.gitgraph_draw()
     end
+end
+
+function M.gitgraph_split()
+    if vim.bo.filetype == "gitgraph" then
+        return
+    end
+    vim.cmd("split")
+    require("gitgraph").draw({}, { all = true, max_count = 5000 })
+
+end
+
+function M.gitgraph_vsplit()
+    if vim.bo.filetype == "gitgraph" then
+        return
+    end
+    vim.cmd("vsplit")
+    require("gitgraph").draw({}, { all = true, max_count = 5000 })
+
 end
 
 return M

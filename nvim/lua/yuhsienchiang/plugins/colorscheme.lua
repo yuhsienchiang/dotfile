@@ -44,7 +44,7 @@ return {
                     -- stylua: ignore
                     return {
                         -- native nvim
-                        VertSplit = { fg = colors.peach, bold = true },
+                        VertSplit = { fg = colors.peach, bg = colors.base, bold = true },
                         WinSeparator = { link = "VertSplit" },
                         CursorLineNr = { fg = colors.lavender, bold = true },
 
@@ -85,20 +85,37 @@ return {
 
                         -- GitSigns
                         GitSignsChange = { fg = colors.blue, bg = colors.base, bold = true },
+                        GitSignsStagedAdd = { fg = darken(colors.green, 0.5, colors.base), bg = colors.base, bold = true },
+                        GitSignsStagedChange = { fg = darken(colors.blue, 0.5, colors.base), bg = colors.base, bold = true },
+                        GitSignsStagedDelete = { fg = darken(colors.red, 0.5, colors.base), bg = colors.base, bold = true },
+                        GitSignsStagedTopDelete = { fg = darken(colors.red, 0.5, colors.base), bg = colors.base, bold = true },
+                        GitSignsStagedChangedelete = { link = "GitSignsStagedChange" },
 
                         -- RenderMarkdown
-                        RenderMarkdownH1 = { fg = colors.red, bg = darken(colors.red, 0.4, colors.base), bold = true },
-                        RenderMarkdownH2 = { fg = colors.peach, bg = darken(colors.peach, 0.4, colors.base), bold = true },
-                        RenderMarkdownH3 = { fg = colors.yellow, bg = darken(colors.yellow, 0.4, colors.base), bold = true },
-                        RenderMarkdownH4 = { fg = colors.green, bg = darken(colors.green, 0.4, colors.base), bold = true },
-                        RenderMarkdownH5 = { fg = colors.sapphire, bg = darken(colors.sapphire, 0.4, colors.base), bold = true },
-                        RenderMarkdownH6 = { fg = colors.lavender, bg = darken(colors.lavender, 0.4, colors.base), bold = true },
-                        RenderMarkdownH1Bg = { fg = colors.red, bg = darken(colors.red, 0.4, colors.base), bold = true },
-                        RenderMarkdownH2Bg = { fg = colors.peach, bg = darken(colors.peach, 0.4, colors.base), bold = true },
-                        RenderMarkdownH3Bg = { fg = colors.yellow, bg = darken(colors.yellow, 0.4, colors.base), bold = true },
-                        RenderMarkdownH4Bg = { fg = colors.green, bg = darken(colors.green, 0.4, colors.base), bold = true },
+                        RenderMarkdownH1 = { fg = colors.red,        bg = darken(colors.red, 0.4, colors.base),      bold = true },
+                        RenderMarkdownH2 = { fg = colors.peach,      bg = darken(colors.peach, 0.4, colors.base),    bold = true },
+                        RenderMarkdownH3 = { fg = colors.yellow,     bg = darken(colors.yellow, 0.4, colors.base),   bold = true },
+                        RenderMarkdownH4 = { fg = colors.green,      bg = darken(colors.green, 0.4, colors.base),    bold = true },
+                        RenderMarkdownH5 = { fg = colors.sapphire,   bg = darken(colors.sapphire, 0.4, colors.base), bold = true },
+                        RenderMarkdownH6 = { fg = colors.lavender,   bg = darken(colors.lavender, 0.4, colors.base), bold = true },
+                        RenderMarkdownH1Bg = { fg = colors.red,      bg = darken(colors.red, 0.4, colors.base),      bold = true },
+                        RenderMarkdownH2Bg = { fg = colors.peach,    bg = darken(colors.peach, 0.4, colors.base),    bold = true },
+                        RenderMarkdownH3Bg = { fg = colors.yellow,   bg = darken(colors.yellow, 0.4, colors.base),   bold = true },
+                        RenderMarkdownH4Bg = { fg = colors.green,    bg = darken(colors.green, 0.4, colors.base),    bold = true },
                         RenderMarkdownH5Bg = { fg = colors.sapphire, bg = darken(colors.sapphire, 0.4, colors.base), bold = true },
                         RenderMarkdownH6Bg = { fg = colors.lavender, bg = darken(colors.lavender, 0.4, colors.base), bold = true },
+
+                        GitGraphHash =       { fg = darken(colors.maroon, 0.8, colors.base), bg = colors.base },
+                        GitGraphTimestamp =  { fg = darken(colors.yellow, 0.8, colors.base), bg = colors.base },
+                        GitGraphAuthor =     { fg = darken(colors.teal,   0.8, colors.base), bg = colors.base },
+                        GitGraphBranchName = { fg = darken(colors.peach,  0.8, colors.base), bg = colors.base },
+                        GitGraphBranchMsg =  { fg = darken(colors.green,  0.8, colors.base), bg = colors.base },
+                        GitGraphBranch1 = {   fg = darken(colors.flamingo, 0.8, colors.base), bg = colors.base },
+                        GitGraphBranch2 = {   fg = darken(colors.peach,    0.8, colors.base), bg = colors.base },
+                        GitGraphBranch3 = {   fg = darken(colors.yellow,   0.8, colors.base), bg = colors.base },
+                        GitGraphBranch4 = {   fg = darken(colors.green,    0.8, colors.base), bg = colors.base },
+                        GitGraphBranch5 = {   fg = darken(colors.sapphire, 0.8, colors.base), bg = colors.base },
+                        -- GitGraphBranchTag = { fg = darken(colors.base, 0.4, colors.base) },
                     }
                 end,
             })

@@ -29,7 +29,8 @@ return {
 
             -- File manipulation
             vim.keymap.set("n", "a", tree_api.fs.create, opts("Create"))
-            vim.keymap.set("n", "d", tree_api.fs.remove, opts("Delete"))
+            vim.keymap.set("n", "d", tree_api.fs.trash, opts("Trash"))
+            vim.keymap.set("n", "D", tree_api.fs.remove, opts("Delete"))
             vim.keymap.set("n", "c", tree_api.fs.copy.node, opts("Copy: file"))
             vim.keymap.set("n", "x", tree_api.fs.cut, opts("Cut"))
             vim.keymap.set("n", "p", tree_api.fs.paste, opts("Paste"))
@@ -93,15 +94,14 @@ return {
                             unstaged = "✗",
                             staged = "✓",
                             unmerged = "",
-                            renamed = "➜",
-                            untracked = "★",
-                            deleted = "",
+                            renamed = "󰄾",
+                            untracked = "?",
+                            deleted = "󰗨",
                             ignored = "◌",
                         },
                     },
                 },
             },
-
             -- disable window_picker for
             -- explorer to work well with
             -- window splits

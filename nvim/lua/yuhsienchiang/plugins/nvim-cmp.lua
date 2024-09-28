@@ -41,7 +41,7 @@ return {
             },
             mapping = cmp.mapping.preset.insert({
                 ["<CR>"] = cmp.mapping.confirm({ select = false }),
-                ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+                ["<C-\\>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                 ["<C-e>"] = cmp.mapping.abort(),
                 ["<Tab>"] = function(fallback)
                     if cmp.visible() then

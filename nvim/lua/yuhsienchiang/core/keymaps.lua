@@ -3,7 +3,7 @@ local Util_harpoon = require("yuhsienchiang.util.harpoon_action")
 local Util_git = require("yuhsienchiang.util.git")
 
 -- use <ESC> to clear search highlight
-vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><cmd>NoiceDismiss<cr><esc>", { desc = "Escape and clear hlsearch", silent = true, noremap = true })
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh | NoiceDismiss<cr><esc>", { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
 
 -- Better
 -- better yank/delete/replace
@@ -113,18 +113,27 @@ vim.keymap.set("n", "<leader>gdh", ":DiffviewFileHistory <CR>",  { desc = "All d
 vim.keymap.set("n", "<leader>gdH", ":DiffviewFileHistory %<CR>", { desc = "Current file diff history", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>gdq", ":DiffviewClose<CR>",         { desc = "Quit Diffview",             silent = true, noremap = true })
 -- Gitsigns
-vim.keymap.set("n",          "<leader>gh]", ":Gitsigns nav_hunk next<CR>",   { desc = "Next Hunk",       silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>gh[", ":Gitsigns nav_hunk prev<CR>",   { desc = "Prev Hunk",       silent = true, noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>",      { desc = "Stage Hunk",      silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>", { desc = "Undo Stage Hunk", silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghS", ":Gitsigns stage_buffer<CR>",    { desc = "Stage Buffer",    silent = true, noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>",      { desc = "Reset Hunk",      silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghR", ":Gitsigns reset_buffer<CR>",    { desc = "Reset Buffer",    silent = true, noremap = true })
-vim.keymap.set("n",          "<leader>ghd", ":Gitsigns diffthis ~<CR>",      { desc = "Diff This",       silent = true, noremap = true })
+vim.keymap.set("n", "<leader>gh]", ":Gitsigns nav_hunk next<CR>",                                                       { desc = "Next Hunk",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>gh[", ":Gitsigns nav_hunk prev<CR>",                                                       { desc = "Prev Hunk",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghs", ":Gitsigns stage_hunk<CR>",                                                          { desc = "Toggle Stage Hunk", silent = true, noremap = true })
+vim.keymap.set("v", "<leader>ghs", function() require("gitsigns").stage_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, { desc = "Toggle Stage Hunk", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghr", ":Gitsigns reset_hunk<CR>",                                                          { desc = "Reset Hunk",        silent = true, noremap = true })
+vim.keymap.set("v", "<leader>ghr", function() require("gitsigns").reset_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, { desc = "Reset Hunk",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>",                                                     { desc = "Undo Last Stage",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghS", ":Gitsigns stage_buffer<CR>",                                                        { desc = "Stage Buffer",      silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghR", ":Gitsigns reset_buffer<CR>",                                                        { desc = "Reset Buffer",      silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghd", ":Gitsigns diffthis ~<CR>",                                                          { desc = "Diff This",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ght", ":Gitsigns toggle_deleted<CR>",                                                      { desc = "Toggle Deleted",    silent = true, noremap = true })
 -- GitGraph
 vim.keymap.set("n", "<leader>ggg", Util_git.gitgraph_toggle, { desc = "GitGraph Toggle", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ggd", Util_git.gitgraph_draw, { desc = "GitGraph Draw", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ggq", Util_git.gitgraph_close, { desc = "GitGraph Close", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ggd", Util_git.gitgraph_draw,   { desc = "GitGraph Draw", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ggs", Util_git.gitgraph_split,  { desc = "GitGraph Draw (Split)", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ggv", Util_git.gitgraph_vsplit, { desc = "GitGraph Draw (Vertical)", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ggq", Util_git.gitgraph_close,  { desc = "GitGraph Close", silent = true, noremap = true })
+-- Git-worktree
+vim.keymap.set("n", "<leader>gww",function () require('telescope').extensions.git_worktree.git_worktree() end,       { desc = "Git Worktree",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>gwa",function () require('telescope').extensions.git_worktree.create_git_worktree() end, { desc = "Create Git Worktree", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>gwn",function () require('telescope').extensions.notify.notify() end,                    { desc = "Git Worktree Notify", silent = true, noremap = true })
 
 -- Harpoon
 vim.keymap.set("n", "<leader>hh", Util_harpoon.harpoon_telescope,                     { desc = "Harpoon Menu",  silent = true, noremap = true })
@@ -138,8 +147,8 @@ vim.keymap.set("n", "<leader>h3", function() require("harpoon"):list():select(3)
 vim.keymap.set("n", "<leader>h4", function() require("harpoon"):list():select(4) end, { desc = "File 4", silent = true, noremap = true })
 
 -- Todo
-vim.keymap.set("n", "<leader>nn", ":TodoTelescope<CR>",       { desc = "Toggle TODO (Telescope)", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>nN", ":Trouble todo toggle<CR>", { desc = "Toggle TODO (Trouble)",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nn", ":Trouble todo toggle<CR>",     { desc = "Toggle TODO (Trouble)",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nq", ":Trouble quickfix toggle<CR>", { desc = "Toggle Quickfix (Trouble)",   silent = true, noremap = true })
 
 -- Conform
 vim.keymap.set({"n", "v"}, "<leader>ef", function() require("conform").format({ timeout_ms = 3000 }) end, { desc = "Format", silent = true, noremap = true })

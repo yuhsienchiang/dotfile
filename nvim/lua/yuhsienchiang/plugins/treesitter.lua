@@ -3,6 +3,7 @@ return {
     version = false,
     event = { "BufNewFile", "BufReadPost" },
     build = ":TSUpdate",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     config = function()
         require("nvim-treesitter.configs").setup({
             -- enable syntax highlighting
@@ -47,16 +48,6 @@ return {
             },
             -- auto install above language parsers
             auto_install = true,
-
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<leader>ej", -- set to `false` to disable one of the mappings
-                    node_incremental = "<leader>ej",
-                    scope_incremental = false,
-                    node_decremental = "<leader>ek",
-                },
-            },
             vim.treesitter.language.register("bash", "zsh"),
         })
     end,

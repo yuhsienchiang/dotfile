@@ -12,7 +12,13 @@ return {
     config = function()
         local telescope = require("telescope")
         local actions = require("telescope.actions")
-        local open_with_trouble = require("trouble.sources.telescope").open
+        local transform_mod = require("telescope.actions.mt").transform_mod
+
+        local trouble_action = transform_mod({
+            open_qflist = function(_)
+                require("trouble").open({ mode = "quickfix" })
+            end,
+        })
 
         local extensions = {
             fzf = {
@@ -22,6 +28,7 @@ return {
                 case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             },
         }
+        local layout_strategy = {}
 
         telescope.setup({
             defaults = {
@@ -45,7 +52,7 @@ return {
                         ["<C-n>"] = actions.preview_scrolling_down,
                         ["<C-k>"] = actions.move_selection_previous,
                         ["<C-j>"] = actions.move_selection_next,
-                        ["<C-q>"] = open_with_trouble,
+                        ["<C-q>"] = actions.smart_send_to_qflist + trouble_action.open_qflist,
                     },
                     i = {
                         ["<esc>"] = actions.close,
@@ -56,7 +63,7 @@ return {
                         ["<C-n>"] = actions.preview_scrolling_down,
                         ["<C-k>"] = actions.move_selection_previous,
                         ["<C-j>"] = actions.move_selection_next,
-                        ["<C-q>"] = open_with_trouble,
+                        ["<C-q>"] = actions.smart_send_to_qflist + trouble_action.open_qflist,
                     },
                 },
                 prompt_prefix = " 󰍉 ",
@@ -66,7 +73,15 @@ return {
                 -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
                 borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
                 preview = { treesitter = true },
-                vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+                vimgrep_arguments = {
+                    "rg",
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--column",
+                    "--smart-case",
+                },
             },
             pickers = {
                 find_files = {
@@ -112,5 +127,6 @@ return {
         })
         telescope.load_extension("fzf")
         telescope.load_extension("noice")
+        telescope.load_extension("git_worktree")
     end,
 }
