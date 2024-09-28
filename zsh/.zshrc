@@ -12,8 +12,8 @@ source $HOME/.config/zsh/plugins/exports.zsh
 source $HOME/.config/zsh/plugins/completion.zsh
 source $HOME/.config/zsh/plugins/aliases.zsh
 
-# enable vi mode
-bindkey -v
+# zsh-vi-mode
+source $HOME/.config/zsh-vi-mode/zsh-vi-mode.zsh
 
 # zsh-syntax-highlighting
 source $HOME/.config/zsh-syntax-highlight/catppuccin_mocha-zsh-syntax-highlighting.zsh
