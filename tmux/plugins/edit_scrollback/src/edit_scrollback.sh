@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-tmux capture-pane -S -3000
-tmp_file="$1/$(date +%Y-%m-%d-%H-%M-%S).txt"
-tmux save-buffer "$tmp_file"
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-tmux new-window "nvim $tmp_file && tmux load-buffer $tmp_file && tmux delete-buffer && rm -i $tmp_file"
+temp_file="$1/scroll_back-$(date +%Y-%m-%d-%H-%M-%S).txt"
+keep_temp_file=$2
+
+tmux capture-pane -S -3000
+tmux save-buffer "$temp_file"
+
+tmux new-window -n SCROLLBACK "nvim $temp_file && $CURRENT_DIR/temp_file_handler.sh $temp_file $keep_temp_file"
+tmux delete-buffer
