@@ -1,3 +1,5 @@
+source $HOME/.config/zsh-vi-mode/zsh-vi-mode-indicate.zsh
+
 function _edit_command_line() {
   # Create a temporary file and save the BUFFER to it
   local tmp_file=$(mktemp $HOME/.cache/zsh-vi-XXXXXX)
@@ -32,4 +34,5 @@ function _edit_command_line() {
   zle vi-cmd-mode
   zle vi-end-of-line
 }
+
 zle     -N            _edit_command_line
