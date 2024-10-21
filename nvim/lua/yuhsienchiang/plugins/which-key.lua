@@ -49,7 +49,7 @@ return {
             rules = false,
         },
         win = {
-            border = "rounded",
+            border = "single",
             padding = { 1, 1 }, -- extra window padding [top/bottom, right/left]
         },
         replace = {

@@ -3,11 +3,12 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
-        local catppuccin_color = require("catppuccin.palettes").get_palette("mocha")
-
+        local theme_flavour = "mocha"
+        local catppuccin_color = require("catppuccin.palettes").get_palette(theme_flavour)
+        local Util = require("yuhsienchiang.util.lualine_theme")
         require("lualine").setup({
             options = {
-                theme = require("yuhsienchiang.util.lualine_theme").get_catppuccin_theme("mocha"),
+                theme = Util.get_catppuccin_theme(theme_flavour),
                 icons_enabled = true,
                 always_divide_middle = true,
                 section_separators = { left = "", right = "" },
@@ -39,26 +40,27 @@ return {
             sections = {
                 lualine_a = {
                     {
-                        function()
-                            return " 󰐁"
-                        end,
-                        component_separators = { left = "", right = "" },
-                        section_separators = { left = "", right = "" },
-                        padding = 0,
+                        "mode",
+                        padding = 1,
                     },
                 },
                 lualine_b = {
                     {
                         "filename",
+                        fmt = function(str)
+                            if vim.bo.modified then
+                                return str
+                            else
+                                return str .. "  "
+                            end
+                        end,
                         file_status = true,
                         newfile_status = true,
                         symbols = {
-                            modified = " ●",
+                            modified = "●",
                             unnamed = "[No Name]",
                             newfile = "[New]",
                         },
-                        padding = { left = 1, right = 1 },
-                        separator = { left = "", right = " " },
                     },
                 },
                 lualine_c = {
@@ -127,15 +129,20 @@ return {
                 lualine_a = {
                     {
                         "filename",
+                        fmt = function(str)
+                            if vim.bo.modified then
+                                return str
+                            else
+                                return str .. "  "
+                            end
+                        end,
                         file_status = true,
                         newfile_status = true,
                         symbols = {
-                            modified = " ●",
+                            modified = "●",
                             unnamed = "[No Name]",
                             newfile = "[New]",
                         },
-                        padding = { left = 1, right = 1 },
-                        separator = { left = "", right = "" },
                     },
                 },
                 lualine_b = {

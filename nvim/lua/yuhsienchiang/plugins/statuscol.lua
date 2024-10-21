@@ -23,11 +23,13 @@ return {
                         fillchar = " ", -- character used to fill a segment with less signs than maxwidth
                     },
                 },
+                { text = { " " } },
                 {
-                    text = { " ", builtin.lnumfunc, " " },
+                    text = { builtin.lnumfunc },
                     condition = { builtin.not_empty, true, builtin.not_empty },
                     colwidth = 3,
                 },
+                { text = { " " } },
                 {
                     sign = {
                         namespace = { "gitsigns*" },

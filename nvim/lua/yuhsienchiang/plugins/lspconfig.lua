@@ -29,15 +29,12 @@ return {
         },
     },
     config = function(_, opts)
-        local signs = { Error = "", Warn = "", Hint = "󰠠", Info = "" }
-        for name, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. name
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-        end
-
+        -- setup diagnostic symbols
+        local x = vim.diagnostic.severity
         vim.diagnostic.config({
             underline = false,
             update_in_insert = false,
+            signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰠠" } },
             virtual_text = {
                 spacing = 2,
                 source = "if_many",
@@ -46,12 +43,11 @@ return {
             severity_sort = true,
         })
 
+        -- setup lsp
         local lspconfig = require("lspconfig")
         local mason_lspconfig = require("mason-lspconfig")
         local mason_tool_installer = require("mason-tool-installer")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-        require("lspconfig.ui.windows").default_options = { border = "single" }
 
         mason_lspconfig.setup({
             ensure_installed = opts.lsp_server,
@@ -69,6 +65,26 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_nvim_lsp.default_capabilities()
         )
+
+        -- settings from nvchad
+        lsp_capabilities.textDocument.completion.completionItem = {
+            documentationFormat = { "markdown", "plaintext" },
+            snippetSupport = true,
+            preselectSupport = true,
+            insertReplaceSupport = true,
+            labelDetailsSupport = true,
+            deprecatedSupport = true,
+            commitCharactersSupport = true,
+            tagSupport = { valueSet = { 1 } },
+            resolveSupport = {
+                properties = {
+                    "documentation",
+                    "detail",
+                    "additionalTextEdits",
+                },
+            },
+        }
+
         -- stylua: ignore
 		local keymap_on_attach = function(_, _)
             vim.keymap.set( "n",          "<leader>df", "<cmd>Trouble lsp_references toggle<CR>",  { desc = "Toggle references/definition (Trouble)", noremap = true, silent = true }) -- show definition, references
@@ -84,8 +100,7 @@ return {
                     capabilities = vim.deepcopy(lsp_capabilities),
                 }
 
-                local setting_status, server_setting =
-                    pcall(require, "yuhsienchiang.plugins.lsp.settings." .. server_name)
+                local setting_status, server_setting = pcall(require, "yuhsienchiang.plugins.lsp." .. server_name)
                 if setting_status then
                     opts = vim.tbl_deep_extend("force", server_setting, server_opts)
                 end

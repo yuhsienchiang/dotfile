@@ -5,28 +5,27 @@ function M.get_catppuccin_theme(flavour)
 
     local catppuccin_theme = {
         normal = {
-            a = { bg = catppuccin_color.base, fg = catppuccin_color.blue },
-            b = { bg = catppuccin_color.base, fg = catppuccin_color.blue },
-            c = { bg = catppuccin_color.base, fg = catppuccin_color.overlay1 },
+            a = { fg = catppuccin_color.base,     bg = catppuccin_color.blue,     gui = "bold" },
+            b = { fg = catppuccin_color.subtext0, bg = catppuccin_color.surface0               },
+            c = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base                   },
         },
         insert = {
-            a = { bg = catppuccin_color.base, fg = catppuccin_color.green },
-            b = { bg = catppuccin_color.base, fg = catppuccin_color.green },
+            a = { fg = catppuccin_color.base,     bg = catppuccin_color.green,    gui = "bold" },
+            b = { fg = catppuccin_color.subtext0, bg = catppuccin_color.surface0               },
         },
         visual = {
-            a = { bg = catppuccin_color.base, fg = catppuccin_color.maroon },
-            b = { bg = catppuccin_color.base, fg = catppuccin_color.maroon },
+            a = { fg = catppuccin_color.base,     bg = catppuccin_color.mauve,    gui = "bold" },
+            b = { fg = catppuccin_color.subtext0, bg = catppuccin_color.surface0               },
         },
         replace = {
-            a = { bg = catppuccin_color.base, fg = catppuccin_color.yellow },
-            b = { bg = catppuccin_color.base, fg = catppuccin_color.yellow },
+            a = { fg = catppuccin_color.base,     bg = catppuccin_color.yellow,   gui = "bold" },
+            b = { fg = catppuccin_color.subtext0, bg = catppuccin_color.surface0               },
         },
         inactive = {
-            a = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
-            b = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+            a = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base                   },
+            b = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base                   },
         },
     }
-
     return catppuccin_theme
 end
 

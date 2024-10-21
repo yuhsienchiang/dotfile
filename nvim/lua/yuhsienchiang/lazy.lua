@@ -1,3 +1,4 @@
+-- put this in your main init.lua file ( before lazy setup )
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -24,6 +25,28 @@ local opts = {
         reset_packpath = true,
         rtp = {
             disabled_plugins = {
+                "2html_plugin",
+                "getscript",
+                "getscriptPlugin",
+                "logipat",
+                "netrw",
+                "netrwPlugin",
+                "netrwSettings",
+                "netrwFileHandlers",
+                "tar",
+                "tarPlugin",
+                "rrhelper",
+                "spellfile_plugin",
+                "vimball",
+                "vimballPlugin",
+                "zip",
+                "rplugin",
+                "syntax",
+                "synmenu",
+                "optwin",
+                "compiler",
+                "bugreport",
+                "ftplugin",
                 "editorconfig",
                 "rplugin",
                 "gzip",
@@ -43,10 +66,6 @@ local opts = {
     readme = { enabled = false },
 }
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 require("lazy").setup({
     { import = "yuhsienchiang.plugins" },
-    { import = "yuhsienchiang.plugins.lsp" },
 }, opts)

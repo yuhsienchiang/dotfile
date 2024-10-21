@@ -3,7 +3,7 @@ local Util_harpoon = require("yuhsienchiang.util.harpoon_action")
 local Util_git = require("yuhsienchiang.util.git")
 
 -- use <ESC> to clear search highlight
-vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh | NoiceDismiss<cr><esc>", { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
+vim.keymap.set({ "i", "n" }, "<esc>", Util.esc_cmd, { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
 
 -- Better
 -- better yank/delete/replace
@@ -147,7 +147,7 @@ vim.keymap.set("n", "<leader>h3", function() require("harpoon"):list():select(3)
 vim.keymap.set("n", "<leader>h4", function() require("harpoon"):list():select(4) end, { desc = "File 4", silent = true, noremap = true })
 
 -- Todo
-vim.keymap.set("n", "<leader>nn", ":Trouble todo toggle<CR>",     { desc = "Toggle TODO (Trouble)",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nn", ":TodoTelescope<CR>",           { desc = "Toggle TODO (Trouble)",   silent = true, noremap = true })
 vim.keymap.set("n", "<leader>nq", ":Trouble quickfix toggle<CR>", { desc = "Toggle Quickfix (Trouble)",   silent = true, noremap = true })
 
 -- Conform

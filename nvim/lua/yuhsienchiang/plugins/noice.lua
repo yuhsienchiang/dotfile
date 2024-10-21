@@ -1,5 +1,6 @@
 return {
     "folke/noice.nvim",
+    version = "4.4.6",
     event = "VeryLazy",
     opts = {
         throttle = 1000 / 50, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
@@ -8,6 +9,8 @@ return {
             command_palette = false, -- position the cmdline and popupmenu together
             long_message_to_split = true, -- long messages will be sent to a split
             inc_rename = false, -- enables an input dialog for inc-rename.nvim
+            lsp_doc_border = true, -- add a border to hover docs and signature help
+
         },
         cmdline = {
             enabled = true, -- enables the Noice cmdline UI
@@ -23,6 +26,10 @@ return {
 				help = { pattern = "^:%s*he?l?p?%s+", icon = " 󰋖" },
                 substitute = { pattern = "^:%%?s/", icon = " ", ft = "regex", opts = { border = { text = { top = " sub (old/new/) " }}}},
 			},
+        },
+        popupmenu = {
+            enabled = true,
+            backend = "nui"
         },
         lsp = {
             override = {
@@ -60,12 +67,8 @@ return {
             signature = {
                 enabled = true,
                 auto_open = { enabled = false },
-                opts = {
-                    border = {
-                        style = "single",
-                        padding = { 0, 0 },
-                    },
-                },
+                view = nil,
+                opts = {}
             },
         },
         views = {
@@ -85,51 +88,25 @@ return {
                 },
             },
             popupmenu = { -- the popupmenu for cmdline
-                relative = "editor",
-                position = { row = "97%", col = 0 },
                 border = {
-                    style = "single",
                     padding = { 0, 0 },
                 },
                 size = {
                     min_width = 30,
                     max_height = 10,
                 },
-                win_options = {
-                    winbar = "",
-                    foldenable = false,
-                    cursorline = true,
-                    cursorlineopt = "line",
-                    winhighlight = {
-                        Normal = "NoicePopupmenu", -- change to NormalFloat to make it look like other floats
-                        FloatBorder = "NoicePopupmenuBorder", -- border highlight
-                        CursorLine = "NoicePopupmenuSelected", -- used for highlighting the selected item
-                        PmenuMatch = "NoicePopupmenuMatch", -- used to highlight the part of the item that matches the input
-                    },
-                },
             },
-            popup = {
-                backend = "popup",
-                relative = "editor",
-                close = {
-                    events = { "BufLeave" },
-                    keys = { "q" },
-                },
-                enter = true,
-                border = {
-                    style = "single",
-                },
-                position = "50%",
-                size = {
-                    width = "120",
-                    height = "20",
-                },
-                win_options = {
-                    winhighlight = { Normal = "NoicePopup", FloatBorder = "NoicePopupBorder" },
-                    winbar = "",
-                    foldenable = false,
-                },
-            },
+        },
+        routes = {
+            { filter = { event = "msg_show", find = "written" }       , opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = "yanked" }        , opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = "%d+L, %d+B" }    , opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = "; after #%d+" }  , opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = "; before #%d+" } , opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = "%d fewer lines" }, opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = "%d more lines" } , opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = "<ed" }           , opts = {skip=false}, view = "mini"  },
+            { filter = { event = "msg_show", find = ">ed" }           , opts = {skip=false}, view = "mini"  },
         },
     },
 }

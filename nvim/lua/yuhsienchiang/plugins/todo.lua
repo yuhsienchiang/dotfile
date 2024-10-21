@@ -20,6 +20,5 @@ return {
             QUESTION = { signs = false, color = "warning" },
         },
         merge_keywords = true,
-        -- TODO: test
     },
 }

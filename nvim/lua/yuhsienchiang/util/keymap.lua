@@ -11,4 +11,6 @@ function M.smart_cursor()
     end
 end
 
+M.esc_cmd = "<cmd>noh | lua if package.loaded['noice'] then require('noice').cmd('dismiss') end<cr><esc>"
+
 return M
