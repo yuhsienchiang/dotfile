@@ -90,7 +90,7 @@ function M.setup(flavour)
                 -- GitSigns
                 GitSignsChange = { fg = colors.blue, bg = colors.base },
 
-                -- -- noice
+                -- noice
                 NoiceCmdline = { bg = colors.base },
                 NoiceCmdlineIcon = { fg = colors.yellow, bg = colors.base },
                 NoiceCmdlineIconSearch = { fg = colors.yellow, bg = colors.base },
@@ -114,10 +114,15 @@ function M.setup(flavour)
                 TelescopeResultsTitle = { fg = colors.base, bg = colors.green, bold = true },
                 TelescopePreviewTitle = { fg = colors.base, bg = colors.blue, bold = true },
 
-
+                -- Trouble
                 TroubleNormal = { fg = colors.text, bg = colors.base },
                 TroubleNormalNC = { link = "TroubleNormal"},
                 TroubleCount = { fg = colors.pink, bg = colors.none },
+
+                -- WhichKey
+                WhichKey = { fg = colors.text, bg = colors.base },
+                WhichKeyNormal = { fg = colors.text, bg = colors.base },
+                WhichKeyBorder = { fg = colors.surface2, bg = colors.base },
             }
         end,
     })

@@ -8,7 +8,7 @@ return {
         priority = 1000,
         config = function()
             if theme == "catppuccin" then
-                require("yuhsienchiang.configs.catppuccin").setup("mocha")
+                require("yuhsienchiang.plugins.themes.catppuccin").setup("mocha")
             end
         end,
     },
@@ -18,7 +18,17 @@ return {
         priority = 1000,
         config = function()
             if theme == "tundra" then
-                require("yuhsienchiang.configs.tundra").setup()
+                require("yuhsienchiang.plugins.themes.tundra").setup()
+            end
+        end,
+    },
+    {
+        "diegoulloao/neofusion.nvim",
+        lazy = true,
+        priority = 1000,
+        config = function ()
+            if theme == "neofusion" then
+                require("yuhsienchiang.plugins.themes.neofusion").setup()
             end
         end,
     },
