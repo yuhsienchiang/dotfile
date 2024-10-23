@@ -114,7 +114,7 @@ return {
 
         cmp.setup.cmdline(":", {
             mapping = cmp.mapping.preset.cmdline({
-                ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false }),
             }),
             sources = cmp.config.sources({
                 { name = "cmdline", priority = 10 },
