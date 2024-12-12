@@ -1,6 +1,6 @@
-local Util = require("yuhsienchiang.util.keymap")
-local Util_harpoon = require("yuhsienchiang.util.harpoon_action")
-local Util_git = require("yuhsienchiang.util.git")
+local Util = require("yuhsienchiang.util.keymap_util")
+local Util_harpoon = require("yuhsienchiang.util.harpoon_util")
+local Util_git = require("yuhsienchiang.util.gitgraph_util")
 
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", Util.esc_cmd, { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
@@ -94,19 +94,20 @@ vim.keymap.set("n", "<leader>fm", ":Telescope man_pages<CR>",               { de
 vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>",               { desc = "Search help tags",    silent = true, noremap = true })
 
 -- Markdown Preview
-vim.keymap.set("n", "<leader>mm", ":RenderMarkdown toggle<CR>", { desc = "Toggle RenderMarkdown",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>mm", ":Markview toggleAll<CR>", { desc = "Toggle Markdown",  silent = true, noremap = true })
 
 -- nvim-tree
 vim.keymap.set("n", "<leader>ss", ":NvimTreeToggle<CR>",   { desc = "Toggle NvimTree",         silent = true, noremap = true })
 vim.keymap.set("n", "<leader>sf", ":NvimTreeFocus<CR>",    { desc = "Focus on NvimTree",       silent = true, noremap = true })
 vim.keymap.set("n", "<leader>sl", ":NvimTreeFindFile<CR>", { desc = "Locate File on NvimTree", silent = true, noremap = true })
 
+-- oil
+vim.keymap.set("n", "-", function () require("oil").toggle_float() end, { desc = "Oil", silent = true, noremap = true })
+
 -- venv selector
 vim.keymap.set("n", "<leader>vv", ":VenvSelect<CR>", { desc = "Select Venv", silent = true, noremap = true })
 
 -- Git
--- LazyGit
-vim.keymap.set("n", "<leader>gll", ":LazyGit<CR>", { desc = "Open Lazygit", silent = true, noremap = true })
 -- Diffview
 vim.keymap.set("n", "<leader>gdd", ":DiffviewOpen <CR>",         { desc = "Open Diffview",             silent = true, noremap = true })
 vim.keymap.set("n", "<leader>gdh", ":DiffviewFileHistory <CR>",  { desc = "All diff history",          silent = true, noremap = true })

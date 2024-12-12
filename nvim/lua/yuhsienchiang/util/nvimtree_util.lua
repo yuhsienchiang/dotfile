@@ -6,7 +6,8 @@ function M.cd_up()
     tree_api.tree.change_root_to_parent()
     vim.api.nvim_command("tcd " .. ".")
     local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
-    vim.notify(" " .. cwd, vim.log.levels.INFO, { title = "NvimTree", render = "compact" })
+    vim.notify(" " .. cwd, vim.log.levels.INFO, { title = "NvimTree", style = "compact" })
+
 end
 
 function M.cd_down()
@@ -20,7 +21,7 @@ function M.cd_down()
         tree_api.tree.change_root_to_node(node_under_cursor)
         vim.api.nvim_command("tcd " .. ".")
         local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
-        vim.notify(" " .. cwd, vim.log.levels.INFO, { title = "NvimTree", render = "compact" })
+        vim.notify(" " .. cwd, vim.log.levels.INFO, { title = "NvimTree", style = "compact" })
     else
         return
     end

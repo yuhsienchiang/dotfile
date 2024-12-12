@@ -5,7 +5,7 @@ return {
     config = function()
         local theme_flavour = "mocha"
         local catppuccin_color = require("catppuccin.palettes").get_palette(theme_flavour)
-        local Util = require("yuhsienchiang.util.lualine_theme")
+        local Util = require("yuhsienchiang.util.lualine_util")
         require("lualine").setup({
             options = {
                 theme = Util.get_catppuccin_theme(theme_flavour),
@@ -23,6 +23,8 @@ return {
                         "lspinfo",
                         "mason",
                         "startuptime",
+                        "trouble",
+                        "snacks_dashboard",
                     },
                     winbar = {
                         "checkhealth",
@@ -33,6 +35,8 @@ return {
                         "mason",
                         "NvimTree",
                         "startuptime",
+                        "snacks_dashboard",
+                        "trouble",
                     },
                 },
             },
@@ -88,11 +92,11 @@ return {
                 },
                 lualine_y = {
                     {
-                        require("yuhsienchiang.util.venv").activated_venv,
+                        require("yuhsienchiang.util.venv_util").activated_venv,
                         color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
                     },
                     {
-                        require("yuhsienchiang.util.harpoon_action").harpoon_lualine,
+                        require("yuhsienchiang.util.harpoon_util").harpoon_lualine,
                         color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
                     },
                     {

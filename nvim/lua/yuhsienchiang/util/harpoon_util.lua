@@ -18,7 +18,7 @@ function M.harpoon_add()
     end
     local message = " " .. vim.fn.expand("%:t") .. "  " .. idx
 
-    vim.notify(message, vim.log.levels.INFO, { title = "Harpoon", render = "compact" })
+    require("snacks").notifier.notify(message, vim.log.levels.INFO, { title = "Harpoon", style = "minimal" })
 end
 
 local function filter_empty_string(list)
@@ -35,7 +35,7 @@ end
 function M.harpoon_clear()
     local harpoon = require("harpoon")
     harpoon:list():clear()
-    vim.notify("List cleared", vim.log.levels.INFO, { title = "Harpoon", render = "compact" })
+    require("snacks").notifier.notify("List cleared", vim.log.levels.INFO, { title = "Harpoon", style = "minimal" })
 end
 
 local harpoon_get_index = function(entry)

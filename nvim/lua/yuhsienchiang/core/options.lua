@@ -32,7 +32,8 @@ opt.inccommand = "nosplit"
 
 -- fold
 opt.foldlevel = 99
-opt.foldmethod = "indent"
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- cursor
 opt.cursorline = true

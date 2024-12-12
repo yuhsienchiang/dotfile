@@ -73,7 +73,6 @@ return {
                 multi_icon = " + ",
                 entry_prefix = "  ",
                 borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-                -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
                 preview = { treesitter = true },
                 vimgrep_arguments = {
                     "rg",
@@ -102,6 +101,15 @@ return {
                 grep_string = { hidden = true },
                 live_grep = { hidden = true },
                 buffers = {
+                    sorting_strategy = "ascending",
+                    layout_strategy = "center",
+                    layout_config = { center = { width = 0.5, height = 0.5 } },
+                    borderchars = {
+                        prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+                        results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                    },
+                    results_title = false,
+                    previewer = false,
                     hidden = true,
                     mappings = {
                         n = { ["<C-d>"] = actions.delete_buffer },

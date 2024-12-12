@@ -39,8 +39,9 @@ return {
             lsp_references = {
                 mode = "lsp_references",
                 auto_jump = false,
-                auto_preview = false,
+                auto_preview = true,
                 preview = {
+                    scratch = true,
                     type = "split",
                     relative = "win",
                     position = "right",

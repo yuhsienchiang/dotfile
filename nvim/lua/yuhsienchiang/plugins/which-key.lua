@@ -14,7 +14,6 @@ return {
             { "<leader>g",  mode = { "n", "v" }, group = "Git" },
             { "<leader>gd", mode = "n",          group = "Diffview" },
             { "<leader>gh", mode = { "n", "v" }, group = "Gitsigns" },
-            { "<leader>gl", mode = "n",          group = "LazyGit" },
             { "<leader>gg", mode = "n",          group = "GitGraph" },
             { "<leader>gw", mode = "n",          group = "Git Worktree" },
             { "<leader>h",  mode = "n",          group = "Harpoon" },

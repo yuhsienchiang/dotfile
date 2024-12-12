@@ -7,24 +7,22 @@ return {
         "L3MON4D3/LuaSnip", -- Snippet Engine
         "rafamadriz/friendly-snippets", -- Bunch of Snippets
         -- sources
-        "hrsh7th/cmp-buffer", -- Buffer Completions
-        "hrsh7th/cmp-path", -- Path Completions
-        "hrsh7th/cmp-cmdline", -- Path Completions
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lua",
         "saadparwaiz1/cmp_luasnip", -- Snippet Completions
+
+        -- old sourse
+        "hrsh7th/cmp-path", -- Path Completions
+
+        -- new sourse
+        { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp" },
+        { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
+        { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+        { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
     },
     config = function()
         local cmp = require("cmp")
         local cmp_compare = require("cmp.config.compare")
         local luasnip = require("luasnip")
-
-        local menu_name = {
-            buffer = "Buffer",
-            nvim_lsp = "LSP",
-            luasnip = "LuaSnip",
-            path = "Path",
-        }
+        local Util = require("yuhsienchiang.util.cmp_util")
 
         require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -32,7 +30,7 @@ return {
             completion = { completeopt = "menu,menuone,noselect,noinsert" },
             snippet = {
                 expand = function(args)
-                    luasnip.lsp_expand(args.body) -- For `luasnip` users.
+                    luasnip.lsp_expand(args.body)
                 end,
             },
             window = {
@@ -45,7 +43,6 @@ return {
                 documentation = cmp.config.window.bordered({
                     border = "single",
                     winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder",
-                    scrollbar = false,
                 }),
             },
             mapping = cmp.mapping.preset.insert({
@@ -75,6 +72,8 @@ return {
                         luasnip.jump(-1)
                     end
                 end, { "i", "s" }),
+                ["<C-f>"] = cmp.mapping.scroll_docs(2),
+                ["<C-b>"] = cmp.mapping.scroll_docs(-2),
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp", priority = 8 }, -- lsp
@@ -87,9 +86,13 @@ return {
                 format = function(entry, item)
                     local icons = require("lspkind").symbol_map
 
-                    item.menu = " " .. (menu_name[entry.source.name] ~= nil and menu_name[entry.source.name] or "")
-                    item.menu_hl_group = "CmpItemKind" .. (item.kind or "")
+                    item.menu = (
+                        Util.source_name[entry.source.name] ~= nil and Util.source_name[entry.source.name] or ""
+                    )
+                    item.kind_hl_group = "CmpItemKind" .. (item.kind or "")
+                    item.menu_hl_group = "CmpItemMenu" .. item.menu
 
+                    item.menu = " " .. item.menu
                     item.kind = item.kind and icons[item.kind] .. " " or ""
                     item.kind = item.kind or " "
 

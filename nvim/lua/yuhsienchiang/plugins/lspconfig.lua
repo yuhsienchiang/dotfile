@@ -48,6 +48,7 @@ return {
         local mason_lspconfig = require("mason-lspconfig")
         local mason_tool_installer = require("mason-tool-installer")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        local Util = require("yuhsienchiang.util.lsp_util")
 
         mason_lspconfig.setup({
             ensure_installed = opts.lsp_server,
@@ -66,37 +67,21 @@ return {
             cmp_nvim_lsp.default_capabilities()
         )
 
-        -- settings from nvchad
-        lsp_capabilities.textDocument.completion.completionItem = {
-            documentationFormat = { "markdown", "plaintext" },
-            snippetSupport = true,
-            preselectSupport = true,
-            insertReplaceSupport = true,
-            labelDetailsSupport = true,
-            deprecatedSupport = true,
-            commitCharactersSupport = true,
-            tagSupport = { valueSet = { 1 } },
-            resolveSupport = {
-                properties = {
-                    "documentation",
-                    "detail",
-                    "additionalTextEdits",
-                },
-            },
-        }
-
         -- stylua: ignore
-		local keymap_on_attach = function(_, _)
-            vim.keymap.set( "n",          "<leader>df", "<cmd>Trouble lsp_references toggle<CR>",  { desc = "Toggle references/definition (Trouble)", noremap = true, silent = true }) -- show definition, references
-			vim.keymap.set( "n",          "<leader>dd", "<cmd>Trouble lsp_definitions toggle<CR>", { desc = "Toggle definition (Trouble)",            noremap = true, silent = true }) -- see definition and make edits in window
-			vim.keymap.set( "n",          "<leader>ds", "<cmd>Trouble symbols toggle<CR>",         { desc = "Toggle symbols (Trouble)",               noremap = true, silent = true }) -- see definition and make edits in window
-			vim.keymap.set( { "n", "i" }, "<C-s>",      vim.lsp.buf.signature_help,                { desc = "Show signature help",                    noremap = true, silent = true })
-		end
+		local on_attach = function(_, _)
+            vim.keymap.set( "n",              "<leader>df", "<cmd>Trouble lsp_references toggle<CR>",  { desc = "Toggle references/definition (Trouble)", noremap = true, silent = true }) -- show definition, references
+			vim.keymap.set( "n",              "<leader>dd", "<cmd>Trouble lsp_definitions toggle<CR>", { desc = "Toggle definition (Trouble)",            noremap = true, silent = true })
+			vim.keymap.set( "n",              "<leader>ds", "<cmd>Trouble symbols toggle<CR>",         { desc = "Toggle symbols (Trouble)",               noremap = true, silent = true })
+			vim.keymap.set( "n",              "<leader>dk", vim.lsp.buf.hover,                         { desc = "Show hover document",                    noremap = true, silent = true })
+            vim.keymap.set( { "n", "i" },     "<C-s>",      vim.lsp.buf.signature_help,                { desc = "Show signature help",                    noremap = true, silent = true })
+            vim.keymap.set({ "n", "i", "s" }, "<c-f>",      Util.hover_signature_scroll_forward,       { desc = "Scroll down signature and document",     silent = true, expr = true })
+            vim.keymap.set({ "n", "i", "s" }, "<c-b>",      Util.hover_signature_scroll_backward,      { desc = "Scroll up signature and document",       silent = true, expr = true })
+        end
 
         mason_lspconfig.setup_handlers({
             function(server_name)
                 local server_opts = {
-                    on_attach = keymap_on_attach,
+                    on_attach = on_attach,
                     capabilities = vim.deepcopy(lsp_capabilities),
                 }
 

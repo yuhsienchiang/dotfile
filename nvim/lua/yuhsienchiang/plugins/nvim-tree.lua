@@ -1,13 +1,9 @@
 return {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFindFile", "NvimTreeOpen" },
-    -- init = function()
-    --     vim.g.loaded_netrw = 1
-    --     vim.g.loaded_netrwPlugin = 1
-    -- end,
     config = function()
         local tree_api = require("nvim-tree.api")
-        local Util = require("yuhsienchiang.util.explorer")
+        local Util = require("yuhsienchiang.util.nvimtree_util")
 
         local function on_attach(bufnr)
             local opts = function(desc)

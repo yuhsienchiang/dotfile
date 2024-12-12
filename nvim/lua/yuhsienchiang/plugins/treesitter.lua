@@ -7,7 +7,7 @@ return {
     config = function()
         require("nvim-treesitter.configs").setup({
             -- enable syntax highlighting
-            highlight = { enable = true  },
+            highlight = { enable = true },
             -- enable indentation
             indent = { enable = true },
             -- ensure these language parsers are installed
@@ -58,21 +58,15 @@ return {
                     keymaps = {
                         ["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
                         ["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
-                        ["L="] = { query = "@assignment.lhs",   desc = "Select left hand side of an assignment" },
-                        ["R="] = { query = "@assignment.rhs",   desc = "Select right hand side of an assignment" },
-                        ["aa"] = { query = "@parameter.outer",  desc = "Select outer part of a parameter/argument" },
-                        ["ia"] = { query = "@parameter.inner",  desc = "Select inner part of a parameter/argument" },
+                        ["L="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
+                        ["R="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
                     },
                     include_surrounding_whitespace = false,
                 },
                 swap = {
                     enable = true,
-                    swap_next = {
-                        ["g>"] = { query = "@parameter.inner", desc = "Swap with prev argument" },
-                    },
-                    swap_previous = {
-                        ["g<"] = { query = "@parameter.inner", desc = "Swap with next argument" },
-                    },
+                    swap_next = { ["g>"] = { query = "@parameter.inner", desc = "Swap with prev argument" } },
+                    swap_previous = { ["g<"] = { query = "@parameter.inner", desc = "Swap with next argument" } },
                 },
             },
         })

@@ -64,19 +64,10 @@ vim.api.nvim_create_autocmd("FileType", {
         "mason",
         "NvimTree",
         "markdown",
+        "trouble",
+        "snacks_dashboard"
     },
     callback = function()
         vim.b.miniindentscope_disable = true
-    end,
-})
-
-vim.api.nvim_create_autocmd("InsertLeave", {
-    callback = function()
-        if
-            require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not require("luasnip").session.jump_active
-        then
-            require("luasnip").unlink_current()
-        end
     end,
 })

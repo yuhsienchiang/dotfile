@@ -1,6 +1,5 @@
 return {
     "folke/noice.nvim",
-    version = "4.4.6",
     event = "VeryLazy",
     opts = {
         throttle = 1000 / 50, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
@@ -10,7 +9,6 @@ return {
             long_message_to_split = true, -- long messages will be sent to a split
             inc_rename = false, -- enables an input dialog for inc-rename.nvim
             lsp_doc_border = true, -- add a border to hover docs and signature help
-
         },
         cmdline = {
             enabled = true, -- enables the Noice cmdline UI
@@ -29,7 +27,7 @@ return {
         },
         popupmenu = {
             enabled = true,
-            backend = "nui"
+            backend = "nui",
         },
         lsp = {
             override = {
@@ -43,6 +41,15 @@ return {
                         style = "single",
                         padding = { 0, 0 },
                     },
+                    win_options = {
+                        winhighlight = {
+                            Normal = "NoicePopupmenu", -- change to NormalFloat to make it look like other floats
+                            FloatBorder = "NoicePopupmenuBorder", -- border highlight
+                            CursorLine = "NoicePopupmenuSelected", -- used for highlighting the selected item
+                            PmenuMatch = "NoicePopupmenuMatch", -- used to highlight the part of the item that matches the input
+                        },
+                    },
+                    scrollbar = false
                 }, -- merged with defaults from documentation
             },
             documentation = {
@@ -51,16 +58,6 @@ return {
                     win_options = {
                         concealcursor = "n",
                         conceallevel = 3,
-                        winhighlight = {
-                            Normal = "NoicePopupmenu", -- change to NormalFloat to make it look like other floats
-                            FloatBorder = "NoicePopupmenuBorder", -- border highlight
-                            CursorLine = "NoicePopupmenuSelected", -- used for highlighting the selected item
-                            PmenuMatch = "NoicePopupmenuMatch", -- used to highlight the part of the item that matches the input
-                        },
-                    },
-                    border = {
-                        style = "single",
-                        padding = { 0, 0 },
                     },
                 },
             },
@@ -68,7 +65,17 @@ return {
                 enabled = true,
                 auto_open = { enabled = false },
                 view = nil,
-                opts = {}
+                opts = {
+                    win_options = {
+                        winhighlight = {
+                            Normal = "NoicePopupmenu", -- change to NormalFloat to make it look like other floats
+                            FloatBorder = "NoicePopupmenuBorder", -- border highlight
+                            CursorLine = "NoicePopupmenuSelected", -- used for highlighting the selected item
+                            PmenuMatch = "NoicePopupmenuMatch", -- used to highlight the part of the item that matches the input
+                        },
+                    },
+                    scrollbar = false
+                },
             },
         },
         views = {
@@ -98,15 +105,15 @@ return {
             },
         },
         routes = {
-            { filter = { event = "msg_show", find = "written" }       , opts = { skip = false }, view = "mini" },
-            { filter = { event = "msg_show", find = "yanked" }        , opts = { skip = false }, view = "mini" },
-            { filter = { event = "msg_show", find = "%d+L, %d+B" }    , opts = { skip = false }, view = "mini" },
-            { filter = { event = "msg_show", find = "; after #%d+" }  , opts = { skip = false }, view = "mini" },
-            { filter = { event = "msg_show", find = "; before #%d+" } , opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = "written" }, opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = "yanked" }, opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = "%d+L, %d+B" }, opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = "; after #%d+" }, opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = "; before #%d+" }, opts = { skip = false }, view = "mini" },
             { filter = { event = "msg_show", find = "%d fewer lines" }, opts = { skip = false }, view = "mini" },
-            { filter = { event = "msg_show", find = "%d more lines" } , opts = { skip = false }, view = "mini" },
-            { filter = { event = "msg_show", find = "<ed" }           , opts = { skip = false }, view = "mini" },
-            { filter = { event = "msg_show", find = ">ed" }           , opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = "%d more lines" }, opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = "<ed" }, opts = { skip = false }, view = "mini" },
+            { filter = { event = "msg_show", find = ">ed" }, opts = { skip = false }, view = "mini" },
         },
     },
 }
