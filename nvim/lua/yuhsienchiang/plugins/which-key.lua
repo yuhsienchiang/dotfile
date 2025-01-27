@@ -10,13 +10,12 @@ return {
             { "<leader>b",  mode = "n",          group = "Buffer" },
             { "<leader>d",  mode = "n",          group = "Lsp" },
             { "<leader>e",  mode = { "n", "v" }, group = "Edit" },
-            { "<leader>f",  mode = "n",          group = "Telescope" },
+            { "<leader>f",  mode = "n",          group = "Fzf" },
             { "<leader>g",  mode = { "n", "v" }, group = "Git" },
             { "<leader>gd", mode = "n",          group = "Diffview" },
             { "<leader>gh", mode = { "n", "v" }, group = "Gitsigns" },
             { "<leader>gg", mode = "n",          group = "GitGraph" },
             { "<leader>gw", mode = "n",          group = "Git Worktree" },
-            { "<leader>h",  mode = "n",          group = "Harpoon" },
             { "<leader>m",  mode = "n",          group = "Markdown" },
             { "<leader>n",  mode = "n",          group = "TODO" },
             { "<leader>q",  mode = "n",          group = "Quit" },
@@ -33,7 +32,7 @@ return {
             presets = {
                 operators = false,
                 motions = false,
-                text_objects = false,
+                text_objects = true,
                 windows = false,
                 nav = false,
                 z = true,
@@ -49,6 +48,7 @@ return {
         },
         win = {
             border = "single",
+            width = { min = 10 },
             padding = { 1, 1 }, -- extra window padding [top/bottom, right/left]
         },
         replace = {

@@ -1,204 +1,200 @@
-local M = {}
+local M = { action = {}, fzf = {} }
 
-function M.harpoon_add()
+local function extract_file_path(input)
+    if type(input) == "string" then
+        return input:match("%d+ %- (.+)")
+    elseif type(input) == "table" then
+        return vim.tbl_map(function (item)
+            return item:match("%d+ %- (.+)")
+        end, input)
+    end
+    return input
+end
+
+local function find_harpoon_entry(path)
     local harpoon = require("harpoon")
-    harpoon:list():add()
+    local entries = harpoon:list().items
 
-    -- get the index at where the buffer was added to the list
-    local harpoon_entries = harpoon:list()
-    local length = harpoon_entries:length()
-    local idx = length
+    for idx, entry in pairs(entries) do
+        if entry.value == path then
+            return { entry = entry, index = idx }
+        end
+    end
+    return nil
+end
+
+
+local function notify(message, level)
+    require("snacks").notifier.notify(
+        message,
+        level or vim.log.levels.INFO,
+        { title = "Harpoon", style = "compact" }
+    )
+end
+
+function M.action.harpoon_add()
+    local harpoon = require("harpoon")
     local current_file_path = vim.fn.expand("%")
 
-    for i = 1, length do
-        local harpoon_entry = harpoon_entries:get(i)
-        if harpoon_entry ~= nil and harpoon_entry.value == current_file_path then
+    harpoon:list():add()
+
+    local entries = harpoon:list()
+    local idx = entries:length()
+
+    for i = 1, idx do
+        local entry = entries:get(i)
+        if entry and entry.value == current_file_path then
             idx = i
-        end
-    end
-    local message = " " .. vim.fn.expand("%:t") .. "  " .. idx
-
-    require("snacks").notifier.notify(message, vim.log.levels.INFO, { title = "Harpoon", style = "minimal" })
-end
-
-local function filter_empty_string(list)
-    local next = {}
-    for idx = 1, #list do
-        if list[idx] ~= nil and list[idx].value ~= "" then
-            table.insert(next, list[idx])
+            break
         end
     end
 
-    return next
+    notify(" " .. vim.fn.expand("%:t") .. "  " .. idx, vim.log.levels.INFO)
 end
 
-function M.harpoon_clear()
+function M.action.harpoon_clear()
     local harpoon = require("harpoon")
     harpoon:list():clear()
-    require("snacks").notifier.notify("List cleared", vim.log.levels.INFO, { title = "Harpoon", style = "minimal" })
+    notify("List cleared", vim.log.levels.INFO)
 end
 
-local harpoon_get_index = function(entry)
-    local harpoon = require("harpoon")
-    local harpoon_entries = harpoon:list()
-    local length = harpoon_entries:length()
+-- fzf actions
+local function edit_harpoon_mark(selected, opts)
+    if not selected then return end
 
-    for i = 1, length do
-        local harpoon_entry = harpoon_entries:get(i)
-        if harpoon_entry ~= nil and entry.value == harpoon_entry.value then
-            return i
+    local actions = require("fzf-lua").actions
+    local paths = extract_file_path(selected)
+
+    actions.file_edit(paths, opts)
+end
+
+local function split_harpoon_mark(selected, opts)
+    if not selected then return end
+
+    local actions = require("fzf-lua").actions
+    local paths = extract_file_path(selected)
+
+    actions.file_split(paths, opts)
+end
+
+local function vsplit_harpoon_mark(selected, opts)
+    if not selected then return end
+
+    local actions = require("fzf-lua").actions
+    local paths = extract_file_path(selected)
+
+    actions.file_vsplit(paths, opts)
+end
+
+local function tab_harpoon_mark(selected, opts)
+    if not selected then return end
+
+    local actions = require("fzf-lua").actions
+    local paths = extract_file_path(selected)
+
+    actions.file_tabedit(paths, opts)
+end
+
+local delete_harpoon_mark = function(selected)
+    if not selected then return end
+
+    local harpoon = require("harpoon")
+    local paths = extract_file_path(selected)
+
+    for _, path in ipairs(paths) do
+        local entry = find_harpoon_entry(path)
+        if entry and entry.entry then
+            harpoon:list():remove(entry.entry)
         end
     end
-    -- If we can't find the entry, return -1
-    return -1
 end
 
-local generate_new_finder = function()
-    local entry_display = require("telescope.pickers.entry_display")
-    local finders = require("telescope.finders")
+local function move_mark(selected, direction)
+    if not selected then return end
+
     local harpoon = require("harpoon")
+    local path = extract_file_path(selected[1])
+    local entry = find_harpoon_entry(path)
+    local list = harpoon:list()
 
-    return finders.new_table({
-        results = filter_empty_string(harpoon:list().items),
-        entry_maker = function(entry)
-            local line = entry.value .. " " .. entry.context.row .. ":" .. entry.context.col
-            local displayer = entry_display.create({
-                separator = " - ",
-                items = {
-                    { width = 1 },
-                    { width = 50 },
-                    { remaining = true },
-                },
-            })
-            local make_display = function()
-                return displayer({
-                    tostring(harpoon_get_index(entry)),
-                    line,
-                })
-            end
-            return {
-                value = entry,
-                ordinal = line,
-                display = make_display,
-                lnum = entry.context.row,
-                col = entry.context.col,
-                filename = entry.value,
-            }
-        end,
-    })
-end
+    if not entry then return end
 
-local delete_harpoon_mark = function(prompt_bufnr)
-    local action_state = require("telescope.actions.state")
-    local harpoon = require("harpoon")
-
-    local selection = action_state.get_selected_entry()
-    if not selection then
-        return
-    end
-    harpoon:list():remove(selection.value)
-
-    local current_picker = action_state.get_current_picker(prompt_bufnr)
-    current_picker:refresh(generate_new_finder(), { reset_prompt = true })
-end
-
-local move_mark_up = function(prompt_bufnr)
-    local action_state = require("telescope.actions.state")
-    local harpoon = require("harpoon")
-    local selection = action_state.get_selected_entry()
-    if not selection then
+    if (direction == "up" and entry.index == list:length()) or
+        (direction == "down" and entry.index == 1) then
         return
     end
 
-    local length = harpoon:list():length()
-    if selection.index == length then
-        return
-    end
+    local mark_list = list.items
+    local new_index = direction == "up" and entry.index + 1 or entry.index - 1
 
-    local mark_list = harpoon:list().items
-
-    table.remove(mark_list, selection.index)
-    table.insert(mark_list, selection.index + 1, selection.value)
-
-    local current_picker = action_state.get_current_picker(prompt_bufnr)
-    current_picker:refresh(generate_new_finder(), { reset_prompt = true })
-end
-
-local move_mark_down = function(prompt_bufnr)
-    local action_state = require("telescope.actions.state")
-    local harpoon = require("harpoon")
-
-    local selection = action_state.get_selected_entry()
-    if not selection then
-        return
-    end
-    if selection.index == 1 then
-        return
-    end
-    local mark_list = harpoon:list().items
-    table.remove(mark_list, selection.index)
-    table.insert(mark_list, selection.index - 1, selection.value)
-    local current_picker = action_state.get_current_picker(prompt_bufnr)
-    current_picker:refresh(generate_new_finder(), { reset_prompt = true })
-end
-
-function M.harpoon_telescope()
-    local pickers = require("telescope.pickers")
-    local conf = require("telescope.config").values
-
-    pickers
-        .new({}, {
-            prompt_title = "Harpoon",
-            finder = generate_new_finder(),
-            sorter = conf.generic_sorter({}),
-            sorting_strategy = "ascending",
-            previewer = false,
-            layout_config = { center = { width = 0.4, height = 0.4 } },
-            layout_strategy = "center",
-            results_title = false,
-            borderchars = {
-                prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-                results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-            },
-            attach_mappings = function(_, map)
-                map({ "i", "n" }, "<c-d>", delete_harpoon_mark)
-                map({ "i", "n" }, "<c-n>", move_mark_up)
-                map({ "i", "n" }, "<c-p>", move_mark_down)
-                return true
-            end,
-        })
-        :find()
+    table.remove(mark_list, entry.index)
+    table.insert(mark_list, new_index, entry.entry)
 end
 
 function M.harpoon_lualine()
     local harpoon = require("harpoon")
-
-    local harpoon_entries = harpoon:list()
-    local root_dir = harpoon_entries.config:get_root_dir()
-    local indicators = { "1", "2", "3", "4" }
-    local active_indicators = { "[1]", "[2]", "[3]", "[4]" }
-    local separator = " "
-
-    local current_file_path = vim.api.nvim_buf_get_name(0)
-
-    local length = math.min(harpoon_entries:length(), #indicators)
+    local entries = harpoon:list()
+    local root_dir = entries.config:get_root_dir()
+    local current_file = vim.api.nvim_buf_get_name(0)
     local status = {}
 
-    for i = 1, length do
-        local entry = harpoon_entries:get(i)
+    local length = math.min(entries:length(), 4)
 
-        local indicator = ""
-        if entry ~= nil then
+    for i = 1, length do
+        local entry = entries:get(i)
+        if entry then
             local entry_path = root_dir .. "/" .. entry.value
-            if entry_path == current_file_path then
-                indicator = active_indicators[i]
+            local label = i .. " " .. vim.fn.fnamemodify(entry.value, ":t")
+
+            if entry_path == current_file then
+                label = "[" .. "󰐃" .. label .. "]"
             else
-                indicator = indicators[i]
+                label = "" .. label
+            end
+            table.insert(status, label)
+        end
+    end
+    return table.concat(status, "  ")
+end
+
+function M.fzf.harpoon_fzf()
+    local fzf_lua = require("fzf-lua")
+    local harpoon = require("harpoon")
+
+    local opts = {
+        prompt = " 󰍉 ",
+        winopts = {
+            height = 0.35,
+            width = 0.5,
+            row = 0.5,
+            col = 0.50,
+            border = "single",
+            backdrop = 100,
+            title = " Harpoon ",
+            title_pos = "center",
+            preview = { hidden = "hidden" },
+        },
+        actions = {
+            ["default"] = edit_harpoon_mark,
+            ["ctrl-v"] = vsplit_harpoon_mark,
+            ["ctrl-s"] = split_harpoon_mark,
+            ["ctrl-t"] = tab_harpoon_mark,
+            ["ctrl-d"] = { delete_harpoon_mark, fzf_lua.actions.resume },
+            ["ctrl-n"] = { function (selected) move_mark(selected, "up") end, fzf_lua.actions.resume },
+            ["ctrl-p"] = { function (selected) move_mark(selected, "down") end, fzf_lua.actions.resume },
+        },
+    }
+
+    fzf_lua.fzf_exec(function(fzf_cb)
+        local entries = harpoon:list().items
+        for idx, entry in pairs(entries) do
+
+            if entry and entry.value ~= "" then
+                fzf_cb(idx .. " - " .. entry.value)
             end
         end
-        table.insert(status, indicator)
-    end
-    return table.concat(status, separator)
+        fzf_cb()
+    end, opts)
 end
 
 return M

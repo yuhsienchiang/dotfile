@@ -1,6 +1,7 @@
 local Util = require("yuhsienchiang.util.keymap_util")
 local Util_harpoon = require("yuhsienchiang.util.harpoon_util")
 local Util_git = require("yuhsienchiang.util.gitgraph_util")
+local Util_venv = require("yuhsienchiang.util.venv_util")
 
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", Util.esc_cmd, { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
@@ -83,15 +84,16 @@ vim.keymap.set("n", "<leader>qf", "<cmd>q!<CR>", { desc = "Force Quit",       si
 vim.keymap.set("n", "<leader>qw", "<cmd>x<CR>",  { desc = "Write & Quit",     silent = true, noremap = true })
 
 -- Plugins
--- Telescope
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>",              { desc = "Find files",          silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fr", ":Telescope oldfiles only_cwd=true<CR>",  { desc = "Recent files (CWD)",  silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fR", ":Telescope oldfiles only_cwd=false<CR>", { desc = "Recent files",        silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fs", ":Telescope live_grep<CR>",               { desc = "Find strings",        silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fc", ":Telescope grep_string<CR>",             { desc = "Find current string", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>",                 { desc = "Find opened buffers", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fm", ":Telescope man_pages<CR>",               { desc = "Search man pages",    silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>",               { desc = "Search help tags",    silent = true, noremap = true })
+-- Fzf
+vim.keymap.set("n", "<leader>ff", function ()require("fzf-lua").files() end,                                                       { desc = "Find files",          silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fr", function ()require("fzf-lua").oldfiles({ cwd_only = true }) end,                                 { desc = "Recent files (CWD)",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fR", function ()require("fzf-lua").oldfiles() end,                                                    { desc = "Recent files",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fs", function () require("fzf-lua").live_grep({ winopts = { title = " Live Grep " }}) end,            { desc = "Live Grep",           silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fS", function () require("fzf-lua").live_grep_glob({ winopts = { title = " Live Multi-Grep " }}) end, { desc = "Live Multi-Grep",     silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fc", ":FzfLua grep_cword<CR>",                                                                        { desc = "Find current string", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fb", ":FzfLua buffers<CR>",                                                                           { desc = "Find opened buffers", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fm", ":FzfLua manpages<CR>",                                                                          { desc = "Search man pages",    silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fh", ":FzfLua helptags<CR>",                                                                          { desc = "Search help tags",    silent = true, noremap = true })
 
 -- Markdown Preview
 vim.keymap.set("n", "<leader>mm", ":Markview toggleAll<CR>", { desc = "Toggle Markdown",  silent = true, noremap = true })
@@ -105,7 +107,7 @@ vim.keymap.set("n", "<leader>sl", ":NvimTreeFindFile<CR>", { desc = "Locate File
 vim.keymap.set("n", "-", function () require("oil").toggle_float() end, { desc = "Oil", silent = true, noremap = true })
 
 -- venv selector
-vim.keymap.set("n", "<leader>vv", ":VenvSelect<CR>", { desc = "Select Venv", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>vv", Util_venv.venv_selector_fzf, { desc = "Select Venv", silent = true, noremap = true })
 
 -- Git
 -- Diffview
@@ -137,9 +139,9 @@ vim.keymap.set("n", "<leader>gwa",function () require('telescope').extensions.gi
 vim.keymap.set("n", "<leader>gwn",function () require('telescope').extensions.notify.notify() end,                    { desc = "Git Worktree Notify", silent = true, noremap = true })
 
 -- Harpoon
-vim.keymap.set("n", "<leader>hh", Util_harpoon.harpoon_telescope,                     { desc = "Harpoon Menu",  silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ha", Util_harpoon.harpoon_add,                           { desc = "Harpoon Add",   silent = true, noremap = true })
-vim.keymap.set("n", "<leader>hc", Util_harpoon.harpoon_clear,                         { desc = "Harpoon Clear", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>hh", Util_harpoon.fzf.harpoon_fzf,                       { desc = "Harpoon Menu",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ha", Util_harpoon.action.harpoon_add,                    { desc = "Harpoon Add",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>hc", Util_harpoon.action.harpoon_clear,                  { desc = "Harpoon Clear", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>hk", function() require("harpoon"):list():prev() end,    { desc = "Harpoon Prev",  silent = true, noremap = true })
 vim.keymap.set("n", "<leader>hj", function() require("harpoon"):list():next() end,    { desc = "Harpoon Next",  silent = true, noremap = true })
 vim.keymap.set("n", "<leader>h1", function() require("harpoon"):list():select(1) end, { desc = "File 1", silent = true, noremap = true })
