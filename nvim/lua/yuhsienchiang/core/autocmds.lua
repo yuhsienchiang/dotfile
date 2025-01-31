@@ -55,19 +55,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end,
 })
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {
-        "dashboard",
-        "help",
-        "lazy",
-        "mason",
-        "NvimTree",
-        "markdown",
-        "trouble",
-        "snacks_dashboard"
-    },
-    callback = function()
-        vim.b.miniindentscope_disable = true
-    end,
-})

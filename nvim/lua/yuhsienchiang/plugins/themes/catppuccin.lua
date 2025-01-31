@@ -8,11 +8,12 @@ function M.setup(flavour)
         flavour = flavour, -- latte, frappe, macchiato, mocha
         term_colors = true,
         dim_inactive = { enabled = false },
-        styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        styles = {
             comments = { "italic" }, -- Change the style of comments
             conditionals = { "italic" },
             booleans = { "italic" },
         },
+        default_integrations = false,
         integrations = {
             cmp = true,
             dashboard = false,
