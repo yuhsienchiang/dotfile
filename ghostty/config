@@ -1,0 +1,53 @@
+# General
+initial-command = /opt/homebrew/bin/zsh
+working-directory = home
+window-inherit-working-directory = false
+shell-integration = zsh
+window-save-state = never
+
+# theme
+theme = catppuccin-frappe
+
+# fonts
+font-family = "MesloLGL Nerd Font Mono"
+font-family-bold = "MesloLGL Nerd Font Mono Bold"
+font-family-italic = "MesloLGL Nerd Font Mono Italic"
+font-family-bold-italic = "MesloLGL Nerd Font Mono Bold Italic"
+font-size = 15
+adjust-cell-height = 15%
+
+# windows
+title = " "
+window-padding-x = 15
+window-padding-y = 10,0
+quit-after-last-window-closed = true
+macos-titlebar-proxy-icon = hidden
+
+# cursor
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+cursor-text = #010101
+
+# mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+copy-on-select = false
+
+# keybinds
+macos-option-as-alt = true
+keybind = super+zero=reset_font_size
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+t=text:\x01\x63
+keybind = super+w=text:\x01\x78
+keybind = super+e=text:\x01\x65
+keybind = super+d=text:\x01\x76
+keybind = super+shift+d=text:\x01\x73
+keybind = super+k=text:\x01\x77
+keybind = super+b=text:\x01\x62
+keybind = super+[=text:\x01\x5B
+keybind = super+]=text:\x01\x5D
+keybind = super+\=text:\x01\x71
+keybind = super+left=text:\x01\x70
+keybind = super+right=text:\x01\x6E
