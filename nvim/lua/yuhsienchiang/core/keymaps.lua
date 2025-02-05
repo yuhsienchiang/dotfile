@@ -1,6 +1,6 @@
 local Util = require("yuhsienchiang.util.keymap_util")
 local Util_harpoon = require("yuhsienchiang.util.harpoon_util")
-local Util_git = require("yuhsienchiang.util.gitgraph_util")
+-- local Util_git = require("yuhsienchiang.util.gitgraph_util")
 local Util_venv = require("yuhsienchiang.util.venv_util")
 
 -- use <ESC> to clear search highlight
@@ -116,27 +116,17 @@ vim.keymap.set("n", "<leader>gdh", ":DiffviewFileHistory <CR>",  { desc = "All d
 vim.keymap.set("n", "<leader>gdH", ":DiffviewFileHistory %<CR>", { desc = "Current file diff history", silent = true, noremap = true })
 vim.keymap.set("n", "<leader>gdq", ":DiffviewClose<CR>",         { desc = "Quit Diffview",             silent = true, noremap = true })
 -- Gitsigns
-vim.keymap.set("n", "<leader>gh]", ":Gitsigns nav_hunk next<CR>",                                                       { desc = "Next Hunk",         silent = true, noremap = true })
-vim.keymap.set("n", "<leader>gh[", ":Gitsigns nav_hunk prev<CR>",                                                       { desc = "Prev Hunk",         silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ghs", ":Gitsigns stage_hunk<CR>",                                                          { desc = "Toggle Stage Hunk", silent = true, noremap = true })
-vim.keymap.set("v", "<leader>ghs", function() require("gitsigns").stage_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, { desc = "Toggle Stage Hunk", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ghr", ":Gitsigns reset_hunk<CR>",                                                          { desc = "Reset Hunk",        silent = true, noremap = true })
-vim.keymap.set("v", "<leader>ghr", function() require("gitsigns").reset_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, { desc = "Reset Hunk",        silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ghu", ":Gitsigns undo_stage_hunk<CR>",                                                     { desc = "Undo Last Stage",   silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ghS", ":Gitsigns stage_buffer<CR>",                                                        { desc = "Stage Buffer",      silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ghR", ":Gitsigns reset_buffer<CR>",                                                        { desc = "Reset Buffer",      silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ghd", ":Gitsigns diffthis ~<CR>",                                                          { desc = "Diff This",         silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ght", ":Gitsigns toggle_deleted<CR>",                                                      { desc = "Toggle Deleted",    silent = true, noremap = true })
--- GitGraph
-vim.keymap.set("n", "<leader>ggg", Util_git.gitgraph_toggle, { desc = "GitGraph Toggle", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ggd", Util_git.gitgraph_draw,   { desc = "GitGraph Draw", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ggs", Util_git.gitgraph_split,  { desc = "GitGraph Draw (Split)", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ggv", Util_git.gitgraph_vsplit, { desc = "GitGraph Draw (Vertical)", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>ggq", Util_git.gitgraph_close,  { desc = "GitGraph Close", silent = true, noremap = true })
--- Git-worktree
-vim.keymap.set("n", "<leader>gww",function () require('telescope').extensions.git_worktree.git_worktree() end,       { desc = "Git Worktree",        silent = true, noremap = true })
-vim.keymap.set("n", "<leader>gwa",function () require('telescope').extensions.git_worktree.create_git_worktree() end, { desc = "Create Git Worktree", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>gwn",function () require('telescope').extensions.notify.notify() end,                    { desc = "Git Worktree Notify", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>gh]", function () require("gitsigns").nav_hunk("next") end,                                 { desc = "Next Hunk",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>gh[", function () require("gitsigns").nav_hunk("prev") end,                                 { desc = "Prev Hunk",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghs", function () require("gitsigns").stage_hunk() end,                                     { desc = "Toggle Stage Hunk", silent = true, noremap = true })
+vim.keymap.set("v", "<leader>ghs", function () require("gitsigns").stage_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, { desc = "Toggle Stage Hunk", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghr", function () require("gitsigns").reset_hunk() end,                                     { desc = "Reset Hunk",        silent = true, noremap = true })
+vim.keymap.set("v", "<leader>ghr", function () require("gitsigns").reset_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, { desc = "Reset Hunk",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghS", function () require("gitsigns").stage_buffer() end,                                   { desc = "Stage Buffer",      silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghR", function () require("gitsigns").reset_buffer() end,                                   { desc = "Reset Buffer",      silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghd", function () require("gitsigns").diffthis("~") end,                                    { desc = "Diff against last commit",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ghD", function () require("gitsigns").diffthis() end,                                       { desc = "Diff against the index",         silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ght", function () require("gitsigns").preview_hunk_inline() end,                            { desc = "Toggle Deleted",    silent = true, noremap = true })
 
 -- Harpoon
 vim.keymap.set("n", "<leader>hh", Util_harpoon.fzf.harpoon_fzf,                       { desc = "Harpoon Menu",  silent = true, noremap = true })
@@ -159,3 +149,14 @@ vim.keymap.set({"n", "v"}, "<leader>ef", function() require("conform").format({ 
 -- Flash
 vim.keymap.set({ "n", "o", "x" }, "s", function() require("flash").jump() end,       { desc = "Flash",            silent = true, noremap = true })
 vim.keymap.set({ "n", "o", "x" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter", silent = true, noremap = true })
+
+-- GitGraph
+-- vim.keymap.set("n", "<leader>ggg", Util_git.gitgraph_toggle, { desc = "GitGraph Toggle", silent = true, noremap = true })
+-- vim.keymap.set("n", "<leader>ggd", Util_git.gitgraph_draw,   { desc = "GitGraph Draw", silent = true, noremap = true })
+-- vim.keymap.set("n", "<leader>ggs", Util_git.gitgraph_split,  { desc = "GitGraph Draw (Split)", silent = true, noremap = true })
+-- vim.keymap.set("n", "<leader>ggv", Util_git.gitgraph_vsplit, { desc = "GitGraph Draw (Vertical)", silent = true, noremap = true })
+-- vim.keymap.set("n", "<leader>ggq", Util_git.gitgraph_close,  { desc = "GitGraph Close", silent = true, noremap = true })
+-- Git-worktree
+-- vim.keymap.set("n", "<leader>gww",function () require('telescope').extensions.git_worktree.git_worktree() end ,       { desc = "Git Worktree",        silent = true, noremap = true })
+-- vim.keymap.set("n", "<leader>gwa",function () require('telescope').extensions.git_worktree.create_git_worktree() end, { desc = "Create Git Worktree", silent = true, noremap = true })
+-- vim.keymap.set("n", "<leader>gwn",function () require('telescope').extensions.notify.notify() end,                    { desc = "Git Worktree Notify", silent = true, noremap = true })
