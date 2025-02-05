@@ -8,6 +8,7 @@ return {
         spec = {
             { "<leader>a",  mode = { "n", "v" }, group = "Surround" },
             { "<leader>b",  mode = "n",          group = "Buffer" },
+            { "<leader>c",  mode = "n",          group = "Copilot" },
             { "<leader>d",  mode = "n",          group = "Lsp" },
             { "<leader>e",  mode = { "n", "v" }, group = "Edit" },
             { "<leader>f",  mode = "n",          group = "Fzf" },
@@ -16,6 +17,7 @@ return {
             { "<leader>gh", mode = { "n", "v" }, group = "Gitsigns" },
             -- { "<leader>gg", mode = "n",          group = "GitGraph" },
             -- { "<leader>gw", mode = "n",          group = "Git Worktree" },
+            { "<leader>h",  mode = "n",          group = "Harpoon" },
             { "<leader>m",  mode = "n",          group = "Markdown" },
             { "<leader>n",  mode = "n",          group = "TODO" },
             { "<leader>q",  mode = "n",          group = "Quit" },

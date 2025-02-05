@@ -1,11 +1,11 @@
-local Util = require("yuhsienchiang.util.keymap_util")
+local Util_keymap = require("yuhsienchiang.util.keymap_util")
 local Util_harpoon = require("yuhsienchiang.util.harpoon_util")
 -- local Util_git = require("yuhsienchiang.util.gitgraph_util")
 local Util_venv = require("yuhsienchiang.util.venv_util")
 local Util_todo = require("yuhsienchiang.util.todo_util")
 
 -- use <ESC> to clear search highlight
-vim.keymap.set({ "i", "n" }, "<esc>", Util.esc_cmd, { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
+vim.keymap.set({ "i", "n" }, "<esc>", Util_keymap.esc_cmd, { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
 
 -- Better
 -- better yank/delete/replace
@@ -42,11 +42,7 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv",        { desc = "Move Up",   si
 -- smart cursor movement
 vim.keymap.set({ "n", "v", "x", "o" },      "<C-l>", "$",               { desc = "Far Right",  silent = true, noremap = true })
 vim.keymap.set("i",                         "<C-l>", "<C-o>$",          { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set({ "n", "v", "i", "x", "o" }, "<C-h>", Util.smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
-vim.keymap.set({ "n", "v", "x", "o" },      "<C-k>", "gg",              { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set("i",                         "<C-k>", "<C-o>gg",         { desc = "Far Top",    silent = true, noremap = true })
-vim.keymap.set({ "n", "v", "x", "o" },      "<C-j>", "G",               { desc = "Far Bottom", silent = true, noremap = true })
-vim.keymap.set("i",                         "<C-j>", "<C-o>G",          { desc = "Far Bottom", silent = true, noremap = true })
+vim.keymap.set({ "n", "v", "i", "x", "o" }, "<C-h>", Util_keymap.smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
 
 -- Window
 -- Window Navigation
@@ -147,6 +143,10 @@ vim.keymap.set("n", "<leader>nq", ":Trouble quickfix toggle<CR>", { desc = "Togg
 
 -- Conform
 vim.keymap.set({"n", "v"}, "<leader>ef", function() require("conform").format({ timeout_ms = 3000 }) end, { desc = "Format", silent = true, noremap = true })
+
+-- Copilot
+vim.keymap.set("n", "<leader>cc", ":Copilot enable<CR>",  { desc = "Copilot enable", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>cC", ":Copilot disable<CR>", { desc = "Copilot disable", silent = true, noremap = true })
 
 -- Flash
 vim.keymap.set({ "n", "o", "x" }, "s", function() require("flash").jump() end,       { desc = "Flash",            silent = true, noremap = true })
