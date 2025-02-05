@@ -2,6 +2,7 @@ local Util = require("yuhsienchiang.util.keymap_util")
 local Util_harpoon = require("yuhsienchiang.util.harpoon_util")
 -- local Util_git = require("yuhsienchiang.util.gitgraph_util")
 local Util_venv = require("yuhsienchiang.util.venv_util")
+local Util_todo = require("yuhsienchiang.util.todo_util")
 
 -- use <ESC> to clear search highlight
 vim.keymap.set({ "i", "n" }, "<esc>", Util.esc_cmd, { desc = "Escape, clear hlsearch, and clear notification", silent = true, noremap = true })
@@ -140,8 +141,9 @@ vim.keymap.set("n", "<leader>h3", function() require("harpoon"):list():select(3)
 vim.keymap.set("n", "<leader>h4", function() require("harpoon"):list():select(4) end, { desc = "File 4", silent = true, noremap = true })
 
 -- Todo
-vim.keymap.set("n", "<leader>nn", ":TodoTelescope<CR>",           { desc = "Toggle TODO (Trouble)",   silent = true, noremap = true })
-vim.keymap.set("n", "<leader>nq", ":Trouble quickfix toggle<CR>", { desc = "Toggle Quickfix (Trouble)",   silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nn", Util_todo.todo_fzf_all,         { desc = "Toggle Todo (All)",    silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nN", Util_todo.todo_fzf_select,      { desc = "Toggle Todo (Select)", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>nq", ":Trouble quickfix toggle<CR>", { desc = "Toggle Quickfix (Trouble)", silent = true, noremap = true })
 
 -- Conform
 vim.keymap.set({"n", "v"}, "<leader>ef", function() require("conform").format({ timeout_ms = 3000 }) end, { desc = "Format", silent = true, noremap = true })
