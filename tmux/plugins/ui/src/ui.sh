@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 tmux_config_dir="${XDG_CONFIG_HOME}/tmux"
-source $tmux_config_dir/themes/catppuccin_mocha.sh
+source $tmux_config_dir/themes/catppuccin_frappe.sh
 
 # set tmux message style
 tmux set-option -g message-style "fg=${thm_sky},bg=${thm_base},bold,italics,align=centre"

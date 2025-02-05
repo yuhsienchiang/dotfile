@@ -2,7 +2,7 @@
 
 tmux_config_dir="${XDG_CONFIG_HOME}/tmux"
 
-source $tmux_config_dir/themes/catppuccin_mocha.sh
+source $tmux_config_dir/themes/catppuccin_frappe.sh
 
 tmux set-option -g status-position top
 tmux set-option -g status-justify left

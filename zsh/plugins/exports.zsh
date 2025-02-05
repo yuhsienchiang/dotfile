@@ -6,7 +6,7 @@ if [[ -z $TMUX ]]; then
 
     export VIRTUAL_ENV_DISABLE_PROMPT=true
     # Bat (cat replacement) colorscheme
-    export BAT_THEME="Catppuccin-mocha"
+    # export BAT_THEME="Catppuccin-mocha"
 
     # Pyenv
     export PYENV_ROOT="$HOME/.pyenv"
@@ -22,11 +22,12 @@ if [[ -z $TMUX ]]; then
     # FZF
     export FZF_DEFAULT_COMMAND='fd -tf -tl --hidden --follow --no-ignore-vcs'        # default: used by fzf commands without keymap
     export FZF_DEFAULT_OPTS=" \
-        --height 40% --layout=reverse --border=rounded --cycle \
-        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-        --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
-        --color=gutter:#1e1e2e \
+        --height 60% --layout=reverse --border=sharp --cycle \
+        --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+        --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+        --color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
+        --color=selected-bg:#51576d \
+        --color=gutter:#303446 \
         --prompt='󰍉 ' --pointer='' --marker='+' "
 
     export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"                               # ctrl-t: past selected to prompt

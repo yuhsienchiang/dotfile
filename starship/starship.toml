@@ -18,7 +18,7 @@ $azure\
 """
 
 add_newline = true
-palette = "catppuccin_mocha"
+palette = "catppuccin_frappe"
 
 # Left
 [os]

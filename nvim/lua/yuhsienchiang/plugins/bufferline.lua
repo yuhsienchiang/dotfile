@@ -1,11 +1,11 @@
 return {
     "akinsho/bufferline.nvim",
     event = "TabNew",
-    version = "*",
+    -- after = "catppuccin",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
         local bufferline = require("bufferline")
-        local catppuccin_colors = require("catppuccin.palettes").get_palette("mocha")
+        local catppuccin_colors = require("catppuccin.palettes").get_palette("frappe")
 
         bufferline.setup({
             options = {
@@ -46,70 +46,117 @@ return {
                 hover = { enabled = false },
             },
             highlights = {
-                fill = { -- the space where is no tabs
-                    bg = catppuccin_colors.base,
-                },
-                background = { -- not selected buffer
-                    fg = catppuccin_colors.surface2,
+                -- the space where is no tabs
+                fill = { bg = catppuccin_colors.base },
+
+                -- buffers
+                background = {
+                    fg = catppuccin_colors.overlay1,
                     bg = catppuccin_colors.mantle,
-                    bold = false,
-                },
-                buffer_visible = {
-                    fg = catppuccin_colors.surface2,
-                    bg = catppuccin_colors.mantle,
-                    bold = false,
-                },
-                buffer_selected = { -- selected buffer
-                    fg = catppuccin_colors.subtext1,
-                    bg = catppuccin_colors.base,
                     bold = false,
                     italic = false,
-                    underline = false,
                 },
-                close_button = {
-                    fg = catppuccin_colors.surface2,
+                buffer_visible = {
+                    fg = catppuccin_colors.overlay1,
                     bg = catppuccin_colors.mantle,
                     bold = false,
+                    italic = false,
+                },
+                buffer_selected = {
+                    fg = catppuccin_colors.subtext1,
+                    bg = catppuccin_colors.base,
+                    bold = true,
+                    italic = true,
+                },
+
+                -- duplicate
+                duplicate = {
+                    fg = catppuccin_colors.overlay1,
+                    bg = catppuccin_colors.mantle,
+                    bold = false,
+                    italic = false,
+                },
+                duplicate_visible = {
+                    fg = catppuccin_colors.overlay1,
+                    bg = catppuccin_colors.mantle,
+                    bold = false,
+                    italic = false,
+                },
+                duplicate_selected = {
+                    fg = catppuccin_colors.subtext1,
+                    bg = catppuccin_colors.base,
+                    bold = true,
+                    italic = true,
+                },
+
+                -- modified symbol
+                modified = {
+                    fg = catppuccin_colors.overlay1,
+                    bg = catppuccin_colors.mantle,
+                    bold = false,
+                    italic = false,
+                },
+                modified_visible = {
+                    fg = catppuccin_colors.overlay1,
+                    bg = catppuccin_colors.mantle,
+                    bold = false,
+                    italic = false,
+                },
+                modified_selected = {
+                    fg = catppuccin_colors.maroon,
+                    bg = catppuccin_colors.base,
+                    bold = true,
+                    italic = false,
+                },
+
+                -- indicator
+                indicator_visible = {
+                    fg = catppuccin_colors.maroon,
+                    bg = catppuccin_colors.mantle,
+                },
+                indicator_selected = {
+                    fg = catppuccin_colors.maroon,
+                    bg = catppuccin_colors.base,
+                },
+
+                -- close buttons
+                close_button = {
+                    fg = catppuccin_colors.overlay1,
+                    bg = catppuccin_colors.mantle,
+                    bold = false,
+                    italic = false,
                 },
                 close_button_visible = {
-                    fg = catppuccin_colors.surface2,
+                    fg = catppuccin_colors.overlay1,
                     bg = catppuccin_colors.mantle,
                     bold = false,
+                    italic = false,
                 },
                 close_button_selected = {
                     fg = catppuccin_colors.subtext1,
                     bg = catppuccin_colors.base,
+                    bold = true,
+                    italic = true,
+                },
+
+                -- number
+                numbers = {
+                    fg = catppuccin_colors.overlay1,
+                    bg = catppuccin_colors.mantle,
                     bold = false,
                     italic = false,
-                    underline = false,
                 },
-                modified = {
-                    fg = catppuccin_colors.surface2,
+                numbers_visible = {
+                    fg = catppuccin_colors.overlay1,
                     bg = catppuccin_colors.mantle,
                     bold = false,
-                    underline = false,
+                    italic = false,
                 },
-                modified_visible = {
-                    fg = catppuccin_colors.surface2,
-                    bg = catppuccin_colors.mantle,
-                    bold = false,
-                    underline = false,
-                },
-                modified_selected = {
+                numbers_selected = {
                     fg = catppuccin_colors.subtext1,
                     bg = catppuccin_colors.base,
-                    bold = false,
-                    italic = true,
-                    underline = false,
-                },
-                indicator_visible = {
-                    fg = catppuccin_colors.surface2,
-                    bg = catppuccin_colors.base,
-                },
-                indicator_selected = {
-                    fg = catppuccin_colors.blue,
-                    bg = catppuccin_colors.base,
                     bold = true,
+                    italic = true,
                 },
             },
         })

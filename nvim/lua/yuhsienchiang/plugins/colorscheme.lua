@@ -8,7 +8,7 @@ return {
         priority = 1000,
         config = function()
             if theme == "catppuccin" then
-                require("yuhsienchiang.plugins.themes.catppuccin").setup("mocha")
+                require("yuhsienchiang.plugins.themes.catppuccin").setup("frappe")
             end
         end,
     },

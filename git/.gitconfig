@@ -1,6 +1,8 @@
 [core]
     editor = nvim
-	pager = bat
+	pager = delta
+[include]
+    path = ~/.config/delta/themes/catppuccin.gitconfig
 [merge]
     tool = nvim
 [mergetool "nvim"]
@@ -9,3 +11,8 @@
     prompt = false
 [init]
 	defaultBranch = main
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    features = catppuccin-frappe

@@ -3,7 +3,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
-        local theme_flavour = "mocha"
+        local theme_flavour = "frappe"
         local catppuccin_color = require("catppuccin.palettes").get_palette(theme_flavour)
         local Util = require("yuhsienchiang.util.lualine_util")
         require("lualine").setup({
