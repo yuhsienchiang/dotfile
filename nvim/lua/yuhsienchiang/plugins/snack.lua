@@ -1,7 +1,7 @@
 return {
     "folke/snacks.nvim",
     lazy = false,
-    priority = 900,
+    priority = 1000,
     opts = {
         styles = {
             notification = { border = "single" },
@@ -37,7 +37,9 @@ return {
         },
         dashboard = {
             preset = {
-                pick = "telescope.nvim",
+                pick = function(cmd, opts)
+                    require("fzf-lua")[cmd](opts)
+                end,
                 keys = {
                     { icon = "󰙅 ", key = "s", desc = "Explorer", action = ":NvimTreeToggle" },
                     { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
