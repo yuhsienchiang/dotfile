@@ -11,5 +11,18 @@ return {
                 winbar_info = true, -- See ':h diffview-config-view.x.winbar_info'
             },
         },
+        file_panel = {
+            listing_style = "list",
+            win_config = {
+                position = "right",
+                width = 30,
+            },
+        },
+        file_history_panel = {
+            win_config = {
+                position = "bottom",
+                height = 10,
+            },
+        },
     },
 }

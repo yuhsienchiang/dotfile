@@ -23,7 +23,6 @@ opt.breakindentopt = "list:-1"
 opt.wrap = false
 opt.formatoptions = "jcrqt"
 opt.iskeyword:append("-")
-opt.whichwrap:append("<>[]hl") -- go to previous/next line with h,l,left arrow and right arrow when cursor reaches end/beginning of line
 
 -- search settings
 opt.ignorecase = true

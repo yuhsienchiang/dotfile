@@ -13,6 +13,11 @@ function M.activated_venv()
 end
 
 function M.venv_selector_fzf()
+    if vim.bo.filetype ~= "python" then
+        vim.notify("Not a Python file", vim.log.levels.WARN, { title = "VenvSelector", style = "compact" })
+        return
+    end
+
     local fzf_lua = require("fzf-lua")
     local venv_selector = require("venv-selector")
     local config_venv_selector = require("venv-selector.config")
@@ -25,11 +30,11 @@ function M.venv_selector_fzf()
         fzf_opts = { ["--nth"] = "2" }, -- only matching the file path, not the icon
         prompt = " 󰍉 ",
         winopts = {
-            height = 0.35,
-            width = 0.5,
-            row = 0.5,
-            col = 0.50,
-            border = "single",
+            height = 0.25,
+            width = 1,
+            row = 1,
+            col = 0,
+            border = { "─", "─", "─", " ", " ", " ", " ", " " },
             backdrop = 100,
             title = " VenvSelector ",
             title_pos = "center",
@@ -37,16 +42,13 @@ function M.venv_selector_fzf()
         },
         actions = {
             ["default"] = function(selected)
-                if vim.bo.filetype == "python" then
-                    local venv_name = selected[1]:match(". +(.+)")
-                    venv_selector.activate_from_path(venv_name)
-                else
-                    vim.notify("Not a Python file", vim.log.levels.WARN)
-                end
+                local venv_name = selected[1]:match(". +(.+)")
+                venv_selector.activate_from_path(venv_name)
             end,
         },
         fn_transform = function(x)
-            return "  " .. x
+            -- colorised python symbol
+            return "[0;33m[0m " .. x
         end,
     }
 

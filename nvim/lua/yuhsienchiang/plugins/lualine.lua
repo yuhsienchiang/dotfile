@@ -10,7 +10,7 @@ return {
             options = {
                 theme = Util.get_catppuccin_theme(theme_flavour),
                 icons_enabled = true,
-                section_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
                 disabled_filetypes = {
                     statusline = {
@@ -55,6 +55,7 @@ return {
                 lualine_c = {
                     {
                         "branch",
+                        icon = " ",
                         fmt = function(str)
                             local strw = vim.api.nvim_strwidth(str)
                             if strw > 20 then

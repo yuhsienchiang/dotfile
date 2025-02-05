@@ -23,7 +23,6 @@ return {
             indent = {
                 enabled = true,
                 char = "▏",
-                blank = " ",
             },
             animate = { enabled = false },
             scope = {
@@ -42,20 +41,29 @@ return {
                 keys = {
                     { icon = "󰙅 ", key = "s", desc = "Explorer", action = ":NvimTreeToggle" },
                     { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-                    { icon = " ", key = "w", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')", },
-                    { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles', {only_cwd=true})", },
+                    {
+                        icon = " ",
+                        key = "w",
+                        desc = "Find Text",
+                        action = ":lua Snacks.dashboard.pick('live_grep_glob', {winopts={title=' Live Multi-Grep '}})",
+                    },
+                    {
+                        icon = " ",
+                        key = "r",
+                        desc = "Recent Files",
+                        action = ":lua Snacks.dashboard.pick('oldfiles', {cwd_only=true})",
+                    },
                     { icon = " ", key = "u", desc = "Restore Session", section = "session" },
-                    { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil, },
+                    {
+                        icon = "󰒲 ",
+                        key = "l",
+                        desc = "Lazy",
+                        action = ":Lazy",
+                        enabled = package.loaded.lazy ~= nil,
+                    },
                     { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                 },
                 header = [[
- ██████╗ ██████╗ ██████╗ ███████╗
-██╔════╝██╔═══██╗██╔══██╗██╔════╝
-██║     ██║   ██║██║  ██║█████╗  
-██║     ██║   ██║██║  ██║██╔══╝  
-╚██████╗╚██████╔╝██████╔╝███████╗
- ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
-
  ██████╗ ██████╗ ██████╗ ███████╗
 ██╔════╝██╔═══██╗██╔══██╗██╔════╝
 ██║     ██║   ██║██║  ██║█████╗  
@@ -73,15 +81,14 @@ return {
             },
             sections = {
                 { pane = 1, section = "header" },
+                { pane = 1, section = "keys", title = "Quick", padding = 1 },
+                -- { pane = 2, section = "recent_files", title = "Recent Files", cwd = true, limit = 5, padding = 1 },
                 {
                     pane = 1,
-                    text = "Pause and Pray | Jesus over everything",
+                    text = { "Pause and Pray | Jesus over everything", hl = "SnacksDashboardFooter" },
                     align = "center",
-                    hl = "SnacksDashboardFooter",
                 },
-                { pane = 2, section = "keys", title = "Quick", padding = 1 },
-                { pane = 2, section = "recent_files", title = "Recent Files", cwd = true, limit = 5, padding = 1 },
-                { pane = 2, section = "startup" },
+                { pane = 1, section = "startup" },
             },
         },
     },

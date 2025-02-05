@@ -19,6 +19,12 @@ local opts = {
         missing = true,
         colorscheme = { "catppuccin" },
     },
+    ui = {
+        border = "single",
+        size = { width = 0.91, height = 0.8 },
+        title = "Lazy",
+        backdrop = 100,
+    },
     performance = {
         cache = { enabled = true },
         reset_packpath = true,
