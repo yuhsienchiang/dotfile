@@ -5,14 +5,15 @@ return {
         "mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "hrsh7th/cmp-nvim-lsp",
+        "saghen/blink.cmp",
+        "rachartier/tiny-inline-diagnostic.nvim",
+        -- "hrsh7th/cmp-nvim-lsp",
     },
     opts = {
         lsp_server = {
             "bashls",
             "clangd",
             "dotls",
-            "hls",
             "jdtls",
             "jsonls",
             "lua_ls",
@@ -24,7 +25,6 @@ return {
             "black",
             "clang-format",
             "isort",
-            "prettier",
             "stylua",
         },
     },
@@ -35,11 +35,12 @@ return {
             underline = false,
             update_in_insert = false,
             signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰠠" } },
-            virtual_text = {
-                spacing = 2,
-                source = "if_many",
-                prefix = "  ",
-            },
+            virtual_text =false,
+            -- virtual_text = {
+            --     spacing = 2,
+            --     source = "if_many",
+            --     prefix = " ",
+            -- },
             severity_sort = true,
         })
 
@@ -47,7 +48,8 @@ return {
         local lspconfig = require("lspconfig")
         local mason_lspconfig = require("mason-lspconfig")
         local mason_tool_installer = require("mason-tool-installer")
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        -- local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        local blink_cmp = require('blink.cmp')
         local Util = require("yuhsienchiang.util.lsp_util")
 
         mason_lspconfig.setup({
@@ -60,11 +62,14 @@ return {
             run_on_start = true,
         })
 
+        vim.cmd([[MasonToolsInstall]])
+
         local lsp_capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_nvim_lsp.default_capabilities()
+            blink_cmp.get_lsp_capabilities()
+            -- cmp_nvim_lsp.default_capabilities()
         )
 
         -- stylua: ignore

@@ -1,4 +1,5 @@
 return {
+    enabled = false,
     "iguanacucumber/magazine.nvim",
     name = "nvim-cmp", -- Otherwise highlighting gets messed up
     event = { "InsertEnter", "CmdlineEnter" },
@@ -8,11 +9,7 @@ return {
         "rafamadriz/friendly-snippets", -- Bunch of Snippets
         -- sources
         "saadparwaiz1/cmp_luasnip", -- Snippet Completions
-
-        -- old sourse
         "hrsh7th/cmp-path", -- Path Completions
-
-        -- new sourse
         { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp" },
         { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
         { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
