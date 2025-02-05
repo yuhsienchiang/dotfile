@@ -82,10 +82,6 @@ return {
                         default = "󰈚",
                         symlink = "",
                         folder = {
-                            default = "",
-                            open = "",
-                            empty = "",
-                            empty_open = "",
                             symlink = "",
                             symlink_open = "",
                         },

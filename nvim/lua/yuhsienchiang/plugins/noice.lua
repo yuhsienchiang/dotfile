@@ -25,10 +25,6 @@ return {
                 substitute = { pattern = "^:%%?s/", icon = " ", ft = "regex", opts = { border = { text = { top = " sub (old/new/) " }}}},
 			},
         },
-        popupmenu = {
-            enabled = true,
-            backend = "nui",
-        },
         lsp = {
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -51,15 +47,6 @@ return {
                     },
                     scrollbar = false
                 }, -- merged with defaults from documentation
-            },
-            documentation = {
-                view = "hover",
-                opts = {
-                    win_options = {
-                        concealcursor = "n",
-                        conceallevel = 3,
-                    },
-                },
             },
             signature = {
                 enabled = true,

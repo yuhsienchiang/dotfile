@@ -4,16 +4,20 @@ return {
     priority = 900,
     opts = {
         styles = {
-            notification = {
-                border = "single",
-            },
+            notification = { border = "single" },
         },
-        scope = { debounce = 50 },
-
         quickfile = { enabled = true },
-        notifier = {
-            enabled = true,
-            timeout = 3000,
+        notifier = { enabled = true },
+        words = { enabled = true },
+        -- scope library
+        scope = {
+            min_size = 1,
+            debounce = 50,
+            treesitter = {
+                enabled = true,
+                blocks = { enabled = true },
+                field_blocks = { "local_declaration" },
+            },
         },
         indent = {
             indent = {
@@ -21,25 +25,16 @@ return {
                 char = "▏",
                 blank = " ",
             },
+            animate = { enabled = false },
             scope = {
                 enabled = true, -- enable highlighting the current scope
-                animate = { enabled = false },
                 char = "▏",
-                underline = false, -- underline the start of the scope
                 only_current = true, -- only show scope in the current window
             },
         },
         statuscolumn = {
             enabled = true,
-            folds = {
-                open = false, -- show open fold icons
-                git_hl = true,
-            },
-        },
-        words = {
-            enabled = true,
-            debounce = 200,
-            modes = { "n", "i", "c" }, -- modes to show references
+            folds = { git_hl = true },
         },
         dashboard = {
             preset = {

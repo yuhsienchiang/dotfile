@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("FileType", {
         "man",
         "notify",
         "checkhealth",
-        "gitgraph",
+        -- "gitgraph",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

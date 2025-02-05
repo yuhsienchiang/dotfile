@@ -24,9 +24,7 @@ return {
                 ["_"] = "actions.open_cwd",
                 ["~"] = { "actions.cd", mode = "n", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
             },
-            view_options = {
-                show_hidden = true,
-            },
+            view_options = { show_hidden = true },
             win_options = {
                 signcolumn = "no",
                 number = false,
@@ -34,18 +32,12 @@ return {
             },
             git = {
                 -- Return true to automatically git add/mv/rm files
-                add = function(_)
-                    return false
-                end,
-                mv = function(_, _)
-                    return true
-                end,
-                rm = function(_)
-                    return true
-                end,
+                add = function(_) return false end,
+                mv = function(_, _) return true end,
+                rm = function(_) return true end,
             },
             float = {
-                padding = 4,
+                padding = 2,
                 border = "single",
                 max_width = max_width,
                 max_height = max_height,

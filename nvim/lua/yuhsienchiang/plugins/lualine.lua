@@ -10,13 +10,11 @@ return {
             options = {
                 theme = Util.get_catppuccin_theme(theme_flavour),
                 icons_enabled = true,
-                always_divide_middle = true,
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
                 disabled_filetypes = {
                     statusline = {
                         "checkhealth",
-                        "dashboard",
                         "help",
                         "NvimTree",
                         "lazy",
@@ -28,7 +26,6 @@ return {
                     },
                     winbar = {
                         "checkhealth",
-                        "dashboard",
                         "help",
                         "lazy",
                         "lspinfo",
@@ -42,22 +39,10 @@ return {
             },
             -- lualine for active/focus window
             sections = {
-                lualine_a = {
-                    {
-                        "mode",
-                        padding = 1,
-                    },
-                },
+                lualine_a = { { "mode" } },
                 lualine_b = {
                     {
                         "filename",
-                        fmt = function(str)
-                            if vim.bo.modified then
-                                return str
-                            else
-                                return str .. "  "
-                            end
-                        end,
                         file_status = true,
                         newfile_status = true,
                         symbols = {
@@ -81,9 +66,7 @@ return {
                 },
                 lualine_x = {
                     {
-                        function()
-                            return require("noice").api.status.mode.get()
-                        end,
+                        function() return require("noice").api.status.mode.get() end,
                         cond = function()
                             return package.loaded["noice"] and require("noice").api.status.mode.has()
                         end,
@@ -133,13 +116,6 @@ return {
                 lualine_a = {
                     {
                         "filename",
-                        fmt = function(str)
-                            if vim.bo.modified then
-                                return str
-                            else
-                                return str .. "  "
-                            end
-                        end,
                         file_status = true,
                         newfile_status = true,
                         symbols = {
