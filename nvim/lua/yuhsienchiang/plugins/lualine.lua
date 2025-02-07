@@ -77,6 +77,7 @@ return {
                 lualine_y = {
                     {
                         require("yuhsienchiang.util.venv_util").activated_venv,
+                        cond = function () return vim.bo.filetype == "python" end,
                         color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
                     },
                     {
