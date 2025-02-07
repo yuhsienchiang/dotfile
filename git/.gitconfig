@@ -1,3 +1,7 @@
+# This is Git's per-user configuration file.
+[user]
+    name = yuhsienchiang
+    email = yuhsien.sam.chiang@gmail.com
 [core]
     editor = nvim
 	pager = delta
