@@ -69,7 +69,7 @@ return {
 
         -- stylua: ignore
 		local on_attach = function(_, _)
-			-- vim.keymap.set("n",               "<leader>ds", "<cmd>Trouble symbols toggle<CR>",         { desc = "Toggle symbols (Trouble)",               noremap = true, silent = true })
+			vim.keymap.set("n",               "<leader>ds", ":Trouble symbols toggle<CR>",    { desc = "Toggle symbols (Trouble)",               noremap = true, silent = true })
             vim.keymap.set("n",               "<leader>df", ":FzfLua lsp_finder<CR>",             { desc = "LSP Finder",                         silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>dd", ":FzfLua lsp_definitions<CR>",        { desc = "LSP Definition",                     silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>dh", vim.lsp.buf.hover,                    { desc = "Show hover document",                silent = true, noremap = true })

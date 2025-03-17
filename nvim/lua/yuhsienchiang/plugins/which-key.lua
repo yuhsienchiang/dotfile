@@ -6,7 +6,7 @@ return {
         delay = 500,
         -- stylua: ignore
         spec = {
-            { "<leader>a",  mode = { "n", "v" }, group = "Surround" },
+            { "<leader>a",  mode = { "n", "v" }, group = "Avante" },
             { "<leader>b",  mode = "n",          group = "Buffer" },
             { "<leader>c",  mode = "n",          group = "Copilot" },
             { "<leader>d",  mode = "n",          group = "Lsp" },
@@ -15,8 +15,6 @@ return {
             { "<leader>g",  mode = { "n", "v" }, group = "Git" },
             { "<leader>gd", mode = "n",          group = "Diffview" },
             { "<leader>gh", mode = { "n", "v" }, group = "Gitsigns" },
-            -- { "<leader>gg", mode = "n",          group = "GitGraph" },
-            -- { "<leader>gw", mode = "n",          group = "Git Worktree" },
             { "<leader>h",  mode = "n",          group = "Harpoon" },
             { "<leader>m",  mode = "n",          group = "Markdown" },
             { "<leader>n",  mode = "n",          group = "TODO" },
