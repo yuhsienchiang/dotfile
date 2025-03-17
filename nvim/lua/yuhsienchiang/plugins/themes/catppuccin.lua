@@ -61,6 +61,12 @@ function M.setup(flavour)
                 -- Lazy
                 LazyNormal = { fg = colors.text, bg = colors.base },
 
+                -- Avante
+                AvanteTitle = { fg = colors.base, bg = colors.green, bold = true },
+                AvanteSubtitle = { fg = colors.base, bg = colors.sky, bold = true },
+                AvanteThirdTitle = { fg = colors.base, bg = colors.yellow, bold = true },
+                AvantePopupHint = { fg = colors.overlay1, bg = colors.mantle },
+
                 -- BlinkCmp
                 BlinkCmpMenu =           { bg = colors.base },
                 BlinkCmpMenuSelection =  { fg = colors.base, bg = colors.green, bold = true },
