@@ -23,6 +23,7 @@ return {
             { "<leader>q",  mode = "n",          group = "Quit" },
             { "<leader>s",  mode = "n",          group = "NvimTree" },
             { "<leader>t",  mode = "n",          group = "Tab" },
+            { "<leader>u",  mode = "n",          group = "Debugger" },
             { "<leader>v",  mode = "n",          group = "VenvSelect" },
             { "<leader>w",  mode = "n",          group = "Window" },
         },

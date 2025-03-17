@@ -10,6 +10,7 @@ return {
                 cached_venv_automatic_activation = true,
                 activate_venv_in_terminal = false,
                 notify_user_on_venv_activation = true,
+                dap_enabled = true,
             },
             search = {
                 pyenv = {

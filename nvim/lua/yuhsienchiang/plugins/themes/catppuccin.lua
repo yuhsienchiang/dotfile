@@ -16,6 +16,8 @@ function M.setup(flavour)
         default_integrations = false,
         integrations = {
             blink_cmp = true,
+            dap = true,
+            dap_ui = true,
             dashboard = false,
             diffview = true,
             flash = true,
