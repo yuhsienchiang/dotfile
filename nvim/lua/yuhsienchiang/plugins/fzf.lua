@@ -35,7 +35,7 @@ return {
                 -- previewer = "bat",
                 no_ignore = false,
                 winopts = {
-                    height = 0.35,
+                    height = 0.4,
                     width = 1,
                     row = 1, -- window row position (0=top, 1=bottom)
                     col = 0, -- window col position (0=left, 1=right)
@@ -60,7 +60,7 @@ return {
                 include_current_session = true, -- include bufs from current session
                 -- previewer = "bat",
                 winopts = {
-                    height = 0.35,
+                    height = 0.4,
                     width = 1,
                     row = 1,
                     col = 0,
@@ -77,6 +77,9 @@ return {
                         winopts = { number = false, relativenumber = false },
                     },
                 },
+                actions = {
+                    ["enter"] = actions.file_edit,
+                },
             },
             buffers = {
                 prompt = " 󰍉 ",
@@ -89,7 +92,7 @@ return {
                 no_header_i = true,
                 -- previewer = "bat",
                 winopts = {
-                    height = 0.35,
+                    height = 0.4,
                     width = 1,
                     row = 1,
                     col = 0,
@@ -114,28 +117,28 @@ return {
             grep = {
                 prompt = " 󰍉 ",
                 glob_separator = "  ",
-                fzf_opts = {
-                    ["--layout"] = "reverse-list",
-                    ["--keep-right"] = true,
-                },
                 live_ast_prefix = false,
                 no_header_i = true,
-                -- previewer = "bat",
+                fzf_opts = {
+                    ["--delimiter"] = "[\\):]",
+                    ["--with-nth"] = "1,2,3",
+                },
+                previewer = "bat",
                 hidden = true, -- enable hidden files by default
                 follow = true, -- do not follow symlinks by default
                 no_ignore = false, -- respect ".gitignore"  by default
-                multiline = true,
+                formatter = "path.dirname_first",
                 winopts = {
-                    height = 0.8,
-                    width = 0.9,
-                    row = 0.55,
-                    col = 0.50,
-                    border = "single",
+                    height = 0.6,
+                    width = 1,
+                    row = 1,
+                    col = 0,
+                    border = { "─", "─", "─", " ", " ", " ", " ", " " },
                     backdrop = 100,
                     title = " Grep ",
                     title_pos = "center",
                     preview = {
-                        border = "single",
+                        border = { "┬", "─", "─", " ", " ", " ", "│", "│" },
                         horizontal = "right:50%", -- right|left:size
                         layout = "horizontal", -- horizontal|vertical|flex
                         title = true, -- preview border title (file/buf)?
@@ -147,18 +150,17 @@ return {
             },
             manpages = {
                 prompt = " 󰍉 ",
-                fzf_opts = { ["--layout"] = "reverse-list" },
                 winopts = {
-                    height = 0.8,
-                    width = 0.8,
-                    row = 0.55,
-                    col = 0.50,
-                    border = "single",
+                    height = 0.4,
+                    width = 1,
+                    row = 1,
+                    col = 0,
+                    border = { "─", "─", "─", " ", " ", " ", " ", " " },
                     backdrop = 100,
                     title = " Man ",
                     title_pos = "center",
                     preview = {
-                        border = "single",
+                        border = { "┬", "─", "─", " ", " ", " ", "│", "│" },
                         horizontal = "right:50%", -- right|left:size
                         layout = "horizontal", -- horizontal|vertical|flex
                         title = true, -- preview border title (file/buf)?
@@ -169,18 +171,17 @@ return {
             },
             helptags = {
                 prompt = " 󰍉 ",
-                fzf_opts = { ["--layout"] = "reverse-list" },
                 winopts = {
-                    height = 0.8,
-                    width = 0.9,
-                    row = 0.55,
-                    col = 0.50,
-                    border = "single",
+                    height = 0.4,
+                    width = 1,
+                    row = 1,
+                    col = 0,
+                    border = { "─", "─", "─", " ", " ", " ", " ", " " },
                     backdrop = 100,
                     title = " Help ",
                     title_pos = "center",
                     preview = {
-                        border = "single", -- border|noborder, applies only to
+                        border = { "┬", "─", "─", " ", " ", " ", "│", "│" },
                         horizontal = "right:50%", -- right|left:size
                         layout = "horizontal", -- horizontal|vertical|flex
                         title = true, -- preview border title (file/buf)?
@@ -193,6 +194,7 @@ return {
                 prompt = " 󰍉 ",
                 title_prefix = " LSP",
                 formatter = "path.filename_first",
+                jump1 = false,
                 winopts = {
                     height = 0.6,
                     width = 0.6,
@@ -237,5 +239,27 @@ return {
                 },
             },
         })
+
+        require("fzf-lua").register_ui_select(function(fzf_opts, items)
+            return vim.tbl_deep_extend("force", fzf_opts, {
+                winopts = {
+                    border = "single",
+                    backdrop = 100,
+                    title_pos = "center",
+                },
+            }, fzf_opts.kind == "codeaction" and {
+                winopts = {
+                    layout = "vertical",
+                    height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
+                    width = 0.3,
+                },
+            } or {
+                winopts = {
+                    width = 0.3,
+                    height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+                },
+            })
+        end
+)
     end,
 }

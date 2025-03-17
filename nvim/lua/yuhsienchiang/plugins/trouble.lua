@@ -20,34 +20,6 @@ return {
             ["<c-v>"] = "jump_vsplit",
         },
         modes = {
-            lsp_base = {
-                params = {
-                    include_current = true,
-                },
-            },
-            lsp_definitions = {
-                mode = "lsp_definitions",
-                auto_jump = false,
-                auto_preview = false,
-                preview = {
-                    type = "split",
-                    relative = "win",
-                    position = "right",
-                    size = 0.5,
-                },
-            },
-            lsp_references = {
-                mode = "lsp_references",
-                auto_jump = false,
-                auto_preview = true,
-                preview = {
-                    scratch = true,
-                    type = "split",
-                    relative = "win",
-                    position = "right",
-                    size = 0.5,
-                },
-            },
             symbols = {
                 model = "symbols",
                 auto_jump = false,
