@@ -10,7 +10,7 @@ return {
             options = {
                 theme = Util.get_catppuccin_theme(theme_flavour),
                 icons_enabled = true,
-                section_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
                 disabled_filetypes = {
                     statusline = {
@@ -42,7 +42,13 @@ return {
             },
             -- lualine for active/focus window
             sections = {
-                lualine_a = { { "mode" } },
+                lualine_a = {
+                    {
+                        "mode",
+                        separator = { left = "", right = "" },
+                        right_padding = 2,
+                    },
+                },
                 lualine_b = {
                     {
                         "filename",
@@ -74,18 +80,19 @@ return {
                         cond = function()
                             return package.loaded["noice"] and require("noice").api.status.mode.has()
                         end,
-                        color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+                    },
+                    {
+                        require("yuhsienchiang.util.venv_util").activated_venv,
+                        cond = function () return vim.bo.filetype == "python" end,
+                    },
+                    {
+                        require("yuhsienchiang.util.harpoon_util").harpoon_lualine,
                     },
                 },
                 lualine_y = {
                     {
-                        require("yuhsienchiang.util.venv_util").activated_venv,
-                        cond = function () return vim.bo.filetype == "python" end,
-                        color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
-                    },
-                    {
-                        require("yuhsienchiang.util.harpoon_util").harpoon_lualine,
-                        color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+                        require("yuhsienchiang.util.lsp_util").diagnostic_alert,
+                        color = { fg = catppuccin_color.subtext0, bg = catppuccin_color.surface0 },
                     },
                     {
                         "diff",
@@ -104,15 +111,14 @@ return {
                                 }
                             end
                         end,
-                        color = { bg = catppuccin_color.base },
                     },
                 },
                 lualine_z = {
                     {
                         "filetype",
                         colored = false,
-                        color = { fg = catppuccin_color.maroon, bg = catppuccin_color.base },
-                        separator = "|",
+                        color = { fg = catppuccin_color.base, bg = catppuccin_color.maroon, gui = "bold" },
+                        separator = { left = "", right = "" },
                     },
                 },
             },
@@ -142,10 +148,46 @@ return {
                         end,
                     },
                 },
-                lualine_c = {},
-                lualine_x = {},
-                lualine_y = {},
-                lualine_z = {},
+            },
+            winbar = {
+                lualine_c = {
+                    {
+                        "filetype",
+                        colored = true,
+                        icon_only = true,
+                    },
+                    {
+                        "filename",
+                        file_status = true,
+                        newfile_status = true,
+                        symbols = {
+                            modified = "●",
+                            unnamed = "[No Name]",
+                            newfile = "[New]",
+                        },
+                        color = { fg = catppuccin_color.subtext0, bg = catppuccin_color.base, gui = "bold" },
+                    },
+                },
+            },
+            inactive_winbar = {
+                lualine_c = {
+                    {
+                        "filetype",
+                        colored = false, -- Displays filetype icon in color if set to true
+                        icon_only = true, -- Display only an icon for filetype
+                    },
+                    {
+                        "filename",
+                        file_status = true,
+                        newfile_status = true,
+                        symbols = {
+                            modified = "●",
+                            unnamed = "[No Name]",
+                            newfile = "[New]",
+                        },
+                        color = { fg = catppuccin_color.overlay1, bg = catppuccin_color.base },
+                    },
+                },
             },
         })
     end,
