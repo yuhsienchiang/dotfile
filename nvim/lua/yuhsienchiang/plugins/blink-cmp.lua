@@ -34,17 +34,6 @@ return {
                 -- documentation scroll
                 ["<C-f>"] = { "scroll_documentation_down", "fallback" },
                 ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-
-                cmdline = {
-                    preset = "none",
-                    -- cancel cmp before accessing history
-                    ["<Down>"] = { function(cmp) cmp.cancel() return false end, "fallback" },
-                    ["<Up>"] = { function(cmp) cmp.cancel() return false end, "fallback" },
-
-                    ["<C-j>"] = { "select_next", "fallback" },
-                    ["<C-k>"] = { "select_prev", "fallback" },
-                    ["<CR>"] = { "accept", "fallback" },
-                },
             },
             snippets = {
                 preset = "luasnip",
@@ -73,20 +62,14 @@ return {
                     border = "single",
                     direction_priority = { "n", "s" },
                     draw = {
-                        gap = 2,
-                        columns = { { "kind_icon", "kind" }, { "label", "label_description", gap = 1 }, { "source_name" } },
+                        gap = 1,
+                        columns = { { "kind_icon", "kind" }, { "label", "label_description", gap = 5 }, { "source_name" } },
                         components = {
                             label = {
                                 ellipsis = true,
-                                width = { fill = true, max = 20 },
+                                width = { fill = true, max = 30 },
                             },
-                            kind = {
-                                width = { max = 4, fill = true },
-                                text = function(ctx)
-                                    -- don't show "kind if in cmdline" mode
-                                    return ctx.source_name == "cmdline" and "" or ctx.kind
-                                end,
-                            },
+                            kind = { width = { max = 4, fill = true } },
                             source_name = {
                                 highlight = function(ctx)
                                     return "BlinkCmpSource" .. ctx.source_name
@@ -97,7 +80,7 @@ return {
                 },
                 documentation = {
                     auto_show = true,
-                    auto_show_delay_ms = 1000,
+                    auto_show_delay_ms = 550,
                     treesitter_highlighting = true,
                     window = {
                         scrollbar = false,
@@ -108,14 +91,6 @@ return {
             },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
-                cmdline = function()
-                    local type = vim.fn.getcmdtype()
-                    -- only enable completion for : commands
-                    if type == ":" then
-                        return { "cmdline", "path" }
-                    end
-                    return {}
-                end,
                 providers = {
                     lsp = { fallbacks = {} }, -- disable buffer fallbacks
                     path = { fallbacks = {}, opts = { show_hidden_files_by_default = true } },
@@ -125,6 +100,41 @@ return {
             appearance = {
                 use_nvim_cmp_as_default = false,
                 nerd_font_variant = "normal",
+            },
+
+            -- cmdline module
+            cmdline = {
+                enabled = true,
+                sources = function()
+                    local type = vim.fn.getcmdtype()
+                    if type == ":" or type == "@" then
+                        return { "cmdline" }
+                    end
+                    return {}
+                end,
+                completion = {
+                    menu = {
+                        auto_show = true,
+                        draw = {
+                            columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
+                        },
+                    },
+                    list = { selection = { preselect = false } },
+                    ghost_text = { enabled = false },
+                },
+                keymap = {
+                    preset = "none",
+
+                    -- cancel cmp before accessing history
+                    ["<Down>"] = { function(cmp) cmp.cancel() return false end, "fallback" },
+                    ["<Up>"] = { function(cmp) cmp.cancel() return false end, "fallback" },
+
+                    ["<Tab>"] = {},
+                    ["<S-Tab>"] = {},
+                    ["<C-j>"] = { "select_next", "fallback" },
+                    ["<C-k>"] = { "select_prev", "fallback" },
+                    ["<CR>"] = { "accept", "fallback" },
+                },
             },
         }
     end,
