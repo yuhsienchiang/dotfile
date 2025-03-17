@@ -5,15 +5,15 @@ return {
         require("tiny-inline-diagnostic").setup({
             preset = "classic",
             signs = {
-                left = "",
-                right = "",
+                left = "",
+                right = "",
                 diag = "● ",
                 arrow = "    ",
                 up_arrow = "    ",
                 vertical = " │",
                 vertical_end = " └",
             },
-            blend = { factor = 0.15 },
+            blend = { factor = 0.22 },
             options = {
                 show_source = true,
                 throttle = 5,

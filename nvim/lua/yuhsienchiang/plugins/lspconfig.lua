@@ -36,11 +36,6 @@ return {
             update_in_insert = false,
             signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰠠" } },
             virtual_text =false,
-            -- virtual_text = {
-            --     spacing = 2,
-            --     source = "if_many",
-            --     prefix = " ",
-            -- },
             severity_sort = true,
         })
 
