@@ -71,10 +71,15 @@ function M.setup(flavour)
                 LazyNormal = { fg = colors.text, bg = colors.base },
 
                 -- Avante
+                AvanteSidebarNormal = { bg = colors.base },
                 AvanteTitle = { fg = colors.base, bg = colors.green, bold = true },
                 AvanteSubtitle = { fg = colors.base, bg = colors.sky, bold = true },
                 AvanteThirdTitle = { fg = colors.base, bg = colors.yellow, bold = true },
-                AvantePopupHint = { fg = colors.overlay1, bg = colors.mantle },
+                AvantePopupHint = { fg = colors.overlay1, bg = colors.base },
+                AvanteInlineHint = { fg = colors.mauve, bg = colors.base, italic = true },
+
+                AvanteSidebarWinSeparator = { link = "VertSplit" },
+                AvanteSidebarWinHorizontalSeparator = { fg = colors.base, bg = colors.base },
 
                 -- BlinkCmp
                 BlinkCmpMenu =           { bg = colors.base },

@@ -18,7 +18,11 @@ return {
             temperature = 0,
             max_tokens = 4096,
         },
+        behaviour = {
+            auto_set_highlight_group = false,
+        },
         windows = {
+
             position = "right",
             wrap = true, -- similar to vim.o.wrap
             width = 35, -- default % based on available width in vertical layout
