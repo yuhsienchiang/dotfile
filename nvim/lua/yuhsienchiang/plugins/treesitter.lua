@@ -24,6 +24,7 @@ return {
                 "gitignore",
                 "git_config",
                 "git_rebase",
+                "gitattributes",
                 "haskell",
                 "html",
                 "java",

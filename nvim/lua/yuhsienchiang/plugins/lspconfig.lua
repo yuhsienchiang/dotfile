@@ -25,6 +25,7 @@ return {
             "black",
             "clang-format",
             "isort",
+            "prettier",
             "stylua",
         },
     },
