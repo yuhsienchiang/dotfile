@@ -20,7 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
         "man",
         "notify",
         "checkhealth",
-        -- "gitgraph",
         "neotest-output",
         "neotest-output-panel",
         "neotest-summary",
@@ -56,5 +55,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         if mark[1] > 0 and mark[1] <= lcount then
             pcall(vim.api.nvim_win_set_cursor, 0, mark)
         end
+    end,
+})
+
+-- text filetypes special setups
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("text_files"),
+    pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
     end,
 })

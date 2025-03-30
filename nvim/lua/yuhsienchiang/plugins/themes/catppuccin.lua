@@ -44,6 +44,7 @@ function M.setup(flavour)
             neotest = true,
             nvimtree = true,
             noice = true,
+            render_markdown = true,
             snacks = true,
             treesitter = true,
             which_key = true,
@@ -70,6 +71,15 @@ function M.setup(flavour)
                 -- Lazy
                 LazyNormal = { fg = colors.text, bg = colors.base },
 
+                DiagnosticIndicateError = { fg = colors.red, bg = colors.surface0 },
+                DiagnosticIndicateWarn = { fg = colors.yellow, bg = colors.surface0 },
+                DiagnosticIndicateInfo = { fg = colors.sky, bg = colors.surface0 },
+                DiagnosticIndicateHint = { fg = colors.teal, bg = colors.surface0 },
+                DiagnosticIndicateOK = { fg = colors.green, bg = colors.surface0 },
+
+                -- NvimTree
+                NvimTreeNormal = { fg = colors.text, bg = colors.base},
+
                 -- Avante
                 AvanteSidebarNormal = { bg = colors.base },
                 AvanteTitle = { fg = colors.base, bg = colors.green, bold = true },
@@ -93,6 +103,7 @@ function M.setup(flavour)
                 BlinkCmpSourceBuffer =   { fg = colors.blue },
                 BlinkCmpSourceSnippets = { fg = colors.green },
                 BlinkCmpSourcecmdline = { fg = colors.blue },
+                BlinkCmpLabelDescription = { fg = colors.overlay1 },
 
                 -- Snacks
                 SnacksDashboardHeader = { fg = colors.yellow },
@@ -101,23 +112,11 @@ function M.setup(flavour)
                 SnacksDashboardKey =    { fg = colors.blue },
                 SnacksDashboardFooter = { fg = colors.surface2 },
                 SnacksIndent =          { fg = colors.surface0, bold = false },
-                SnacksIndentScope =     { fg = colors.subtext0, bold = true },
+                SnacksIndentScope =     { fg = colors.overlay1, bold = true },
 
                 -- Flash
                 FlashPrompt	=     { bg = colors.base },
                 FlashPromptIcon = { fg = colors.yellow },
-
-                -- GitGraph
-                -- GitGraphHash =       { fg = colors.overlay1,  bg = colors.base },
-                -- GitGraphTimestamp =  { fg = colors.yellow,  bg = colors.base },
-                -- GitGraphAuthor =     { fg = colors.peach,    bg = colors.base },
-                -- GitGraphBranchName = { fg = colors.green,   bg = colors.base },
-                -- GitGraphBranchMsg =  { fg = colors.text,   bg = colors.base },
-                -- GitGraphBranch1 =    {   fg = colors.red, bg = colors.base },
-                -- GitGraphBranch2 =    {   fg = colors.yellow,    bg = colors.base },
-                -- GitGraphBranch3 =    {   fg = colors.blue,   bg = colors.base },
-                -- GitGraphBranch4 =    {   fg = colors.purple,    bg = colors.base },
-                -- GitGraphBranch5 =    {   fg = colors.cyan, bg = colors.base },
 
                 -- GitSigns
                 GitSignsChange = { fg = colors.blue, bg = colors.base },
@@ -136,6 +135,9 @@ function M.setup(flavour)
                 FzfLuaLivePrompt = { fg = colors.text, bg = colors.base, bold = false },
                 FzfLuaFzfHeader =  { fg = colors.overlay1, bg = colors.base },
                 FzfLuaFzfPointer = { fg = colors.blue, bold = true },
+                FzfLuaFilePart = { fg = colors.text, bold = true },
+                FzfLuaDirPart = { fg = colors.overlay1 },
+                FzfLuaFzfMarker = { fg = colors.yellow },
 
                 -- Trouble
                 TroubleNormal =   { fg = colors.text, bg = colors.base },

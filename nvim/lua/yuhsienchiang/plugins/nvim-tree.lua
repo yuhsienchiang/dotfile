@@ -12,9 +12,9 @@ return {
 
             vim.keymap.set("n", "<CR>", tree_api.node.open.edit, opts("Open"))
             vim.keymap.set("n", "q", tree_api.tree.close_in_this_tab, opts("Close Tree"))
-            vim.keymap.set("n", "v", tree_api.node.open.vertical, opts("Open: Vertical Split"))
-            vim.keymap.set("n", "s", tree_api.node.open.horizontal, opts("Open: Horizontal Split"))
-            vim.keymap.set("n", "t", tree_api.node.open.tab, opts("Open: Tab"))
+            vim.keymap.set("n", "<C-v>", tree_api.node.open.vertical, opts("Open: Vertical Split"))
+            vim.keymap.set("n", "<C-s>", tree_api.node.open.horizontal, opts("Open: Horizontal Split"))
+            vim.keymap.set("n", "<C-t>", tree_api.node.open.tab, opts("Open: Tab"))
 
             -- Navigation
             vim.keymap.set("n", "]", tree_api.tree.change_root_to_node, opts("Down"))

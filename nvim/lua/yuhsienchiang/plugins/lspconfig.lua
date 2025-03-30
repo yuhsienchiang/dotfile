@@ -73,13 +73,13 @@ return {
 
         -- stylua: ignore
 		local on_attach = function(_, _)
-			vim.keymap.set("n",               "<leader>ds", ":Trouble symbols toggle<CR>",    { desc = "Toggle symbols (Trouble)",               noremap = true, silent = true })
+			vim.keymap.set("n",               "<leader>ds", ":Trouble symbols toggle<CR>",        { desc = "Toggle symbols (Trouble)",           silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>df", ":FzfLua lsp_finder<CR>",             { desc = "LSP Finder",                         silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>dd", ":FzfLua lsp_definitions<CR>",        { desc = "LSP Definition",                     silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>dh", vim.lsp.buf.hover,                    { desc = "Show hover document",                silent = true, noremap = true })
 			vim.keymap.set({ "n", "i" },      "<C-s>",      vim.lsp.buf.signature_help,           { desc = "Show signature help",                silent = true, noremap = true  })
-            vim.keymap.set({ "n", "i", "s" }, "<c-f>",      Util.hover_signature_scroll_forward,  { desc = "Scroll down signature and document", silent = true, expr = true })
-            vim.keymap.set({ "n", "i", "s" }, "<c-b>",      Util.hover_signature_scroll_backward, { desc = "Scroll up signature and document",   silent = true, expr = true })
+            vim.keymap.set({ "n", "i", "s" }, "<C-f>",      Util.hover_signature_scroll_forward,  { desc = "Scroll down signature and document", silent = true, expr = true })
+            vim.keymap.set({ "n", "i", "s" }, "<C-b>",      Util.hover_signature_scroll_backward, { desc = "Scroll up signature and document",   silent = true, expr = true })
         end
 
         mason_lspconfig.setup_handlers({

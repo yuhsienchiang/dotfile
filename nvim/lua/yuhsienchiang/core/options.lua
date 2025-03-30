@@ -39,8 +39,8 @@ opt.cursorline = true
 opt.virtualedit = "block"
 
 -- appearance
+opt.laststatus = 3
 opt.termguicolors = true
-opt.background = "dark"
 opt.showmode = false
 opt.pumheight = 10
 opt.shortmess:append({ W = true, I = true, c = true, C = true })

@@ -52,7 +52,7 @@ return {
         win = {
             border = "single",
             width = { min = 10 },
-            padding = { 1, 1 }, -- extra window padding [top/bottom, right/left]
+            padding = { 1, 5 }, -- extra window padding [top/bottom, right/left]
         },
         replace = {
             key = {

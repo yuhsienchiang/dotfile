@@ -5,10 +5,12 @@ return {
     opts = {
         styles = {
             notification = { border = "single" },
+            input = { border = "single" },
         },
         quickfile = { enabled = true },
         notifier = { enabled = true },
         words = { enabled = true },
+        input = { enabled = true },
         -- scope library
         scope = {
             min_size = 1,
@@ -37,32 +39,14 @@ return {
         },
         dashboard = {
             preset = {
-                pick = function(cmd, opts)
-                    require("fzf-lua")[cmd](opts)
-                end,
+                pick = function(cmd, opts) require("fzf-lua")[cmd](opts) end,
                 keys = {
                     { icon = "󰙅 ", key = "s", desc = "Explorer", action = ":NvimTreeToggle" },
                     { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-                    {
-                        icon = " ",
-                        key = "w",
-                        desc = "Find Text",
-                        action = ":lua Snacks.dashboard.pick('live_grep_glob', {winopts={title=' Live Multi-Grep '}})",
-                    },
-                    {
-                        icon = " ",
-                        key = "r",
-                        desc = "Recent Files",
-                        action = ":lua Snacks.dashboard.pick('oldfiles', {cwd_only=true})",
-                    },
+                    { icon = " ", key = "w", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep_glob', {winopts={title=' Live Grep '}})" },
+                    { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles', {cwd_only=true})", },
                     { icon = " ", key = "u", desc = "Restore Session", section = "session" },
-                    {
-                        icon = "󰒲 ",
-                        key = "l",
-                        desc = "Lazy",
-                        action = ":Lazy",
-                        enabled = package.loaded.lazy ~= nil,
-                    },
+                    { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
                     { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                 },
                 header = [[
@@ -73,18 +57,9 @@ return {
 ╚██████╗╚██████╔╝██████╔╝███████╗
  ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝]],
             },
-            formats = {
-                icon = function(item)
-                    if item.file and item.icon == "file" or item.icon == "directory" then
-                        return { "", hl = "icon", width = 0 }
-                    end
-                    return { item.icon, width = 0, hl = "icon" }
-                end,
-            },
             sections = {
                 { pane = 1, section = "header" },
                 { pane = 1, section = "keys", title = "Quick", padding = 1 },
-                -- { pane = 2, section = "recent_files", title = "Recent Files", cwd = true, limit = 5, padding = 1 },
                 {
                     pane = 1,
                     text = { "Pause and Pray | Jesus over everything", hl = "SnacksDashboardFooter" },

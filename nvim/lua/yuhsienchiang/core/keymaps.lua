@@ -40,9 +40,9 @@ vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up",   si
 vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv",        { desc = "Move Up",   silent = true })
 
 -- smart cursor movement
-vim.keymap.set({ "n", "v", "x", "o" },      "<C-l>", "$",               { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set("i",                         "<C-l>", "<C-o>$",          { desc = "Far Right",  silent = true, noremap = true })
-vim.keymap.set({ "n", "v", "i", "x", "o" }, "<C-h>", Util_keymap.smart_cursor, { desc = "Far Left",   silent = true, noremap = true })
+vim.keymap.set({ "n", "v", "x", "o" },      "<C-l>", "$",                      { desc = "Far Right", silent = true, noremap = true })
+vim.keymap.set("i",                         "<C-l>", "<C-o>$",                 { desc = "Far Right", silent = true, noremap = true })
+vim.keymap.set({ "n", "v", "i", "x", "o" }, "<C-h>", Util_keymap.smart_cursor, { desc = "Smart Left",  silent = true, noremap = true })
 
 -- Window
 -- Window Navigation
@@ -82,18 +82,18 @@ vim.keymap.set("n", "<leader>qw", "<cmd>x<CR>",  { desc = "Write & Quit",     si
 
 -- Plugins
 -- Fzf
-vim.keymap.set("n", "<leader>ff", function ()require("fzf-lua").files() end,                                                       { desc = "Find files",          silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fr", function ()require("fzf-lua").oldfiles({ cwd_only = true }) end,                                 { desc = "Recent files (CWD)",  silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fR", function ()require("fzf-lua").oldfiles() end,                                                    { desc = "Recent files",        silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fs", function () require("fzf-lua").live_grep({ winopts = { title = " Live Grep " }}) end,            { desc = "Live Grep",           silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fS", function () require("fzf-lua").live_grep_glob({ winopts = { title = " Live Multi-Grep " }}) end, { desc = "Live Multi-Grep",     silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fc", ":FzfLua grep_cword<CR>",                                                                        { desc = "Find current string", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fb", ":FzfLua buffers<CR>",                                                                           { desc = "Find opened buffers", silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fm", ":FzfLua manpages<CR>",                                                                          { desc = "Search man pages",    silent = true, noremap = true })
-vim.keymap.set("n", "<leader>fh", ":FzfLua helptags<CR>",                                                                          { desc = "Search help tags",    silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ff", function ()require("fzf-lua").files() end,                                                 { desc = "Find files",          silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fr", function ()require("fzf-lua").oldfiles({ cwd_only = true }) end,                           { desc = "Recent files (CWD)",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fR", function ()require("fzf-lua").oldfiles() end,                                              { desc = "Recent files",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fs", function () require("fzf-lua").live_grep_glob({ winopts = { title = " Live Grep " }}) end, { desc = "Live Grep",           silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fc", ":FzfLua grep_cword<CR>",                                                                  { desc = "Find current string", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fb", ":FzfLua buffers<CR>",                                                                     { desc = "Find opened buffers", silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fm", ":FzfLua manpages<CR>",                                                                    { desc = "Search man pages",    silent = true, noremap = true })
+vim.keymap.set("n", "<leader>fh", ":FzfLua helptags<CR>",                                                                    { desc = "Search help tags",    silent = true, noremap = true })
 
 -- Markdown Preview
-vim.keymap.set("n", "<leader>mm", ":Markview toggleAll<CR>", { desc = "Toggle Markdown",  silent = true, noremap = true })
+vim.keymap.set("n", "<leader>mm", ":Markview Toggle<CR>",      { desc = "Toggle Markdown",        silent = true, noremap = true })
+vim.keymap.set("n", "<leader>ms", ":Markview splitToggle<CR>", { desc = "Toggle Markdown Split",  silent = true, noremap = true })
 
 -- nvim-tree
 vim.keymap.set("n", "<leader>ss", ":NvimTreeToggle<CR>",   { desc = "Toggle NvimTree",         silent = true, noremap = true })
@@ -152,16 +152,7 @@ vim.keymap.set("n", "<leader>cC", ":Copilot disable<CR>", { desc = "Copilot disa
 vim.keymap.set({ "n", "o", "x" }, "s", function() require("flash").jump() end,       { desc = "Flash",            silent = true, noremap = true })
 vim.keymap.set({ "n", "o", "x" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter", silent = true, noremap = true })
 
--- GitGraph
--- vim.keymap.set("n", "<leader>ggg", Util_git.gitgraph_toggle, { desc = "GitGraph Toggle", silent = true, noremap = true })
--- vim.keymap.set("n", "<leader>ggd", Util_git.gitgraph_draw,   { desc = "GitGraph Draw", silent = true, noremap = true })
--- vim.keymap.set("n", "<leader>ggs", Util_git.gitgraph_split,  { desc = "GitGraph Draw (Split)", silent = true, noremap = true })
--- vim.keymap.set("n", "<leader>ggv", Util_git.gitgraph_vsplit, { desc = "GitGraph Draw (Vertical)", silent = true, noremap = true })
--- vim.keymap.set("n", "<leader>ggq", Util_git.gitgraph_close,  { desc = "GitGraph Close", silent = true, noremap = true })
--- Git-worktree
--- vim.keymap.set("n", "<leader>gww",function () require('telescope').extensions.git_worktree.git_worktree() end ,       { desc = "Git Worktree",        silent = true, noremap = true })
--- vim.keymap.set("n", "<leader>gwa",function () require('telescope').extensions.git_worktree.create_git_worktree() end, { desc = "Create Git Worktree", silent = true, noremap = true })
--- vim.keymap.set("n", "<leader>gwn",function () require('telescope').extensions.notify.notify() end,                    { desc = "Git Worktree Notify", silent = true, noremap = true })
+-- treewalker
 vim.keymap.set({ "n", "v" }, "<leader>k", function () require("treewalker").move_up() end,   { desc = "Treewalker: Up",   silent = true, noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>j", function () require("treewalker").move_down() end, { desc = "Treewalker: Down", silent = true, noremap = true })
 vim.keymap.set({ "n", "v" }, "<leader>h", function () require("treewalker").move_out() end,  { desc = "Treewalker: Out",  silent = true, noremap = true })
