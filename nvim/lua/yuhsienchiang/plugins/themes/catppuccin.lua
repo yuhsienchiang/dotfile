@@ -41,6 +41,7 @@ function M.setup(flavour)
                 },
                 inlay_hints = { background = true },
             },
+            neotest = true,
             nvimtree = true,
             noice = true,
             snacks = true,
@@ -55,6 +56,12 @@ function M.setup(flavour)
                 WinSeparator = { link = "VertSplit" }, -- nvimtree
                 CursorLineNr = { fg = colors.lavender, bold = true },
                 FloatBorder = { fg = colors.overlay0, bg = colors.base },
+
+                DiagnosticVirtualLinesWarn = { link = "DiagnosticVirtualTextWarn" },
+                DiagnosticVirtualLinesError = { link = "DiagnosticVirtualTextError" },
+                DiagnosticVirtualLinesInfo = { link = "DiagnosticVirtualTextInfo" },
+                DiagnosticVirtualLinesHint = { link = "DiagnosticVirtualTextHint" },
+                DiagnosticVirtualLinesOK = { link = "DiagnosticVirtualTextOK" },
 
                 -- Lsp
                 LspSignatureActiveParameter = { bg = colors.surface1, bold = true, italic = true },
