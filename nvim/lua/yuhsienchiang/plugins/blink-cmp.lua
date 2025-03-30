@@ -1,7 +1,7 @@
 return {
     "saghen/blink.cmp",
     event = { "InsertEnter", "CmdlineEnter" },
-    version = "v0.*",
+    version = "1.*",
     dependencies = { "rafamadriz/friendly-snippets", "L3MON4D3/LuaSnip" },
     opts = function()
         require("luasnip.loaders.from_vscode").lazy_load()
@@ -94,7 +94,6 @@ return {
                 providers = {
                     lsp = { fallbacks = {} }, -- disable buffer fallbacks
                     path = { fallbacks = {}, opts = { show_hidden_files_by_default = true } },
-                    buffer = { max_items = 5 },
                 },
             },
             appearance = {
@@ -119,7 +118,12 @@ return {
                             columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
                         },
                     },
-                    list = { selection = { preselect = false } },
+                    list = {
+                        selection = {
+                            preselect = false,
+                            auto_insert = true,
+                        },
+                    },
                     ghost_text = { enabled = false },
                 },
                 keymap = {

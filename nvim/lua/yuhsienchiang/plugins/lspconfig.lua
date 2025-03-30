@@ -48,7 +48,7 @@ return {
         local mason_lspconfig = require("mason-lspconfig")
         local mason_tool_installer = require("mason-tool-installer")
         -- local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local blink_cmp = require('blink.cmp')
+        local blink_cmp = require("blink.cmp")
         local Util = require("yuhsienchiang.util.lsp_util")
 
         mason_lspconfig.setup({

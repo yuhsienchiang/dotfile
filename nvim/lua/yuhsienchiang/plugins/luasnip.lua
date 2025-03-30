@@ -1,6 +1,6 @@
 return {
     "L3MON4D3/LuaSnip",
-    version = "v2.*",
+    version = "*",
     build = "make install_jsregexp",
     opts = {
         keep_roots = true,
