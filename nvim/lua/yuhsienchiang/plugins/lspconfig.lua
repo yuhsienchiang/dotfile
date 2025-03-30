@@ -6,7 +6,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         "saghen/blink.cmp",
-        "rachartier/tiny-inline-diagnostic.nvim",
+        -- "rachartier/tiny-inline-diagnostic.nvim",
         -- "hrsh7th/cmp-nvim-lsp",
     },
     opts = {
@@ -35,7 +35,11 @@ return {
             underline = false,
             update_in_insert = false,
             signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰠠" } },
-            virtual_text =false,
+            virtual_text = {
+                prefix = "  ",
+                source = "if_many"
+            },
+            virtual_lines = { current_line = true },
             severity_sort = true,
         })
 
