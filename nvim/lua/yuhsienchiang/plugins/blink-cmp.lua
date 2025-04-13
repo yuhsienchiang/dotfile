@@ -9,10 +9,18 @@ return {
 
         return {
             enabled = function()
-                return not vim.tbl_contains(
-                    { "Avante", "AvanteInput", "AvanteSelectedFiles", "markdown" },
-                    vim.bo.filetype
-                ) and vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
+                return not vim.tbl_contains({
+                    "Avante",
+                    "AvanteInput",
+                    "AvanteSelectedFiles",
+                    "markdown",
+                    "dap-repl",
+                    "dapui_scopes",
+                    "dapui_stacks",
+                    "dapui_breakpoints",
+                    "dapui_watches",
+                    "dapui_console"
+                }, vim.bo.filetype) and vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
             end,
 
             keymap = {
