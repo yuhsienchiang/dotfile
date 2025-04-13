@@ -57,6 +57,7 @@ function M.setup(flavour)
                 WinSeparator = { link = "VertSplit" }, -- nvimtree
                 CursorLineNr = { fg = colors.lavender, bold = true },
                 FloatBorder = { fg = colors.overlay0, bg = colors.base },
+                NormalFloat = { link = "Normal" },
 
                 DiagnosticVirtualLinesWarn = { link = "DiagnosticVirtualTextWarn" },
                 DiagnosticVirtualLinesError = { link = "DiagnosticVirtualTextError" },
@@ -147,6 +148,7 @@ function M.setup(flavour)
                 -- WhichKey
                 WhichKey =       { fg = colors.text, bg = colors.base },
                 WhichKeyNormal = { fg = colors.text, bg = colors.base },
+                WhichKeyDesc =   { fg = colors.lavender },
                 WhichKeyBorder = { link = "FloatBorder" },
 
                 -- Mason

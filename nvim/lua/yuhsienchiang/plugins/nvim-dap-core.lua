@@ -49,7 +49,7 @@ return {
                             { id = "watches", size = 0.25 },
                         },
                         position = "left",
-                        size = 30,
+                        size = 25,
                     },
                     {
                         elements = {

@@ -3,7 +3,8 @@ return {
     event = "VeryLazy",
     opts = {
         preset = "modern",
-        delay = 500,
+        delay = 800,
+        filter = function(mapping) return mapping.desc and mapping.desc ~= "" end,
         -- stylua: ignore
         spec = {
             { "<leader>a",  mode = { "n", "v" }, group = "Avante" },
@@ -52,7 +53,7 @@ return {
         win = {
             border = "single",
             width = { min = 10 },
-            padding = { 1, 5 }, -- extra window padding [top/bottom, right/left]
+            -- padding = { 1, 5 }, -- extra window padding [top/bottom, right/left]
         },
         replace = {
             key = {
