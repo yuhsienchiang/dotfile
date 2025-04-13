@@ -6,6 +6,30 @@ return {
         styles = {
             notification = { border = "single" },
             input = { border = "single" },
+            lazygit = {
+                backdrop = false,
+                border = "single",
+                height = function()
+                    return vim.o.lines - 4
+                end,
+                width = function()
+                    return vim.o.columns - 2
+                end,
+            },
+        },
+        lazygit = {
+            configure = false,
+            config = {
+                git = {
+                    branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --",
+                    allBranchesLogCmd = "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium",
+                    paging = {
+                        colorArg = "always",
+                        pager = "delta --dark --paging=never",
+                        useConfig = false,
+                    },
+                },
+            },
         },
         quickfile = { enabled = true },
         notifier = { enabled = true },
