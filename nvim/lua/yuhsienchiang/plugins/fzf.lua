@@ -13,14 +13,14 @@ return {
             keymap = {
                 builtin = {
                     false,
-                    ["<C-n>"] = "preview-down",
-                    ["<C-p>"] = "preview-up",
+                    ["<C-f>"] = "preview-down",
+                    ["<C-b>"] = "preview-up",
                     ["<C-o>"] = "toggle-preview",
                 },
                 fzf = {
                     false,
-                    ["ctrl-n"] = "preview-down",
-                    ["ctrl-p"] = "preview-up",
+                    ["ctrl-f"] = "preview-down",
+                    ["ctrl-b"] = "preview-up",
                     ["ctrl-o"] = "toggle-preview",
                 },
             },
