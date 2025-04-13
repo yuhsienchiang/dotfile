@@ -6,8 +6,6 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         "saghen/blink.cmp",
-        -- "rachartier/tiny-inline-diagnostic.nvim",
-        -- "hrsh7th/cmp-nvim-lsp",
     },
     opts = {
         lsp_server = {
@@ -38,9 +36,9 @@ return {
             signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰠠" } },
             virtual_text = {
                 prefix = "  ",
-                source = "if_many"
+                source = "if_many",
             },
-            virtual_lines = { current_line = true },
+            virtual_lines = false,
             severity_sort = true,
         })
 
@@ -69,7 +67,6 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             blink_cmp.get_lsp_capabilities()
-            -- cmp_nvim_lsp.default_capabilities()
         )
 
         -- stylua: ignore
@@ -77,6 +74,7 @@ return {
 			vim.keymap.set("n",               "<leader>ds", ":Trouble symbols toggle<CR>",        { desc = "Toggle symbols (Trouble)",           silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>df", ":FzfLua lsp_finder<CR>",             { desc = "LSP Finder",                         silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>dd", ":FzfLua lsp_definitions<CR>",        { desc = "LSP Definition",                     silent = true, noremap = true })
+            vim.keymap.set("n",               "<leader>di", Util.diagnostic_info_toggle,          { desc = "Toggle Diagnostic Info Mode",        silent = true, noremap = true })
             vim.keymap.set("n",               "<leader>dh", vim.lsp.buf.hover,                    { desc = "Show hover document",                silent = true, noremap = true })
 			vim.keymap.set({ "n", "i" },      "<C-s>",      vim.lsp.buf.signature_help,           { desc = "Show signature help",                silent = true, noremap = true  })
             vim.keymap.set({ "n", "i", "s" }, "<C-f>",      Util.hover_signature_scroll_forward,  { desc = "Scroll down signature and document", silent = true, expr = true })
