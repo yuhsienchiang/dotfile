@@ -1,6 +1,5 @@
 local Util_keymap = require("yuhsienchiang.util.keymap_util")
 local Util_harpoon = require("yuhsienchiang.util.harpoon_util")
--- local Util_git = require("yuhsienchiang.util.gitgraph_util")
 local Util_venv = require("yuhsienchiang.util.venv_util")
 local Util_todo = require("yuhsienchiang.util.todo_util")
 
@@ -124,6 +123,8 @@ vim.keymap.set("n", "<leader>ghR", function () require("gitsigns").reset_buffer(
 vim.keymap.set("n", "<leader>ghd", function () require("gitsigns").diffthis("~") end,                                    { desc = "Diff against last commit",         silent = true, noremap = true })
 vim.keymap.set("n", "<leader>ghD", function () require("gitsigns").diffthis() end,                                       { desc = "Diff against the index",         silent = true, noremap = true })
 vim.keymap.set("n", "<leader>ght", function () require("gitsigns").preview_hunk_inline() end,                            { desc = "Toggle Deleted",    silent = true, noremap = true })
+-- lazygit
+vim.keymap.set("n", "<leader>gll", function () require("snacks").lazygit() end, { desc = "Open lazygit", silent = true, noremap = true })
 
 -- Harpoon
 vim.keymap.set("n", "<leader>Hh", Util_harpoon.fzf.harpoon_fzf,                       { desc = "Harpoon Menu",  silent = true, noremap = true })
@@ -153,7 +154,7 @@ vim.keymap.set({ "n", "o", "x" }, "s", function() require("flash").jump() end,  
 vim.keymap.set({ "n", "o", "x" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter", silent = true, noremap = true })
 
 -- treewalker
-vim.keymap.set({ "n", "v" }, "<leader>k", function () require("treewalker").move_up() end,   { desc = "Treewalker: Up",   silent = true, noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>j", function () require("treewalker").move_down() end, { desc = "Treewalker: Down", silent = true, noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>h", function () require("treewalker").move_out() end,  { desc = "Treewalker: Out",  silent = true, noremap = true })
-vim.keymap.set({ "n", "v" }, "<leader>l", function () require("treewalker").move_in() end,   { desc = "Treewalker: In",   silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>k", function () require("treewalker").move_up() end,   { silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>j", function () require("treewalker").move_down() end, { silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>h", function () require("treewalker").move_out() end,  { silent = true, noremap = true })
+vim.keymap.set({ "n", "v" }, "<leader>l", function () require("treewalker").move_in() end,   { silent = true, noremap = true })
