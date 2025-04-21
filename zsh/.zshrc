@@ -12,6 +12,11 @@ source $HOME/.config/zsh/plugins/exports.zsh
 source $HOME/.config/zsh/plugins/completion.zsh
 source $HOME/.config/zsh/plugins/aliases.zsh
 
+# api keys
+if [[ -f $HOME/.config/zsh/plugins/api_keys.zsh ]]; then
+    source $HOME/.config/zsh/plugins/api_keys.zsh
+fi
+
 # zsh-vi-mode
 source $HOME/.config/zsh-vi-mode/zsh-vi-mode.zsh
 

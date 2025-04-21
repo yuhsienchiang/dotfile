@@ -6,3 +6,4 @@
 **/.zcompcache
 **/.zsh_sessions
 **/state.yml
+**/api_keys.zsh
