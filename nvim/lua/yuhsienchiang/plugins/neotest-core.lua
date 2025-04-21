@@ -55,8 +55,10 @@ return {
                     local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
                     return message
                 end,
+                source ="if_many",
             },
-            virtual_lines = { current_line = true },
+            virtual_lines = false,
+            severity_sort = true
         }, neotest_ns)
 
         -- keymaps

@@ -126,13 +126,43 @@ M.diagnostic_info_toggle = function()
         vim.diagnostic.config({
             virtual_text = false,
             virtual_lines = { format = virtual_lines_format },
+            severity_sort = true
         })
+
+        local neotest_ns = vim.api.nvim_create_namespace("neotest")
+        vim.diagnostic.config({
+            virtual_text = false,
+            virtual_lines = { format = virtual_lines_format },
+            severity_sort = true
+        }, neotest_ns)
+
+
+
+
         message = message .. "Line"
     else
         vim.diagnostic.config({
             virtual_text = { prefix = "  ", source = "if_many" },
             virtual_lines = false,
+            severity_sort = true
         })
+
+
+        local neotest_ns = vim.api.nvim_create_namespace("neotest")
+        vim.diagnostic.config({
+            virtual_text = {
+                prefix = "  ",
+                format = function(diagnostic)
+                    -- Replace newline and tab characters with space for more compact diagnostics
+                    local diagnostic_message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+                    return diagnostic_message
+                end,
+                source ="if_many",
+            },
+            virtual_lines = false,
+            severity_sort = true
+        }, neotest_ns)
+
         message = message .. "Text"
     end
     require("snacks").notifier.notify(message, vim.log.levels.INFO, { title = "Diagnostic Info", style = "compact" })
