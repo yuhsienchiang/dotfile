@@ -66,13 +66,13 @@ return {
 
         -- keymaps
         local Util = require("yuhsienchiang.util.neotest_util")
-        vim.keymap.set("n", "<leader>utt", function() Util.run({}, true) end,                              { desc = "Run nearest test", silent = true, noremap = true })
-        vim.keymap.set("n", "<leader>utd", function() Util.run_dap({}, true) end,                          { desc = "Run test debug", silent = true, noremap = true })
-        vim.keymap.set("n", "<leader>utT", function() Util.run(vim.fn.expand("%"), true) end,              { desc = "Run current file tests", silent = true, noremap = true })
-        vim.keymap.set("n", "<leader>uta", function() Util.run({ suite = true }, true) end,                { desc = "Run all tests", silent = true, noremap = true })
-        vim.keymap.set("n", "<leader>uto", function() Util.output({ mode = "horizontal", size = 0.4}) end, { desc = "Open nearest output", silent = true, noremap = true })
-        vim.keymap.set("n", "<leader>utO", function() Util.output({ mode = "horizontal", size = 0.4}) end, { desc = "Open all output", silent = true, noremap = true })
-        vim.keymap.set("n", "<leader>uts", neotest.summary.toggle,                                         { desc = "Toggle Summary", silent = true, noremap = true })
-        vim.keymap.set("n", "<leader>utq", neotest.run.stop,                                               { desc = "Toggle Summary", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>utt", function() Util.run({}, true) end,                                  { desc = "Run test (nearest)", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>utd", function() Util.run_dap({}, true) end,                              { desc = "Run test (debug)", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>utT", function() Util.run(vim.fn.expand("%"), true) end,                  { desc = "Run test (current file)", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>uta", function() Util.run({ suite = true }, true) end,                    { desc = "Run test (all)", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>uto", function() Util.output({ mode = "horizontal", size = 0.4}) end,     { desc = "Open output (nearest)", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>utO", function() Util.output_all({ mode = "horizontal", size = 0.4}) end, { desc = "Open output (all)", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>uts", neotest.summary.toggle,                                             { desc = "Toggle Summary", silent = true, noremap = true })
+        vim.keymap.set("n", "<leader>utq", neotest.run.stop,                                                   { desc = "End Test", silent = true, noremap = true })
     end,
 }
