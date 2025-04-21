@@ -24,11 +24,10 @@ if [[ -z $TMUX ]]; then
     export FZF_DEFAULT_OPTS=" \
         --height 60% --layout=reverse --border=sharp --cycle \
         --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
-        --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
-        --color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
-        --color=selected-bg:#51576d \
+        --color=fg:#c6d0f5,header:#e78284,info:#8caaee,pointer:#8caaee \
+        --color=marker:#e5c890,fg+:#c6d0f5,prompt:#8caaee,hl+:#e78284 \
         --color=gutter:#303446 \
-        --prompt='󰍉 ' --pointer='' --marker='+' "
+        --prompt='󰍉 ' --pointer='▎' --marker='+ ' "
 
     export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"                               # ctrl-t: past selected to prompt
     export FZF_ALT_C_COMMAND='fd -td --hidden --follow --no-ignore-vcs'              # ctrl-f: change directory to selected

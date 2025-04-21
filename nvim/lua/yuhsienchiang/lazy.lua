@@ -21,7 +21,7 @@ local opts = {
     },
     ui = {
         border = "single",
-        size = { width = 0.91, height = 0.8 },
+        size = { width = 0.96, height = 0.8 },
         title = "Lazy",
         backdrop = 100,
     },
