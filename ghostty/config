@@ -24,7 +24,7 @@ quit-after-last-window-closed = true
 macos-titlebar-proxy-icon = hidden
 
 # cursor
-cursor-style = block
+cursor-style = bar
 cursor-style-blink = false
 shell-integration-features = no-cursor
 cursor-text = #010101

@@ -3,6 +3,9 @@
 tmux_config_dir="${XDG_CONFIG_HOME}/tmux"
 source $tmux_config_dir/themes/catppuccin_frappe.sh
 
+# set cursor style
+tmux set-option -g cursor-style blinking-bar
+
 # set tmux message style
 tmux set-option -g message-style "fg=${thm_sky},bg=${thm_base},bold,italics,align=centre"
 

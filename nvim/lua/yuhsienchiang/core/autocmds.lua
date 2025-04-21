@@ -68,3 +68,11 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.tabstop = 2
     end,
 })
+
+-- reset cursor style when leaving nvim
+vim.api.nvim_create_autocmd("VimLeave", {
+    group = augroup("CursorShape"),
+    callback = function()
+        vim.cmd("set guicursor=a:ver25")
+    end,
+})
